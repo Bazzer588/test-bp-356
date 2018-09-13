@@ -2,10 +2,16 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import TaxForm from './TaxForm3';
+import store from './startRedux';
 
 export default class App extends Component {
     render() {
-        const clk = () => { console.log('CLK'); return false; };
+
+        const clk = () => {
+            console.log(store.getState().formState);
+            return false;
+        };
+
         return (
             <div className="App bg-light">
                 <header className="App-header">

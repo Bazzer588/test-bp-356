@@ -3,9 +3,9 @@ import React from "react";
 export default class FormField extends React.PureComponent {
 
     onBlur = () => {
-        if (!this.props.touched) {
-            const name = this.props.name;
-            this.props.parent.onBlurField(name,true,this);
+        const { touched, name, parent } = this.props;
+        if (!touched) {
+            parent.onBlurField(name,true,this);
         }
     };
 

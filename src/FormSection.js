@@ -3,20 +3,24 @@ import FormField from "./FormField";
 
 export default function make (Wrapped) {
 
-    class FormSection extends React.Component {
+    class FormSection extends React.PureComponent {
 
-        constructor(props) {
+        constructor (props) {
             super(props);
             this.myRef = React.createRef();
         }
 
+        getWrappedInstance () {
+            return this.myRef.current;
+        }
+
         testClick = (ev) => {
-            const node = this.myRef.current;
+            const node = this.getWrappedInstance();
             console.log('NODE', node);
             node.testHit(ev);
         };
 
-        onBlurField  = (fieldName,newValue) => {
+        onBlurField = (fieldName,newValue) => {
             const { touched, name, updateRedux, parent } = this.props;
             const changed = { ...touched, [fieldName]: newValue };
             if (updateRedux)
@@ -38,19 +42,30 @@ export default function make (Wrapped) {
 
         renderField = (fieldProps, extraProps) => {
             const Compo = fieldProps.validateSection ? fieldProps.component : FormField;
-            const {path, name, touched = {}, value = {}, coreData} = this.props;
+            const {name, path, touched = DEF_VAL, value = DEF_VAL, coreData} = this.props;
+            if (!name) {
+                return <Compo
+                    {...fieldProps}
+                    {...extraProps}
+                    coreData={coreData}
+                    parent={this}
+                    path={path}
+                    touched={touched}
+                    value={value}
+                />
+            }
             return <Compo
                 {...fieldProps}
+                {...extraProps}
+                coreData={coreData}
                 parent={this}
                 path={path ? path + '-' + name : name}
                 touched={touched[fieldProps.name]}
                 value={value[fieldProps.name]}
-                coreData={coreData}
-                {...extraProps}
             />
         };
 
-        render() {
+        render () {
             return (
                 <Wrapped ref={this.myRef} {...this.props} renderField={this.renderField}/>
             );
@@ -59,3 +74,5 @@ export default function make (Wrapped) {
 
     return FormSection;
 }
+
+const DEF_VAL = {};
