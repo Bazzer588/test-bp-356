@@ -15,28 +15,25 @@ const Gender = { name: 'gender', component: Select };
 class TaxForm extends React.Component {
 
     render () {
+        const field = this.props.renderField;
         const { value = {} } = this.props;
         const tax = value['taxRef'];
         return (
-            <FormSection parent={this}>
-                {field =>
-                    <fieldset className="form-fieldset">
-                        <legend>{this.props.name} Details</legend>
-                        {field(TaxReferenceNo)}
-                        {field(FirstName)}
-                        {field(LastName)}
-                        {field(Telephone)}
-                        {field(Email, { required: !!tax })}
-                        {field(UserName, { required: true })}
-                        {field(Gender)}
-                    </fieldset>
-                }
-            </FormSection>
+            <fieldset className="form-fieldset">
+                <legend>{this.props.name} Details</legend>
+                {field(TaxReferenceNo)}
+                {field(FirstName)}
+                {field(LastName)}
+                {field(Telephone)}
+                {field(Email, { required: !!tax })}
+                {field(UserName, { required: true })}
+                {field(Gender)}
+            </fieldset>
         );
     }
 }
 
-export default FormConnect(TaxForm);
+export default FormConnect( FormSection(TaxForm) );
 
 // ***********************
 
