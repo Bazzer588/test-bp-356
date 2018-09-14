@@ -6,6 +6,8 @@ import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux'
 import store from './startRedux';
 
+// SET UP DEFAULTS
+
 // RENDER
 
 const render = Root => {

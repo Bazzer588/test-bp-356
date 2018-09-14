@@ -2,6 +2,7 @@ import React from "react";
 import FormSection from './FormSection';
 import FormConnect from './FormConnect';
 import ContactSection from "./ContactSection";
+import Select from "./components/Select";
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 function validateContactSection () {}
@@ -10,7 +11,8 @@ const TaxReferenceNo = { name: 'taxRef', maxLength: 8, minLength: 5, inputClass:
 const FirstName = { name: 'firstName', maxLength: 30 };
 const LastName = { name: 'lastName', maxLength: 30, autoComplete: 'postal-code' };
 const UserName = { name: 'username', placeholder: 'Username', autoComplete: 'username', type: 'text' };
-const Gender = { name: 'gender', component: Select };
+const Gender = { name: 'gender', component: Select, options: 'gender' };
+const Country = { name: 'country', component: Select, options: 'country', required: false };
 const Phones = { name: 'phones', component: ContactSection, validateSection: validateContactSection };
 
 class TaxForm extends React.PureComponent {
@@ -23,6 +25,7 @@ class TaxForm extends React.PureComponent {
             <fieldset className="form-fieldset">
                 <legend>{this.props.name} Details</legend>
                 {field(TaxReferenceNo)}
+                {field(Country)}
                 {field(FirstName)}
                 {field(LastName)}
                 {field(UserName, { required: !!tax })}
@@ -34,16 +37,3 @@ class TaxForm extends React.PureComponent {
 }
 
 export default FormConnect( FormSection(TaxForm) );
-
-// ***********************
-
-function Select (props) {
-    console.log('SELECT',props);
-    return (
-        <select {...props} className="custom-select">
-            {!props.value && <option>Please select a gender</option>}
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-        </select>
-    );
-}
