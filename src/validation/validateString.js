@@ -25,7 +25,7 @@ export default function validateString (value, props, path, output) {
                     return {name, path, required, error: 'maxLength', values: { maxLength } };
                 }
                 if (pattern) {
-                    const reg = new RegExp('/^[' + pattern + ']+$/i');
+                    const reg = new RegExp(pattern); // ie ^[0-9]+$
                     if (!reg.test(value)) {
                         return {name, path, required, error: 'pattern' };
                     }
@@ -33,7 +33,9 @@ export default function validateString (value, props, path, output) {
                 // todo numeric ? alpha ? decimal ?
                 if (nextValidator) {
                     const r = nextValidator(value,props,path,output);
-                    if (r) return r;
+                    if (r) {
+                        return r;
+                    }
                 }
                 if (output) {
                     output[name] = value;
@@ -64,12 +66,20 @@ export function validateEmail (value, props, path, output) {
     if (err===true) {
         const { name, required } = props;
         value = value.trim();
+
+        // invalid character sequences
+        const bad = [' ','..','.@','@.'];
+        const found = bad.find( (t) => value.indexOf(t)>=0 );
+        if (found) {
+            return { name, path, required, error: 'invalidEmail', values: { found } };
+        }
+
+        // general format, xxxx.xxx@xxx.xxx
         const len = value.length;
-        const sp = value.indexOf(' ');
         const at1 = value.indexOf('@');
         const at2 = value.lastIndexOf('@');
         const dot = value.lastIndexOf('.');
-        if (sp>=0 || dot===len-1 || at1<at2 || dot<at2) {
+        if (dot===len-1 || at1<0 || at1<at2 || dot<at2) {
             return { name, path, required, error: 'invalidEmail' };
         }
         if (output) {

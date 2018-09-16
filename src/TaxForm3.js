@@ -3,15 +3,20 @@ import FormSection from './FormSection';
 import FormConnect from './FormConnect';
 import ContactSection, {validateContactSection} from "./ContactSection";
 import Select from "./components/Select";
+import { stringTypeField } from './validation/validateString'
+import {translate} from './components/AppConfig';
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 
-const TaxReferenceNo = { name: 'taxRef', maxLength: 8, minLength: 5, inputClass: 'narrow' };
-const FirstName = { name: 'firstName', maxLength: 30 };
-const LastName = { name: 'lastName', maxLength: 30, autoComplete: 'postal-code' };
-const UserName = { name: 'username', placeholder: 'Username', autoComplete: 'username', type: 'text' };
-const Gender = { name: 'gender', component: Select, options: 'gender' };
-const Country = { name: 'country', component: Select, options: 'country', required: false, oddbod: 'nonono' };
+const TaxReferenceNo = stringTypeField( 'taxRef', {maxLength: 8, minLength: 5, inputClass: 'narrow upper-case', required: true, spellCheck: false, pattern: '^[0-9]+$' });
+const FirstName = stringTypeField( 'firstName', {maxLength: 30, minLength: 2});
+const LastName = stringTypeField( 'lastName', {maxLength: 30, required: true });
+const UserName = stringTypeField( 'username', {placeholder: 'Username', autoComplete: 'username', type: 'text', pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' });
+
+const Gender = stringTypeField( 'gender', {component: Select, options: 'gender', required: true });
+const Country = stringTypeField( 'country', {component: Select, options: 'country', required: false });
+const ZipCode = stringTypeField( 'zipCode', {maxLength: 12, autoComplete: 'postal-code', required: false, inputClass: 'narrow' });
+
 const Phones = { name: 'phones', component: ContactSection, validateSection: validateContactSection };
 
 class TaxForm extends React.PureComponent {
@@ -28,13 +33,18 @@ class TaxForm extends React.PureComponent {
         const tax = value['taxRef'];
         return (
             <fieldset className="form-fieldset">
-                <legend>{this.props.name} Details</legend>
+                <legend>{translate(this.props.name)}</legend>
                 {Field( TaxReferenceNo )}
-                {Field( Country, { allowOption: this.allowCountry, required: (this.props.requireCountry || false) } )}
-                {Field( FirstName )}
-                {Field( LastName )}
-                {Field( UserName, { required: !!tax } )}
+                <div style={{ display: 'inline-block', verticalAlign: 'top', width: '50%', paddingRight: '16px', boxSizing: 'border-box' }}>
+                    {Field( FirstName )}
+                    </div>
+                    <div style={{ display: 'inline-block', verticalAlign: 'top', width: '50%' }}>
+                    {Field( LastName )}
+                </div>
                 {Field( Gender )}
+                {Field( UserName, { required: !!tax } )}
+                {Field( Country, { allowOption: this.allowCountry, required: (this.props.requireCountry || false) } )}
+                {Field( ZipCode )}
                 {Field( Phones )}
             </fieldset>
         );

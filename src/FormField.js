@@ -1,4 +1,5 @@
 import React from "react";
+import {translate} from './components/AppConfig';
 
 export default class FormField extends React.PureComponent {
 
@@ -16,23 +17,21 @@ export default class FormField extends React.PureComponent {
     };
 
     render () {
-        const { parent, coreData, name, path, touched, required, htmlId, inputClass, component, validator, ...others } = this.props;
+        const { parent, coreData, name, path, touched, required, htmlId, inputClass, fieldClass = '', component, validator, ...others } = this.props;
         const Compo = component || 'input';
         const value = this.props.value || '';
         const full = path + '-' + (htmlId || name);
         const labl = path + '-' + name;
 
-        if (validator) {
-            const error = validator(value,this.props,path);
-        }
-
-        const invalid = required!==false && !!touched && !value;  // TODO validator
+        const error = !!touched && validator && validator(value,this.props,path);
+        const invalid = error && !!error.error;
+        // const invalid = required!==false && !!touched && !value;
         const errorId = invalid ? full+'-fieldError' : undefined;
 
         const divClass = invalid ? 'form-field ff-invalid' : 'form-field';
         return (
-            <div className={divClass}>
-                <label htmlFor={full}>{labl}</label>
+            <div className={divClass+' '+fieldClass}>
+                <label htmlFor={full}>{translate(labl,required)}</label>
                 <Compo
                     aria-describedby={errorId}
                     aria-invalid={invalid}
@@ -44,25 +43,33 @@ export default class FormField extends React.PureComponent {
                     {...others}
                     value={value}
                 />
-                {invalid &&
-                    <span
-                        aria-live="assertive"
-                        className="field-error"
-                        id={errorId}
-                    >
-                        {'Please enter the field '+labl}
-                    </span>
-                }
+                {invalid && renderError(error,errorId)}
             </div>
         );
     }
+}
+
+function renderError (error, errorId) {
+    return (
+        <span
+            aria-live="assertive"
+            className="field-error"
+            id={errorId}
+        >
+            {error.error}
+            {error.values && JSON.stringify(error.values)}
+            {error.required && ' *'}
+        </span>
+    );
 }
 
 /*  render manually
 
     <FormField
         {...fieldProps}
+        coreData={coreData}
         parent={this}
+        path={path+'-'+this.props.name}
         touched={ this.props.touched[ fieldProps.name ] }
         value={ this.props.value[ fieldProps.name ] }
     />

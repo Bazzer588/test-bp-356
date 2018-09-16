@@ -46,5 +46,19 @@ registerServiceWorker();
 function translate (t,required) {
     if (t.endsWith('country-pleaseSelect')) return required ? 'Choose a country' : 'No country selected';
     if (t.endsWith('gender-pleaseSelect')) return 'Please select a gender';
-    return t;
+    if (t.endsWith('-country')) return 'Country';
+    if (t.endsWith('-zipCode')) return 'Zip code';
+    if (t.endsWith('-firstName')) return 'First name';
+    if (t.endsWith('-lastName')) return 'Surname';
+    if (t.endsWith('-taxRef')) return 'Tax Reference No.';
+    if (t.endsWith('-username')) return 'User name';
+    if (t.endsWith('-gender')) return 'Gender';
+    if (t.endsWith('-homePhone')) return 'Home telephone';
+    if (t.endsWith('-mobilePhone')) return 'Mobile phone';
+    if (t.endsWith('-emailAddress')) return 'Email address';
+    const map = {
+        personalRef: 'Your personal details',
+        spouseRef: 'Your spouse details'
+    };
+    return map[t] || t;
 }
