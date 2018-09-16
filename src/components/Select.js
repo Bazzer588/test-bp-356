@@ -1,9 +1,11 @@
 import React from "react";
+import {translate} from './AppConfig';
 
 function getOptionList (name) {
     const map = {
         gender: ['M','F'],
-        country: ['GB','US','CN']
+        country: ['GB','US','CN','BW','AR'],
+        months: ['01','02','03','04','05','06','07','08','09','10','11','12']
     };
     return map[name] || ['Y','N'];
 }
@@ -11,14 +13,14 @@ function getOptionList (name) {
 function getOptionDescriptions (name) {
     const map = {
         gender: { M: 'Male', F: 'Female'},
-        country: { GB: 'United Kingdom', US: 'United States', CN: 'China' }
+        country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' }
     };
     return map[name] || {};
 }
 
 // helper
 
-function getOptions (name,allowOption,props) {
+function renderOptions (name,allowOption,props) {
     const list = getOptionList(name);
     const map = getOptionDescriptions(name);
     const opts = [];
@@ -29,34 +31,19 @@ function getOptions (name,allowOption,props) {
     return opts;
 }
 
-export default function Select ({ options, ...props }) {
-    console.log('SELECT',props);
+export default function Select (props) {
+    //console.log('SELECT',props);
 
-    const required = props.required;
+    const { options, allowOption, ...rest } = props;
+    const { value, required, id } = props;
+    const cnm = !!value ? 'custom-select' : 'custom-select no-value';
 
     return (
-        <select {...props} className="custom-select">
-            {(!props.value || required===false) && <option>Please select a {options}</option>}
-            {getOptions(options)}
+        <select {...rest} className={cnm}>
+            {(!value || required===false) && <option value="">{translate(id+'-pleaseSelect',required)}</option>}
+            {renderOptions(options,allowOption,props)}
         </select>
     );
-    /*
-    if (options==='country') {
-        return (
-            <select {...props} className="custom-select">
-                {!props.value && <option>Please select a country</option>}
-                <option value="GB">United Kingdom</option>
-                <option value="US">United States</option>
-                <option value="CN">China</option>
-            </select>
-        );
-    }
-    return (
-        <select {...props} className="custom-select">
-            {!props.value && <option>Please select a gender</option>}
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-        </select>
-    );
-    */
 }
+
+// https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box

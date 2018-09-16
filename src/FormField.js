@@ -16,13 +16,19 @@ export default class FormField extends React.PureComponent {
     };
 
     render () {
-        const { parent, coreData, name, path, touched, required, htmlId, inputClass, component, ...others } = this.props;
+        const { parent, coreData, name, path, touched, required, htmlId, inputClass, component, validator, ...others } = this.props;
         const Compo = component || 'input';
         const value = this.props.value || '';
         const full = path + '-' + (htmlId || name);
         const labl = path + '-' + name;
+
+        if (validator) {
+            const error = validator(value,this.props,path);
+        }
+
         const invalid = required!==false && !!touched && !value;  // TODO validator
         const errorId = invalid ? full+'-fieldError' : undefined;
+
         const divClass = invalid ? 'form-field ff-invalid' : 'form-field';
         return (
             <div className={divClass}>

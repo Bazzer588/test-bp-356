@@ -19,8 +19,8 @@ export default class App extends Component {
                     <h1 className="App-title">Tax calculator app</h1>
                 </header>
                 <form>
-                    <TaxForm path="mainForm" name="personalRef"/>
-                    <TaxForm path="mainForm" name="spouseRef"/>
+                    <TaxForm path="mainForm" name="personalRef" requireCountry/>
+                    <TaxForm path="mainForm" name="spouseRef" allowArgentina={false}/>
                 <p style={{ textAlign: 'right' }}>
                     <Button onClick={clk} >Reset</Button>
                     {' '}
