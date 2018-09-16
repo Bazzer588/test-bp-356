@@ -20,3 +20,6 @@ export default function Loader () {
 
 // psychedelic
 // https://www.w3schools.com/code/tryit.asp?filename=FVAED5JFVIO5
+
+// delays
+// https://www.w3schools.com/code/tryit.asp?filename=FVC7MNJUM92B

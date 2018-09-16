@@ -1,32 +1,15 @@
 import React from "react";
-import {translate} from './AppConfig';
-
-function getOptionList (name) {
-    const map = {
-        gender: ['M','F'],
-        country: ['GB','US','CN','BW','AR'],
-        months: ['01','02','03','04','05','06','07','08','09','10','11','12']
-    };
-    return map[name] || ['Y','N'];
-}
-
-function getOptionDescriptions (name) {
-    const map = {
-        gender: { M: 'Male', F: 'Female'},
-        country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' }
-    };
-    return map[name] || {};
-}
+import {translate, getOptionList, getOptionDescriptions} from './AppConfig';
 
 // helper
 
-function renderOptions (name,allowOption,props) {
+function renderOptions (name, allowOption, props) {
     const list = getOptionList(name);
     const map = getOptionDescriptions(name);
     const opts = [];
-    list.forEach( row => {
-        if (!allowOption || allowOption(row,props))
-            opts.push( <option key={row} value={row}>{map[row] || row}</option> );
+    list.forEach(row => {
+        if (!allowOption || allowOption(row, props))
+            opts.push(<option key={row} value={row}>{map[row] || row}</option>);
     });
     return opts;
 }
@@ -34,14 +17,14 @@ function renderOptions (name,allowOption,props) {
 export default function Select (props) {
     //console.log('SELECT',props);
 
-    const { options, allowOption, ...rest } = props;
-    const { value, required, id } = props;
-    const cnm = !!value ? 'custom-select' : 'custom-select no-value';
+    const {options, allowOption, ...rest} = props;
+    const {value, required, id} = props;
+    const className = !!value ? 'custom-select' : 'custom-select no-value';
 
     return (
-        <select {...rest} className={cnm}>
-            {(!value || required===false) && <option value="">{translate(id+'-pleaseSelect',required)}</option>}
-            {renderOptions(options,allowOption,props)}
+        <select {...rest} className={className}>
+            {(!value || required === false) && <option value="">{translate(id + '-pleaseSelect', required)}</option>}
+            {renderOptions(options, allowOption, props)}
         </select>
     );
 }

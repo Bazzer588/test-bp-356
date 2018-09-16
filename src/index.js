@@ -1,25 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './Fixers';
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux'
 import store from './startRedux';
-import { setTranslator } from './components/AppConfig';
-
-// IE 11 rubbish
-
-if (!String.prototype.endsWith) {
-    String.prototype.endsWith = function(search, this_len) {    // eslint-disable-line
-        if (this_len === undefined || this_len > this.length) {
-            this_len = this.length;
-        }
-        return this.substring(this_len - search.length, this_len) === search;
-    };
-}
+import { setTranslator, setGetOptionList, setGetOptionDescriptions } from './components/AppConfig';
+import App from './App';
 
 // SET UP DEFAULTS
 setTranslator( translate );
+setGetOptionList( getOptionList );
+setGetOptionDescriptions( getOptionDescriptions );
 
 // RENDER
 
@@ -43,6 +35,8 @@ if (module.hot) {
 
 registerServiceWorker();
 
+// TODO move elsewhere
+
 function translate (t,required) {
     if (t.endsWith('country-pleaseSelect')) return required ? 'Choose a country' : 'No country selected';
     if (t.endsWith('gender-pleaseSelect')) return 'Please select a gender';
@@ -61,4 +55,21 @@ function translate (t,required) {
         spouseRef: 'Your spouse details'
     };
     return map[t] || t;
+}
+
+function getOptionList (name) {
+    const map = {
+        gender: ['M','F'],
+        country: ['GB','US','CN','BW','AR'],
+        months: ['01','02','03','04','05','06','07','08','09','10','11','12']
+    };
+    return map[name] || ['Y','N'];
+}
+
+function getOptionDescriptions (name) {
+    const map = {
+        gender: { M: 'Male', F: 'Female'},
+        country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' }
+    };
+    return map[name] || {};
 }
