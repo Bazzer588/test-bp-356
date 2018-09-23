@@ -2,9 +2,9 @@ import React from "react";
 import FormSection from '../FormSection';
 import { stringTypeField, emailTypeField } from '../validation/validateString'
 
-const HomePhone = stringTypeField( 'homePhone', { maxLength: 12, required: false });
-const MobilePhone = stringTypeField( 'mobilePhone', { maxLength: 12, required: false, idiot: '38439' });
-const Email = emailTypeField( 'emailAddress', { maxLength: 80, minLength: 6, required: false, spellCheck: false, /*autoComplete: 'never-ever',*/ htmlId: 'otherField' });
+const HomePhone = stringTypeField( 'homePhone', { maxLength: 12, type: 'tel', required: false });
+const MobilePhone = stringTypeField( 'mobilePhone', { maxLength: 12, type: 'tel', required: false, idiot: '38439' });
+const Email = emailTypeField( 'emailAddress', { maxLength: 80, minLength: 6, required: false, spellCheck: false, /*autoComplete: 'never-ever',*/ htmlId: 'otherField', type: 'email' });
 
 export function validateContactSection (v) { // v, values, sectionProps, output, errors, path
     v(HomePhone);

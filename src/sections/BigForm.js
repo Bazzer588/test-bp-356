@@ -5,6 +5,16 @@ import FieldSet from '../components/FieldSet';
 
 import AddressSection, {validateAddress} from "./AddressSection";
 import ContactSection, {validateContactSection} from "./ContactSection";
+import Select from "../components/Select";
+import {stringTypeField} from "../validation/validateString";
+
+// fields
+
+const CarsInHouse = stringTypeField( 'carsInHouse', {component: Select, required: true, rangeFrom: 0, rangeTo: 4, inputClass: 'narrow' });
+const ParkingSpaces = stringTypeField( 'parkingSpaces', {component: Select, required: false, rangeFrom: 0, rangeTo: 2, inputClass: 'narrow' });
+const AgeRetire = stringTypeField( 'preferredRetireAge', {component: Select, required: false, rangeFrom: 70, rangeTo: 55, inputClass: 'narrow' });
+
+// declare sections
 
 const HomeAddress = { name: 'homeAddress', component: AddressSection, validateSection: validateAddress };
 const OverseasAddress = { name: 'overseasAddress', component: AddressSection, validateSection: validateAddress };
@@ -19,6 +29,11 @@ class BigForm extends React.PureComponent {
         const Field = this.props.renderField;
         return (
             <div>
+                <FieldSet name="About you">
+                    {Field( CarsInHouse )}
+                    {Field( ParkingSpaces )}
+                    {Field( AgeRetire )}
+                </FieldSet>
                 <FieldSet name="homeAddress">
                     {Field( HomeAddress )}
                     {Field( HomePhones )}

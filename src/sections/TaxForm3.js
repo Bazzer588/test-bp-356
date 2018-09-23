@@ -8,12 +8,12 @@ import {translate} from '../components/AppConfig';
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 
-const TaxReferenceNo = stringTypeField( 'taxRef', {maxLength: 8, minLength: 5, inputClass: 'narrow upper-case', required: true, spellCheck: false, pattern: '^[0-9]+$' });
+const TaxReferenceNo = stringTypeField( 'taxRef', {maxLength: 8, minLength: 5, inputClass: 'narrow upper-case', required: true, spellCheck: false, type: 'tel', pattern: '^[0-9]+$' });
 const FirstName = stringTypeField( 'firstName', {maxLength: 16, minLength: 2});
 const LastName = stringTypeField( 'lastName', {maxLength: 30, required: true });
 const UserName = stringTypeField( 'username', {placeholder: 'Username', autoComplete: 'username', type: 'text', pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' });
 
-const Gender = stringTypeField( 'gender', {component: Select, options: 'gender', required: true });
+const Gender = stringTypeField( 'gender', {component: Select, options: 'gender', required: true, inputClass: 'narrow' });
 const Country = stringTypeField( 'country', {component: Select, options: 'country', required: false });
 const ZipCode = stringTypeField( 'zipCode', {maxLength: 12, autoComplete: 'postal-code', required: false, inputClass: 'narrow' });
 

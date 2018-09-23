@@ -7,21 +7,12 @@ import {Provider} from 'react-redux'
 import store from './startRedux';
 // this app
 import { setTranslator, setGetOptionList, setGetOptionDescriptions } from './components/AppConfig';
-import PageRouter from './components/PageRouter';
-
 import App from './App';
-import HomePage from './pages/HomePage';
-import SearchPage from './pages/SearchPage';
 
 // SET UP DEFAULTS
 setTranslator( translate );
 setGetOptionList( getOptionList );
 setGetOptionDescriptions( getOptionDescriptions );
-
-PageRouter.defineRoute('/',HomePage);
-PageRouter.defineRoute('/tax-app',HomePage);
-PageRouter.defineRoute('/tax-app/search',SearchPage);
-//PageRouter.defineRoute(() => {},'search');
 
 // RENDER
 
@@ -36,6 +27,7 @@ render(App);
 
 if (module.hot) {
     module.hot.accept('./App', () => {
+        console.log('MOD HOT');
         const NextApp = require('./App').default;
         render(NextApp);
     });
@@ -45,12 +37,14 @@ if (module.hot) {
 
 registerServiceWorker();
 
-// TODO move elsewhere
+// TODO move elsewhere POSSIBLY TO APP
 
 function translate (t,required) {
     if (t.endsWith('country-pleaseSelect')) return required ? 'Choose a country' : 'No country selected';
     if (t.endsWith('gender-pleaseSelect')) return 'Please select a gender';
-    if (t.endsWith('-address1')) return 'First line of address';
+    if (t.endsWith('-pleaseSelect')) return required ? 'Please choose' : 'Not specified';
+
+    if (t.endsWith('-address1')) return 'First line of address, for example house number and street';
     if (t.endsWith('-address2')) return 'Second line of address';
     if (t.endsWith('-city')) return 'City';
     if (t.endsWith('-region')) return 'State or Province';
@@ -64,6 +58,10 @@ function translate (t,required) {
     if (t.endsWith('-homePhone')) return 'Home telephone';
     if (t.endsWith('-mobilePhone')) return 'Mobile phone';
     if (t.endsWith('-emailAddress')) return 'Email address';
+
+    if (t.endsWith('-carsInHouse')) return 'How many cars are there in your household?';
+    if (t.endsWith('-parkingSpaces')) return 'How many parking spaces do you have exclusive use of?';
+    if (t.endsWith('-preferredRetireAge')) return 'What is your preferred retirement age?';
     const map = {
         personalRef: 'Your personal details',
         spouseRef: 'Your spouse details'

@@ -11,7 +11,7 @@ const DEF_STATE = {
 // reducer
 
 function formState(state = DEF_STATE, action) {
-    // console.log('REDX',action);
+    //console.log('REDX',action);
     if (action.type === 'SET') {
         return {
             ...state,

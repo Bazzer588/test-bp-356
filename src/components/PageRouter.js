@@ -1,8 +1,10 @@
 import React from 'react';
 
 const pageRoutes = {};
+const pageTitles = {};
 
 function modPage (url, toTop, replace) {
+    console.log('modPage',url,toTop);
     if (toTop) window.scrollTo(0,0);
     if (replace) {
         window.history.replaceState(null, '', url); // data, title
@@ -22,12 +24,13 @@ function modPage (url, toTop, replace) {
 
 export default class PageRouter extends React.Component {
 
-    static defineRoute (pathname, thing) {
-        console.log('def route', pathname, typeof pathname);
+    static defineRoute (pathname, thing, title) {
+        //console.log('def route', pathname, typeof pathname);
         if (typeof pathname === 'function') {
             // to do
         } else {
             pageRoutes[pathname] = thing;
+            pageTitles[pathname] = title;
         }
     }
 
@@ -43,8 +46,12 @@ export default class PageRouter extends React.Component {
         window.addEventListener('popstate', this.listenForPopState );
     }
 
+    componentWillUnmount () {
+        window.removeEventListener('popstate', this.listenForPopState );
+    }
+
     listenForPopState = (ev) => {
-        console.log('POPSTATE',ev);
+        console.log('POPSTATE:',ev);
         this.setState( { dt: Date.now() } ); // make react redraw
     };
 
@@ -52,6 +59,10 @@ export default class PageRouter extends React.Component {
         const path = window.location.pathname;
         const Thing = pageRoutes[path] || pageRoutes['/'];
         // location.search = '?q=875848'
+
+        const title = pageTitles[path] || pageTitles['/'];
+
+        if (title) document.title = title;
 
         return (<Thing search={window.location.search} />);
     }
