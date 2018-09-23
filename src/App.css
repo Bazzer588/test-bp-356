@@ -91,6 +91,8 @@ form {
 .form-field label {
   padding: 12px 0 8px 2px;
   display: block;
+  font-weight: 500;
+  color: #31628d;
 }
 
 .field-error {
@@ -162,7 +164,7 @@ select:-webkit-autofill {
 /* ------- select with no value ----- */
 
 .no-value {
-  color: #888;
+  color: #aaa;
 }
 
 .no-value:focus {
@@ -170,11 +172,11 @@ select:-webkit-autofill {
 }
 
 ::placeholder {
-  color: #888;
+  color: #aaa;
   opacity: 1;
 }
 
-:-ms-input-placeholder { color: #888 !important; }
+:-ms-input-placeholder { color: #aaa !important; }
 
 /* ---------------------- buttons ------------- */
 

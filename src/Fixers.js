@@ -10,3 +10,13 @@ if (!String.prototype.endsWith) {
     };
 }
 
+if (!Array.prototype.find) {
+    Array.prototype.find = function( fn ) {  // eslint-disable-line
+        const len = this.length;
+        for (let n=0;n<len;n++) {
+            if (fn(this[n])) {
+                return this[n];
+            }
+        }
+    }
+}

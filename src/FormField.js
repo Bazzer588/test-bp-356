@@ -50,14 +50,21 @@ export default class FormField extends React.PureComponent {
 }
 
 function renderError (error, errorId) {
+    function vals (error, values) {
+        if (values) {
+            if (values.minLength) return 'Please enter at least '+error.values.minLength+' characters';
+            if (values.found) return 'Invalid email, character sequence "'+values.found+'" is not allowed';
+            return error.error+' '+JSON.stringify(values);
+        }
+        return error.error;
+    }
     return (
         <span
             aria-live="assertive"
             className="field-error"
             id={errorId}
         >
-            {error.error}
-            {error.values && JSON.stringify(error.values)}
+            {vals(error,error.values)}
             {error.required && ' *'}
         </span>
     );

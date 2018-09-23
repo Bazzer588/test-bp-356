@@ -1,12 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import TaxForm from './sections/TaxForm3';
-import BigForm from './sections/BigForm';
-import store from './startRedux';
-import PageRouter from './components/PageRouter';
+import logo from '../logo.svg';
+import store from "../startRedux";
+import TaxForm from '../sections/TaxForm3';
+import BigForm from '../sections/BigForm';
 
-export default class App extends React.Component {
+export default class HomePage extends React.Component {
 
     render() {
 
@@ -42,9 +40,3 @@ export default class App extends React.Component {
 function Button ({ children, onClick, cnm = 'default' }) {
     return <button className={"btn btn-"+cnm} onClick={onClick} type="button">{children}</button>;
 }
-
-/*
-    wrap with this to see warnings
-    <React.StrictMode>
-
- */

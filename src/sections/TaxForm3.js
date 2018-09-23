@@ -1,10 +1,10 @@
 import React from "react";
-import FormSection from './FormSection';
-import FormConnect from './FormConnect';
+import FormSection from '../FormSection';
+import FormConnect from '../FormConnect';
 import ContactSection, {validateContactSection} from "./ContactSection";
-import Select from "./components/Select";
-import { stringTypeField } from './validation/validateString'
-import {translate} from './components/AppConfig';
+import Select from "../components/Select";
+import { stringTypeField } from '../validation/validateString'
+import {translate} from '../components/AppConfig';
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 

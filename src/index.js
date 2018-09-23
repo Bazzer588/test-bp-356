@@ -5,13 +5,23 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux'
 import store from './startRedux';
+// this app
 import { setTranslator, setGetOptionList, setGetOptionDescriptions } from './components/AppConfig';
+import PageRouter from './components/PageRouter';
+
 import App from './App';
+import HomePage from './pages/HomePage';
+import SearchPage from './pages/SearchPage';
 
 // SET UP DEFAULTS
 setTranslator( translate );
 setGetOptionList( getOptionList );
 setGetOptionDescriptions( getOptionDescriptions );
+
+PageRouter.defineRoute('/',HomePage);
+PageRouter.defineRoute('/tax-app',HomePage);
+PageRouter.defineRoute('/tax-app/search',SearchPage);
+//PageRouter.defineRoute(() => {},'search');
 
 // RENDER
 
@@ -31,7 +41,7 @@ if (module.hot) {
     });
 }
 
-// PROG
+// PROGRESSIVE APP
 
 registerServiceWorker();
 
@@ -40,11 +50,15 @@ registerServiceWorker();
 function translate (t,required) {
     if (t.endsWith('country-pleaseSelect')) return required ? 'Choose a country' : 'No country selected';
     if (t.endsWith('gender-pleaseSelect')) return 'Please select a gender';
+    if (t.endsWith('-address1')) return 'First line of address';
+    if (t.endsWith('-address2')) return 'Second line of address';
+    if (t.endsWith('-city')) return 'City';
+    if (t.endsWith('-region')) return 'State or Province';
     if (t.endsWith('-country')) return 'Country';
     if (t.endsWith('-zipCode')) return 'Zip code';
     if (t.endsWith('-firstName')) return 'First name';
     if (t.endsWith('-lastName')) return 'Surname';
-    if (t.endsWith('-taxRef')) return 'Tax Reference No.';
+    if (t.endsWith('-taxRef')) return 'Tax Reference Number';
     if (t.endsWith('-username')) return 'User name';
     if (t.endsWith('-gender')) return 'Gender';
     if (t.endsWith('-homePhone')) return 'Home telephone';

@@ -43,7 +43,8 @@ export default function make (Wrapped) {
         renderField = (fieldProps, extraProps) => {
             const Compo = fieldProps.validateSection ? fieldProps.component : FormField;
             const {name, path, touched = DEF_VAL, value = DEF_VAL, coreData} = this.props;
-            if (!name) {
+
+            if (!name) {  // only sections can be nameless
                 return <Compo
                     {...fieldProps}
                     {...extraProps}
@@ -54,12 +55,17 @@ export default function make (Wrapped) {
                     value={value}
                 />
             }
+
+            // --- it has a name ---
+            const fullPath = path ? path + '-' + name : name;
+            // console.log('RF',fullPath,fieldProps.name);
             return <Compo
                 {...fieldProps}
                 {...extraProps}
                 coreData={coreData}
+                key={fullPath + '-' + fieldProps.name}
                 parent={this}
-                path={path ? path + '-' + name : name}
+                path={fullPath}
                 touched={touched[fieldProps.name]}
                 value={value[fieldProps.name]}
             />
