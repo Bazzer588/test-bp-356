@@ -12,7 +12,7 @@ export default function Loader ({ text }) {
                     </div>
                 </div>
             </div>
-            <p>{text}</p>
+            <p aria-live="assertive" role="alert">{text}</p>
         </div>
     );
 }

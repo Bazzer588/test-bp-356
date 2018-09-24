@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../logo.svg';
+// import logo from '../logo.svg';
 import store from "../startRedux";
 import BigForm from '../sections/BigForm';
 import PageRouter from '../components/PageRouter';
@@ -20,6 +20,7 @@ export default class SearchPage extends React.Component {
 
         const clk = () => {
             console.log(store.getState().formState);
+            PageRouter.changePage('/tax-app/checkout');
             return false;
         };
 
@@ -30,10 +31,11 @@ export default class SearchPage extends React.Component {
             <div className="App bg-light">
                 <div {...dprops}>
                     <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo"/>
-                        <h1 className="App-title">Search page</h1>
-                        {' '}
-                        <IconLang/>
+                        <h1 className="App-title">
+                            <IconLang style={{ verticalAlign: 'top' }}/>
+                            {' '}
+                            Search page
+                        </h1>
                     </header>
                     <form>
                         <BigForm path="mainForm" name="bigForm" />

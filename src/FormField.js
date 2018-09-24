@@ -17,7 +17,7 @@ export default class FormField extends React.PureComponent {
     };
 
     render () {
-        const { parent, coreData, name, path, touched, required, htmlId, inputClass, fieldClass = '', component, validator, ...others } = this.props;
+        const { parent, coreData, name, path, touched, required, showLabel = true, htmlId, inputClass, fieldClass = '', component, validator, ...others } = this.props;
         const Compo = component || 'input';
         const value = this.props.value || '';
         const full = path + '-' + (htmlId || name);
@@ -31,7 +31,7 @@ export default class FormField extends React.PureComponent {
         const divClass = invalid ? 'form-field ff-invalid' : 'form-field';
         return (
             <div className={divClass+' '+fieldClass}>
-                <label htmlFor={full}>{translate(labl,required)}</label>
+                {showLabel && <label htmlFor={full}>{translate(labl,required)}</label>}
                 <Compo
                     aria-describedby={errorId}
                     aria-invalid={invalid}

@@ -32,6 +32,13 @@
   to { transform: rotate(360deg); }
 }
 
+/*           COMMON THINGS             */
+
+h2 {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
 /* **************** */
 
 .upper-case {
@@ -91,8 +98,9 @@ form {
 .form-field label {
   padding: 12px 0 8px 2px;
   display: block;
-  font-weight: 500;
-  color: #31628d;
+  /*font-weight: 500;
+  color: #31628d;*/
+  color: #646464;
 }
 
 .field-error {
@@ -104,6 +112,10 @@ form {
 
 .form-field .narrow {
   max-width: 200px;
+}
+
+.form-field .tiny {
+  max-width: 100px;
 }
 
 /* method to override the chrome autofill colors */
@@ -245,3 +257,47 @@ select:-webkit-autofill {
   font-size: 1.5rem;
   line-height: 2;
 }
+
+/***** CHECKBOX *****/
+
+.checkbox input {
+  height: 22px;
+  width: 22px;
+  min-height: 22px;
+  position: absolute;
+  margin: 8px 6px;
+  pointer-events: none;
+}
+
+.checkbox label {
+  padding: 7px 5px 6px 36px;
+  line-height: 22px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: 3px;
+  display: block;
+  width: 100%;
+}
+
+.checkbox input[type=checkbox]:checked + label {
+  color: #4d494d;
+  font-weight: 500;
+}
+
+.checkbox label:hover
+{
+  color: #000030 !important;
+  background-color: #fbfbfb;
+  border: 1px solid #d2d8e6;
+}
+
+/*.checkbox input[type=checkbox]:focus + label
+{
+  color: #000070 !important;
+  border: 1px solid #d2d8e6;
+}*/
+
+.forms-rtl .checkbox label {
+  padding: 7px 36px 6px 5px;
+}
+

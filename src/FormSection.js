@@ -78,6 +78,8 @@ export default function make (Wrapped) {
         }
     }
 
+    FormSection.defaultProps = Wrapped.defaultProps;
+
     return FormSection;
 }
 

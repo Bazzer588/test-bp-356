@@ -5,6 +5,7 @@ import {translate, getOptionList, getOptionDescriptions} from './AppConfig';
 
 function renderOptions (name, allowOption, props, rangeFrom, rangeTo) {
     const opts = [];
+
     if (rangeFrom || rangeTo) {
         const d = rangeFrom<rangeTo ? 1 : -1;
         for (let n=rangeFrom;;n+=d) {
@@ -13,6 +14,7 @@ function renderOptions (name, allowOption, props, rangeFrom, rangeTo) {
         }
         return opts;
     }
+
     const list = getOptionList(name);
     const map = getOptionDescriptions(name);
     list.forEach(row => {

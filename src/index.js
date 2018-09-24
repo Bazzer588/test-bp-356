@@ -23,7 +23,8 @@ const render = Root => {
     );
 };
 
-render(App);
+setTimeout( () => render(App), 500 );  // always display loader for 1 sec
+// render(App);
 
 if (module.hot) {
     module.hot.accept('./App', () => {
@@ -85,3 +86,6 @@ function getOptionDescriptions (name) {
     };
     return map[name] || {};
 }
+
+// countries with translations
+// https://github.com/umpirsky/country-list/tree/master/data
