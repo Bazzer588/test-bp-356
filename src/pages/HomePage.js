@@ -4,6 +4,7 @@ import store from "../startRedux";
 import TaxForm from '../sections/TaxForm3';
 import BigForm from '../sections/BigForm';
 import PageRouter from '../components/PageRouter';
+import Button from "../components/Button";
 
 export default class HomePage extends React.Component {
 
@@ -11,8 +12,14 @@ export default class HomePage extends React.Component {
 
         const clk = () => {
             console.log(store.getState().formState);
+            PageRouter.changePage('/tax-app/search');
             return false;
         };
+
+        function reset () {
+            console.log(store.getState().formState);
+            alert('reset todo');
+        }
 
         return (
             <div className="App bg-light">
@@ -27,7 +34,7 @@ export default class HomePage extends React.Component {
                     <p style={{ textAlign: 'right' }}>
                         <Button onClick={() => PageRouter.changePage('/tax-app/search')} >Search</Button>
                         {' '}
-                        <Button onClick={clk} >Reset</Button>
+                        <Button onClick={reset} >Reset</Button>
                         {' '}
                         <Button cnm="primary" onClick={clk}>Continue</Button>
                     </p>
@@ -38,8 +45,4 @@ export default class HomePage extends React.Component {
             </div>
         );
     }
-}
-
-function Button ({ children, onClick, cnm = 'default' }) {
-    return <button className={"btn btn-"+cnm} onClick={onClick} type="button">{children}</button>;
 }

@@ -4,6 +4,7 @@ import PageRouter from '../components/PageRouter';
 import FormConnect from "../FormConnect";
 import FormSection from "../FormSection";
 import CheckBox from "../components/CheckBox";
+import Button from "../components/Button";
 import {stringTypeField} from "../validation/validateString";
 import Loader from '../components/Loader';
 
@@ -39,7 +40,8 @@ class PaymentPage extends React.Component {
             }, 1500);
         }, 1500);
         */
-        makePayment(this);
+        console.log('CHGECKOUT',this.props.value);
+        makePayment(this,this.props.value);
     };
 
     render() {
@@ -80,40 +82,50 @@ class PaymentPage extends React.Component {
     }
 }
 
-function Button ({ children, onClick, cnm = 'default' }) {
-    return <button className={"btn btn-"+cnm} onClick={onClick} type="button">{children}</button>;
-}
-
 export default FormConnect( FormSection(PaymentPage) );
 
-// promise code
+// #######################   promise code   ###################################
 
-function makePayment (page) {
-    page.setState({ loading: true, message: 'Checking payment details' });
-    sendPayment()
-        .then( () => page.setState({ message: 'Checking stock and delivery schedule' }) )
-        .then( () => sendPayment() )
-        .then( () => page.setState({ message: 'Transferring funds' }) )
-        .then( () => sendPayment() )
-        .then( () => page.setState({ loading: false }) )
-        .then( () => paymentFinished(1) )
+function makePayment (page, values) {
+    page.setState({ loading: true, message: 'Checking payment details...' });
+    sendPayment(values)
+        .then( (res) => showStatus(res, page, 'Checking stock and delivery schedule') )
+        .then( (res) => sendPayment(res) )
+        .then( (res) => showStatus(res, page, 'Transferring funds') )
+        .then( (res) => sendPayment(res) )
+        .then( (res) => showStatus(res, page, '', false) )
+        .then( () => paymentFinished(1,values) )
         .catch( (e) => handleError(page,e) );
 }
 
-function sendPayment () {
+function showStatus (res, page, message, loading = true) {
+    page.setState({ message, loading });
+    return res;
+}
+
+function sendPayment (v) {
     return new Promise( (resolve) => {
-        setTimeout( () => resolve(), 1000 );
+        setTimeout( () => resolve(v), 1000 );
     });
 }
 
-function paymentFinished (response) {
-    if (!response)
-        throw new Error('Blah de blah');
+function paymentFinished (response, thing) {
+    if (!response || thing.cvvNumber==='666')
+        throw new Error('Validation of the CVV number failed');
     window.scrollTo(0,0);
     PageRouter.changePage('/tax-app');
 }
 
 function handleError (page, err) {
-    page.setState({ loading: false });
+    page.setState({ message: 'Error occurred' });
     alert('An error occurred\n'+err);
+    page.setState({ loading: false });
 }
+
+/*  TODO
+    what if user presses back button ?
+    promise will eventually resolve (or error)
+
+    state vs redux
+    press back then forward - should spinner still be there ?
+*/

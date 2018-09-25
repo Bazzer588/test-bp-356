@@ -5,6 +5,7 @@ import BigForm from '../sections/BigForm';
 import PageRouter from '../components/PageRouter';
 import IconLang from './IconLang';
 import Loader from '../components/Loader';
+import Button from "../components/Button";
 
 export default class SearchPage extends React.Component {
 
@@ -53,8 +54,4 @@ export default class SearchPage extends React.Component {
             </div>
         );
     }
-}
-
-function Button ({ children, onClick, cnm = 'default' }) {
-    return <button className={"btn btn-"+cnm} onClick={onClick} type="button">{children}</button>;
 }

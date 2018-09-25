@@ -8,11 +8,11 @@ export default function (props) {
     return (
         <span className="checkbox">
             <input
+                {...rest}
                 checked={!!value}
                 id={id}
                 onChange={ () => onChange({ target: { value: !value } }) }
                 type="checkbox"
-                {...rest}
             />
             <label htmlFor={id}>{translate(label)}</label>
         </span>

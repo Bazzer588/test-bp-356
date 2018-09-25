@@ -2,7 +2,14 @@ import React from "react";
 import './Loader.css';
 
 export default function Loader ({ text }) {
+
     text = text || 'Page loading...';
+
+    setTimeout( () => {
+        const p = document.getElementById('loader-text');
+        if (p) p.focus();
+    }, 200);
+
     return (
         <div className="loader-body">
             <div className="loader-container">
@@ -12,7 +19,7 @@ export default function Loader ({ text }) {
                     </div>
                 </div>
             </div>
-            <p aria-live="assertive" role="alert">{text}</p>
+            <span className="loader-text" aria-live="assertive" id="loader-text" role="alert" tabIndex="-1">{text}</span>
         </div>
     );
 }

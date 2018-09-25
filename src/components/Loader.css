@@ -4,6 +4,18 @@
   -ms-filter: blur(2px);
 }
 
+.loader-text {
+  display: inline-block;
+  padding: 8px;
+  margin-top: 24px;
+  border-radius: 6px;
+}
+
+.loader-text:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
 .loader-body {
   position: fixed;
   top: 0;
