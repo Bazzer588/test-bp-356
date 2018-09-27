@@ -6,9 +6,9 @@
 
 .loader-text {
   display: inline-block;
-  padding: 8px;
+  padding: 6px 12px;
   margin-top: 24px;
-  border-radius: 6px;
+  border-radius: 2px;
 }
 
 .loader-text:focus {

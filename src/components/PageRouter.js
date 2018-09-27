@@ -25,7 +25,7 @@ function modPage (url, toTop, replace) {
 export default class PageRouter extends React.Component {
 
     static defineRoute (pathname, thing, title) {
-        //console.log('def route', pathname, typeof pathname);
+        console.log('defineRoute', pathname, typeof pathname, typeof thing, title);
         if (typeof pathname === 'function') {
             // to do
         } else {

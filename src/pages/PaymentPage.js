@@ -67,7 +67,6 @@ class PaymentPage extends React.Component {
 
                         <p style={{ textAlign: 'right' }}>
                             <Button onClick={() => { window.history.back(); }}>Cancel</Button>
-                            {' '}
                             <Button cnm="primary" onClick={this.doCheckout} >Make Payment</Button>
                         </p>
                     </form>
@@ -94,7 +93,7 @@ function makePayment (page, values) {
         .then( (res) => showStatus(res, page, 'Transferring funds') )
         .then( (res) => sendPayment(res) )
         .then( (res) => showStatus(res, page, '', false) )
-        .then( () => paymentFinished(1,values) )
+        .then( (res) => paymentFinished(res,values) )
         .catch( (e) => handleError(page,e) );
 }
 
@@ -110,6 +109,7 @@ function sendPayment (v) {
 }
 
 function paymentFinished (response, thing) {
+    console.log('paymentFinished',response);
     if (!response || thing.cvvNumber==='666')
         throw new Error('Validation of the CVV number failed');
     window.scrollTo(0,0);

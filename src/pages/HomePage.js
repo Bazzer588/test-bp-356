@@ -33,9 +33,7 @@ export default class HomePage extends React.Component {
                     <BigForm path="mainForm" name="bigForm" />
                     <p style={{ textAlign: 'right' }}>
                         <Button onClick={() => PageRouter.changePage('/tax-app/search')} >Search</Button>
-                        {' '}
-                        <Button onClick={reset} >Reset</Button>
-                        {' '}
+                        <Button cnm="secondary" onClick={reset} >Reset</Button>
                         <Button cnm="primary" onClick={clk}>Continue</Button>
                     </p>
                 </form>

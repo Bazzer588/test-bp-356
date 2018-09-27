@@ -19,10 +19,12 @@ export default function Loader ({ text }) {
                     </div>
                 </div>
             </div>
-            <span className="loader-text" aria-live="assertive" id="loader-text" role="alert" tabIndex="-1">{text}</span>
+            <span className="loader-text" aria-live="assertive" id="loader-text" tabIndex="-1">{text}</span>
         </div>
     );
 }
+
+// <span className="loader-text" aria-live="assertive" id="loader-text" role="alert" tabIndex="-1">{text}</span>
 
 // https://www.w3schools.com/code/tryit.asp?filename=FVAC6056923W
 

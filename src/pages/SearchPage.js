@@ -42,7 +42,6 @@ export default class SearchPage extends React.Component {
                         <BigForm path="mainForm" name="bigForm" />
                         <p style={{ textAlign: 'right' }}>
                             <Button onClick={this.goHomePage} >Home page</Button>
-                            {' '}
                             <Button cnm="primary" onClick={clk}>Continue</Button>
                         </p>
                     </form>

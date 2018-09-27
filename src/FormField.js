@@ -17,7 +17,8 @@ export default class FormField extends React.PureComponent {
     };
 
     render () {
-        const { parent, coreData, name, path, touched, required, showLabel = true, htmlId, inputClass, fieldClass = '', component, validator, ...others } = this.props;
+        const { parent, coreData, name, path, touched, required, showLabel = true, htmlId, inputClass, fieldClass = '',
+            component, validator, stripProps, ...others } = this.props;
         const Compo = component || 'input';
         const value = this.props.value || '';
         const full = path + '-' + (htmlId || name);
@@ -27,6 +28,8 @@ export default class FormField extends React.PureComponent {
         const invalid = error && !!error.error;
         // const invalid = required!==false && !!touched && !value;
         const errorId = invalid ? full+'-fieldError' : undefined;
+
+        const otherProps = stripProps ? stripProps(others) : others;
 
         const divClass = invalid ? 'form-field ff-invalid' : 'form-field';
         return (
@@ -40,7 +43,7 @@ export default class FormField extends React.PureComponent {
                     onBlur={this.onBlur}
                     onChange={this.onChange}
                     required={required}
-                    {...others}
+                    {...otherProps}
                     value={value}
                 />
                 {invalid && renderError(error,errorId)}
