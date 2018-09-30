@@ -1,12 +1,10 @@
 import React from "react";
 import {translate} from './AppConfig';
 
-export default function (props) {
-
-    const { id, value, label, onChange, ...rest } = props;
+export default function ({ id, value, label, onChange, ...rest }) {
 
     return (
-        <span className="checkbox">
+        <div className="checkbox">
             <input
                 {...rest}
                 checked={!!value}
@@ -15,6 +13,6 @@ export default function (props) {
                 type="checkbox"
             />
             <label htmlFor={id}>{translate(label)}</label>
-        </span>
+        </div>
     );
 }

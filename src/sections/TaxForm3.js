@@ -3,6 +3,7 @@ import FormSection from '../FormSection';
 import FormConnect from '../FormConnect';
 import ContactSection, {validateContactSection} from "./ContactSection";
 import Select from "../components/Select";
+import Radios from "../components/Radios";
 import { stringTypeField } from '../validation/validateString'
 import {translate} from '../components/AppConfig';
 
@@ -13,7 +14,7 @@ const FirstName = stringTypeField( 'firstName', {maxLength: 16, minLength: 2});
 const LastName = stringTypeField( 'lastName', {maxLength: 30, required: true });
 const UserName = stringTypeField( 'username', {placeholder: 'Username', autoComplete: 'username', type: 'text', pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' });
 
-const Gender = stringTypeField( 'gender', {component: Select, options: 'gender', required: true, inputClass: 'medium' });
+const Gender = stringTypeField( 'gender', {component: Radios, options: 'gender', required: true, showLabel: false, label: 'Gender', inputClass: 'medium' });
 const ZipCode = stringTypeField( 'zipCode', {maxLength: 12, autoComplete: 'postal-code', required: false, inputClass: 'narrow' });
 
 const Phones = { name: 'phones', component: ContactSection, validateSection: validateContactSection };

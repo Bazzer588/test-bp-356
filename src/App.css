@@ -1,3 +1,7 @@
+/*
+  https://yoksel.github.io/url-encoder/   handy for svg
+ */
+
 .App {
   text-align: center;
 }
@@ -285,46 +289,123 @@ select:-webkit-autofill {
   line-height: 2;
 }
 
-/***** CHECKBOX *****/
+/****** RADIOS ******/
 
-.checkbox input {
+.radio-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.radio-fieldset .radio {
+  display: inline-block;
+  /*width: 50%;*/
+}
+
+.radio-fieldset legend {
+  padding: 0 0 0 2px;
+  font-weight: 400;
+  color: #646464;
+  font-size: 16px;
+}
+
+.radio-fieldset input {
+  opacity: 0;
   height: 22px;
   width: 22px;
-  min-height: 22px;
   position: absolute;
-  margin: 8px 6px;
+  pointer-events: none;
+}
+
+.radio-fieldset label {
+  padding: 7px 8px 8px 36px;
+  line-height: 22px;
+  box-sizing: border-box;
+  border: 1px solid #f8f9fa;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23ced4da'/%3E%3Ccircle cx='12' cy='12' r='10.5' fill='%23fff'/%3E%3C/svg%3E%0A")
+  no-repeat left 5px top 6px;
+  background-size: 24px 24px;
+  transition: color .15s ease-in-out,background .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.radio-fieldset input:checked + label {
+  color: #4d494d;
+  font-weight: 500;
+  background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='10.5' fill='%23007bff'/%3E%3Ccircle cx='12' cy='12' r='9' fill='%23fff'/%3E%3Ccircle cx='12' cy='12' r='5.5' fill='%23007bff'/%3E%3C/svg%3E%0A")
+  no-repeat left 5px top 6px;
+  background-size: 24px 24px;
+}
+
+.radio-fieldset label:hover {
+  color: #000030 !important;
+  /*background-color: #fbfbfb;*/
+  border-color: #d2d8e6;
+}
+
+.radio-fieldset input:focus + label {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #80bdff;
+}
+
+/***** CHECKBOX *****/
+
+.checkbox {
+}
+
+.checkbox input {
+  opacity: 0;
+  height: 22px;
+  width: 22px;
+  position: absolute;
   pointer-events: none;
 }
 
 .checkbox label {
-  padding: 7px 5px 6px 36px;
+  padding: 7px 5px 8px 36px;
   line-height: 22px;
   box-sizing: border-box;
-  border: 1px solid rgba(0,0,0,0);
-  border-radius: 3px;
-  display: block;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  display: inline-block;
   width: 100%;
+  background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='24' height='24' rx='2' ry='2' fill='%23ced4da'/%3E%3Crect x='1' y='1' width='22' height='22' fill='%23fff'/%3E%3C/svg%3E%0A")
+    no-repeat 5px 6px;
+  background-size: 24px 24px;
+  transition: color .15s ease-in-out, background-image .25s ease-in-out, box-shadow .15s ease-in-out, border-color .15s ease-in-out;
 }
 
-.checkbox input[type=checkbox]:checked + label {
+.checkbox input:checked + label {
   color: #4d494d;
-  font-weight: 500;
+  background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='22' height='22' rx='2' ry='2' fill='%23007bff' /%3E%3Cpath d='M 6 12 L 11 16 L 18 7' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E%0A")
+    no-repeat 5px 6px;
+  background-size: 24px 24px;
 }
 
-.checkbox label:hover
-{
-  color: #000030 !important;
-  background-color: #fbfbfb;
-  border: 1px solid #d2d8e6;
+.checkbox label:hover,
+.checkbox input:checked + label:hover {
+  /*color: #000030 !important;*/
+  /*background-color: #fbfbfb;*/
+  border-color: #d2d8e6;
 }
 
-/*.checkbox input[type=checkbox]:focus + label
-{
-  color: #000070 !important;
-  border: 1px solid #d2d8e6;
-}*/
+.checkbox input:focus + label {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #80bdff;
+  z-index: 100;
+}
 
 .forms-rtl .checkbox label {
   padding: 7px 36px 6px 5px;
 }
 
+/*
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#333">
+  <circle cx="12" cy="12" r="12" stroke="none"/>
+  <circle cx="12" cy="12" r="8" stroke="#fff" stroke-width="4"/>
+</svg>
+*/

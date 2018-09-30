@@ -3,7 +3,8 @@ import {translate, getOptionList, getOptionDescriptions} from './AppConfig';
 
 // helper
 
-function renderOptions (name, allowOption, props, rangeFrom, rangeTo) {
+function renderOptions (options, allowOption, props, rangeFrom, rangeTo) {
+
     const opts = [];
 
     if (rangeFrom || rangeTo) {
@@ -15,12 +16,14 @@ function renderOptions (name, allowOption, props, rangeFrom, rangeTo) {
         return opts;
     }
 
-    const list = getOptionList(name);
-    const map = getOptionDescriptions(name);
+    const list = getOptionList(options);
+    const map = getOptionDescriptions(options);
+
     list.forEach(row => {
         if (!allowOption || allowOption(row, props))
             opts.push(<option key={row} value={row}>{map[row] || row}</option>);
     });
+
     return opts;
 }
 
@@ -29,12 +32,15 @@ export default function Select (props) {
 
     const {options, allowOption, rangeFrom, rangeTo, className, ...rest} = props;
     const {value, required, id} = props;
+
     const base = !!value ? 'custom-select' : 'custom-select no-value';
     const cnm = className ? base+' '+className : base;
 
     return (
         <select {...rest} className={cnm}>
-            {(value==='' || value===undefined || required === false) && <option value="">{translate(id + '-pleaseSelect', required)}</option>}
+            {(value==='' || value===undefined || required === false) &&
+                <option value="">{translate(id + '-pleaseSelect', required)}</option>
+            }
             {renderOptions(options, allowOption, props, rangeFrom, rangeTo)}
         </select>
     );

@@ -41,8 +41,10 @@ registerServiceWorker();
 // TODO move elsewhere POSSIBLY TO APP
 
 function translate (t,required) {
+    if (!t) return 'Undefined';
     if (t.endsWith('country-pleaseSelect')) return required ? 'Choose a country' : 'No country selected';
     if (t.endsWith('gender-pleaseSelect')) return 'Please select a gender';
+    if (t.endsWith('gender-required')) return 'Please choose a gender';
     if (t.endsWith('-pleaseSelect')) return required ? 'Please choose' : 'Not specified';
 
     if (t.endsWith('-address1')) return 'First line of address, for example house number and street';

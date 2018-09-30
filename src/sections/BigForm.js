@@ -16,6 +16,7 @@ const ParkingSpaces = stringTypeField( 'parkingSpaces', {component: Select, requ
 const AgeRetire = stringTypeField( 'preferredRetireAge', {component: Select, required: false, rangeFrom: 70, rangeTo: 55, inputClass: 'narrow' });
 const ConsentSMS = { name: 'consentSMS', component: CheckBox, showLabel: false, label: 'Please send me SMS messages about the progress of my application.' };
 const ConsentEmail = { name: 'consentEmail', component: CheckBox, showLabel: false, label: 'Sign me up for regular email alerts.' };
+const ConsentOth = { name: 'consentOther', component: CheckBox, showLabel: false, label: 'Other consent option.' };
 
 // declare sections
 
@@ -39,6 +40,7 @@ class BigForm extends React.PureComponent {
                     <div style={{ marginTop: '16px' }}>
                     {Field( ConsentSMS )}
                     {Field( ConsentEmail )}
+                    {Field( ConsentOth )}
                     </div>
                 </FieldSet>
                 <FieldSet name="homeAddress">

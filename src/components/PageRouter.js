@@ -57,6 +57,11 @@ export default class PageRouter extends React.Component {
 
     render() {
         const path = window.location.pathname;
+
+        const pathsplit = path.split('/'); // .splice(0,1);
+        pathsplit.splice(0,1); // remove '' from start
+        console.log('PATHSPLIT',pathsplit);
+
         const Thing = pageRoutes[path] || pageRoutes['/'];
         // location.search = '?q=875848'
 
