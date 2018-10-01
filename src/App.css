@@ -297,9 +297,8 @@ select:-webkit-autofill {
   margin: 8px 0 0 0;
 }
 
-.radio-fieldset .radio {
+.radio-fieldset .radio-horizontal {
   display: inline-block;
-  /*width: 50%;*/
 }
 
 .radio-fieldset legend {
@@ -318,22 +317,22 @@ select:-webkit-autofill {
 }
 
 .radio-fieldset label {
-  padding: 7px 8px 8px 36px;
+  padding: 7px 5px 8px 36px;
   line-height: 22px;
   box-sizing: border-box;
-  border: 1px solid #f8f9fa;
+  border: 1px solid transparent;
   border-radius: 4px;
   display: block;
   width: 100%;
   background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23ced4da'/%3E%3Ccircle cx='12' cy='12' r='10.5' fill='%23fff'/%3E%3C/svg%3E%0A")
-  no-repeat left 5px top 6px;
+    no-repeat left 5px top 6px;
   background-size: 24px 24px;
-  transition: color .15s ease-in-out,background .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out, background-image .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .radio-fieldset input:checked + label {
   color: #4d494d;
-  font-weight: 500;
+  /*font-weight: 500;*/
   background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='10.5' fill='%23007bff'/%3E%3Ccircle cx='12' cy='12' r='9' fill='%23fff'/%3E%3Ccircle cx='12' cy='12' r='5.5' fill='%23007bff'/%3E%3C/svg%3E%0A")
   no-repeat left 5px top 6px;
   background-size: 24px 24px;

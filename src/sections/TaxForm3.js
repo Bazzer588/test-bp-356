@@ -14,7 +14,7 @@ const FirstName = stringTypeField( 'firstName', {maxLength: 16, minLength: 2});
 const LastName = stringTypeField( 'lastName', {maxLength: 30, required: true });
 const UserName = stringTypeField( 'username', {placeholder: 'Username', autoComplete: 'username', type: 'text', pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' });
 
-const Gender = stringTypeField( 'gender', {component: Radios, options: 'gender', required: true, showLabel: false, label: 'Gender', inputClass: 'medium' });
+const Gender = stringTypeField( 'gender', {component: Radios, options: 'gender', required: true, showLabel: false, label: 'Gender', inputClass: 'medium', className: 'horizontal' });
 const ZipCode = stringTypeField( 'zipCode', {maxLength: 12, autoComplete: 'postal-code', required: false, inputClass: 'narrow' });
 
 const Phones = { name: 'phones', component: ContactSection, validateSection: validateContactSection };
@@ -26,11 +26,13 @@ const allowCountry = (code, props) => {
 };
 
 const stripArgentina = (input) => {
-    const { allowArgentina, ...others } = input;
-    return others;
+    //const { allowArgentina, ...others } = input;
+    //return others;
+    return input;
 };
 
-const Country = stringTypeField( 'country', {component: Select, options: 'country', required: false, allowOption: allowCountry, stripProps: stripArgentina });
+// const Country = stringTypeField( 'country', {component: Select, options: 'country', required: false, allowOption: allowCountry, stripProps: stripArgentina });
+const Country = stringTypeField( 'country', {component: Radios, options: 'country', required: false, allowOption: allowCountry, stripProps: stripArgentina, showLabel: false, label: 'Country' });
 
 class TaxForm extends React.PureComponent {
 

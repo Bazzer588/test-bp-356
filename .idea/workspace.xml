@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1e7393b-cf0e-4e1c-8b83-63eabb96fb71" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/Radios.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/pages/BasePage.js" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/App.css" afterPath="$PROJECT_DIR$/src/App.css" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/CheckBox.js" afterPath="$PROJECT_DIR$/src/components/CheckBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/PageRouter.js" afterPath="$PROJECT_DIR$/src/components/PageRouter.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/Radios.js" afterPath="$PROJECT_DIR$/src/components/Radios.js" />
       <change beforePath="$PROJECT_DIR$/src/components/Select.js" afterPath="$PROJECT_DIR$/src/components/Select.js" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/sections/BigForm.js" afterPath="$PROJECT_DIR$/src/sections/BigForm.js" />
       <change beforePath="$PROJECT_DIR$/src/sections/TaxForm3.js" afterPath="$PROJECT_DIR$/src/sections/TaxForm3.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,21 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TaxForm3.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sections/TaxForm3.js">
+      <file leaf-file-name="HomePage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/HomePage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BigForm.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sections/BigForm.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="443">
+              <caret line="31" column="21" lean-forward="false" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -50,42 +33,18 @@
       <file leaf-file-name="FormField.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FormField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+            <state relative-caret-position="799">
+              <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/App.css">
+      <file leaf-file-name="TaxForm3.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sections/TaxForm3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="376" column="29" lean-forward="true" selection-start-line="376" selection-start-column="29" selection-end-line="376" selection-end-column="29" />
-              <folding>
-                <element signature="e#6347#6608#1" expanded="true" />
-                <element signature="e#7290#7530#1" expanded="true" />
-                <element signature="e#7798#8109#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Radios.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Radios.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="46" column="60" lean-forward="false" selection-start-line="46" selection-start-column="60" selection-end-line="46" selection-end-column="60" />
+            <state relative-caret-position="595">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -94,8 +53,28 @@
       <file leaf-file-name="Select.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Select.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="510">
+              <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Radios.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Radios.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="32" column="51" lean-forward="false" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="333" column="17" lean-forward="true" selection-start-line="333" selection-start-column="17" selection-end-line="333" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -113,7 +92,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tax-app</find>
       <find>App</find>
       <find>inputClass</find>
       <find>form-field la</find>
@@ -143,6 +121,7 @@
       <find>label:hover</find>
       <find>:hover</find>
       <find>z-index</find>
+      <find>TaxForm</find>
     </findStrings>
     <replaceStrings>
       <replace>onChangeField</replace>
@@ -196,10 +175,10 @@
         <option value="$PROJECT_DIR$/src/components/PageRouter.js" />
         <option value="$PROJECT_DIR$/src/sections/BigForm.js" />
         <option value="$PROJECT_DIR$/src/components/CheckBox.js" />
-        <option value="$PROJECT_DIR$/src/sections/TaxForm3.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/components/Select.js" />
         <option value="$PROJECT_DIR$/src/components/Radios.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/sections/TaxForm3.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
       </list>
     </option>
@@ -227,8 +206,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2146" />
-    <option name="y" value="1" />
+    <option name="x" value="1970" />
+    <option name="y" value="14" />
     <option name="width" value="1924" />
     <option name="height" value="1330" />
   </component>
@@ -612,7 +591,7 @@
       <workItem from="1533851343881" duration="1646000" />
       <workItem from="1533853042894" duration="9535000" />
       <workItem from="1536511778556" duration="48593000" />
-      <workItem from="1536787038094" duration="172833000" />
+      <workItem from="1536787038094" duration="177190000" />
     </task>
     <servers />
   </component>
@@ -625,7 +604,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233296000" />
+    <option name="totallyTimeSpent" value="237653000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -637,7 +616,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2146" y="1" width="1924" height="1330" extended-state="0" />
+    <frame x="1970" y="14" width="1924" height="1330" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -976,14 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/HomePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/PageRouter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
@@ -1032,34 +1003,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/HomePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="31" column="21" lean-forward="false" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sections/BigForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sections/TaxForm3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Select.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Radios.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1074,21 +1029,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FormField.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+        <state relative-caret-position="799">
+          <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Radios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="32" column="51" lean-forward="false" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="376" column="29" lean-forward="true" selection-start-line="376" selection-start-column="29" selection-end-line="376" selection-end-column="29" />
-          <folding>
-            <element signature="e#6347#6608#1" expanded="true" />
-            <element signature="e#7290#7530#1" expanded="true" />
-            <element signature="e#7798#8109#1" expanded="true" />
-          </folding>
+        <state relative-caret-position="406">
+          <caret line="333" column="17" lean-forward="true" selection-start-line="333" selection-start-column="17" selection-end-line="333" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sections/TaxForm3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

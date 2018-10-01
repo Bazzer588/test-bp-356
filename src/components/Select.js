@@ -28,7 +28,7 @@ function renderOptions (options, allowOption, props, rangeFrom, rangeTo) {
 }
 
 export default function Select (props) {
-    //console.log('SELECT',props);
+    console.log('SELECT',props);
 
     const {options, allowOption, rangeFrom, rangeTo, className, ...rest} = props;
     const {value, required, id} = props;
