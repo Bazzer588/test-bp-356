@@ -12,13 +12,43 @@ const DEF_STATE = {
 
 function formState(state = DEF_STATE, action) {
     //console.log('REDX',action);
-    if (action.type === 'SET') {
+
+    switch(action.type) {
+        case 'SET':             // { type: 'SET', key: 'myThing', value: {...} }
+            return {
+                ...state,
+                [action.key]: action.value
+            };
+        case 'CORE':            // { type: 'CORE', data: { lang: 'de' } }
+            return {
+                ...state,
+                coreData: {
+                    ...state.coreData,
+                    ...action.data
+                }
+            };
+        default:
+            return state;
+    }
+
+    /*
+    if (action.type === 'SET') {       // { type: 'SET', key: 'myThing', value: {...} }
         return {
             ...state,
             [action.key]: action.value
         };
     }
+    if (action.type === 'CORE') {       // { type: 'CORE', data: { lang: 'de' } }
+        return {
+            ...state,
+            coreData: {
+                ...state.coreData,
+                ...action.data
+            }
+        };
+    }
     return state;
+    */
 }
 
 const rootReducer = combineReducers({

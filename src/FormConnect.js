@@ -12,7 +12,7 @@ export default function FormConnect (reactClass) {
     // props param below appears to ignore defaultProps
 
     function mapStateToProps (state, props) {
-        const name = defaultName || props.name;
+        const name = props.name || defaultName;
         const value = state.formState[name] || DEF_VAL;
         const touched = state.formState[name+'_T'] || DEF_VAL;
         return {

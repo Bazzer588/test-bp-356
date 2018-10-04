@@ -2,7 +2,7 @@ import React from "react";
 import FormSection from '../FormSection';
 import FormConnect from '../FormConnect';
 import ContactSection, {validateContactSection} from "./ContactSection";
-import Select from "../components/Select";
+import Select from "../components/Select";      // eslint-disable-line no-unused-vars
 import Radios from "../components/Radios";
 import { stringTypeField } from '../validation/validateString'
 import {translate} from '../components/AppConfig';

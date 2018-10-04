@@ -5,15 +5,35 @@ import FormConnect from "../FormConnect";
 import FormSection from "../FormSection";
 import CheckBox from "../components/CheckBox";
 import Button from "../components/Button";
-import {stringTypeField} from "../validation/validateString";
 import Loader from '../components/Loader';
+import {stringTypeField} from "../validation/validateString";
+import {validateTree} from '../validation';
+
+function validateBool (value, props, path, output) {
+    const { name, required } = props;
+    if (required && !value) {
+        return { name, path, required, error: 'required' };
+    }
+    if (output) {
+        output[name] = !!value;
+    }
+    return true;
+}
 
 // declare fields
 
 const CardNumber = stringTypeField( 'cardNumber', { minLength: 16, maxLength: 16, type: 'tel', required: true });
 const CVV = stringTypeField( 'cvvNumber', { minLength: 3, maxLength: 4, type: 'tel', required: true, inputClass: 'tiny', pattern: '^[0-9]+$' });
 const NameOnCard = stringTypeField( 'nameOnCard', {maxLength: 40, minLength: 4, inputClass: 'upper-case', required: true, spellCheck: false, pattern: '^[a-zA-Z ]+$' });
-const ConsentSMS = { name: 'smsTrack', component: CheckBox, showLabel: false, label: 'Please send me SMS messages to track my order.' };
+const ConsentSMS = { name: 'smsTrack', component: CheckBox, showLabel: false, label: 'Please send me SMS messages to track my order.', required: true, validator: validateBool };
+
+function validatePaymentPage (v /*, values, sectionProps, output, errors, path */) {
+    v(CardNumber);
+    v(CVV);
+    v(NameOnCard);
+    v(ConsentSMS);
+    return true;
+}
 
 // page class
 
@@ -25,23 +45,18 @@ class PaymentPage extends React.Component {
     };
 
     doCheckout = () => {
-        // const P = new Promise( (resolve, reject) => {} );
-        /*
+        const output = {};
+        const errors = [];
+        validateTree({ validateSection: validatePaymentPage },this.props.value,output,errors,'paymentPage-checkoutForm');
+        console.log('OUTPUT',output);
+        console.log('ERRORS',errors);
 
-        this.setState({ loading: true, message: 'Checking payment details' });
-        setTimeout( () => {
-            this.setState({ message: 'Checking stock and transportation' });
-            setTimeout( () => {
-                this.setState({ message: 'Transferring funds' });
-                setTimeout( () => {
-                    window.scrollTo(0,0);
-                    PageRouter.changePage('/tax-app');
-                }, 2000);
-            }, 1500);
-        }, 1500);
-        */
-        console.log('CHGECKOUT',this.props.value);
-        makePayment(this,this.props.value);
+        if (output.smsTrack) {
+            console.log('CHGECKOUT', this.props.value);
+            makePayment(this, this.props.value);
+        } else {
+            // show errors
+        }
     };
 
     render() {
