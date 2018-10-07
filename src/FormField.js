@@ -17,14 +17,14 @@ export default class FormField extends React.PureComponent {
     };
 
     render () {
-        const { parent, coreData, name, path, touched, required, showLabel = true, htmlId, inputClass, fieldClass = '',
+        const { parent, coreData, name, path, showErrors, touched, required, showLabel = true, htmlId, inputClass, fieldClass = '',
             component, validator, stripProps, ...others } = this.props;
         const Compo = component || 'input';
         const value = this.props.value || '';
         const full = path + '-' + (htmlId || name);
         const labl = path + '-' + name;
 
-        const error = !!touched && validator && validator(value,this.props,path);
+        const error = (!!touched || showErrors) && validator && validator(value,this.props,path);
         const invalid = error && !!error.error;
         // const invalid = required!==false && !!touched && !value;
         const errorId = invalid ? full+'-fieldError' : undefined;

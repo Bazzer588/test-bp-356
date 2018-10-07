@@ -13,7 +13,7 @@ export default function Radios (props) {
     );
 }
 
-// render each radio button
+// render an array of radio buttons
 
 function renderOptions (props) {
 

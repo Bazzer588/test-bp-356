@@ -398,6 +398,10 @@ select:-webkit-autofill {
   z-index: 100;
 }
 
+.ff-invalid .checkbox label {
+  color: #dc3545;
+}
+
 .forms-rtl .checkbox label {
   padding: 7px 36px 6px 5px;
 }
@@ -408,3 +412,51 @@ select:-webkit-autofill {
   <circle cx="12" cy="12" r="8" stroke="#fff" stroke-width="4"/>
 </svg>
 */
+
+/* ----------- ALERT / ERRORS ----------- */
+
+.alert {
+  margin-top: 12px; /* bp hack */
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.alert a {
+  display: block;
+  margin: 6px 0;
+  padding: 4px 12px;
+  text-decoration: none;
+  color: inherit;
+  border-radius: .25rem;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.alert-primary {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert a:focus,
+.alert:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.alert-danger a:focus,
+.alert-danger:focus {
+  border-color: #ff8080;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}

@@ -1,7 +1,26 @@
 import React from "react";
 import {translate, getOptionList, getOptionDescriptions} from './AppConfig';
 
-// helper
+export default function Select (props) {
+    // console.log('SELECT',props);
+
+    const {options, allowOption, rangeFrom, rangeTo, className, ...rest} = props;
+    const {value, required, id} = props;
+
+    const base = !!value ? 'custom-select' : 'custom-select no-value';
+    const cnm = className ? base+' '+className : base;
+
+    return (
+        <select {...rest} className={cnm}>
+            {(value==='' || value===undefined || required === false) &&
+                <option value="">{translate(id + '-pleaseSelect', required)}</option>
+            }
+            {renderOptions(options, allowOption, props, rangeFrom, rangeTo)}
+        </select>
+    );
+}
+
+// render the array of <option> elements
 
 function renderOptions (options, allowOption, props, rangeFrom, rangeTo) {
 
@@ -27,23 +46,5 @@ function renderOptions (options, allowOption, props, rangeFrom, rangeTo) {
     return opts;
 }
 
-export default function Select (props) {
-    // console.log('SELECT',props);
-
-    const {options, allowOption, rangeFrom, rangeTo, className, ...rest} = props;
-    const {value, required, id} = props;
-
-    const base = !!value ? 'custom-select' : 'custom-select no-value';
-    const cnm = className ? base+' '+className : base;
-
-    return (
-        <select {...rest} className={cnm}>
-            {(value==='' || value===undefined || required === false) &&
-                <option value="">{translate(id + '-pleaseSelect', required)}</option>
-            }
-            {renderOptions(options, allowOption, props, rangeFrom, rangeTo)}
-        </select>
-    );
-}
-
+// useful
 // https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box

@@ -8,11 +8,16 @@ export default function make (Wrapped) {
         constructor (props) {
             super(props);
             this.myRef = React.createRef();
+            this.state = {};
         }
 
         getWrappedInstance () {
             return this.myRef.current;
         }
+
+        setShowErrors = (showErrors) => {
+            this.setState({ showErrors });
+        };
 
         testClick = (ev) => {
             const node = this.getWrappedInstance();
@@ -41,8 +46,13 @@ export default function make (Wrapped) {
         };
 
         renderField = (fieldProps, extraProps) => {
+
+            // const stt = this.getWrappedInstance().state;
+            // console.log('renderField',fieldProps);
+
             const Compo = fieldProps.validateSection ? fieldProps.component : FormField;
             const {name, path, touched = DEF_VAL, value = DEF_VAL, coreData} = this.props;
+            const showErrors = this.state.showErrors || this.props.showErrors;
 
             if (!name) {  // only sections can be nameless
                 return <Compo
@@ -51,6 +61,7 @@ export default function make (Wrapped) {
                     coreData={coreData}
                     parent={this}
                     path={path}
+                    showErrors={showErrors}
                     touched={touched}
                     value={value}
                 />
@@ -66,6 +77,7 @@ export default function make (Wrapped) {
                 key={fullPath + '-' + fieldProps.name}
                 parent={this}
                 path={fullPath}
+                showErrors={showErrors}
                 touched={touched[fieldProps.name]}
                 value={value[fieldProps.name]}
             />
@@ -73,7 +85,12 @@ export default function make (Wrapped) {
 
         render () {
             return (
-                <Wrapped ref={this.myRef} {...this.props} renderField={this.renderField}/>
+                <Wrapped
+                    {...this.props}
+                    ref={this.myRef}
+                    renderField={this.renderField}
+                    setShowErrors={this.setShowErrors}
+                />
             );
         }
     }

@@ -44,18 +44,48 @@ class PaymentPage extends React.Component {
         path: 'paymentPage'
     };
 
+    componentWillMount () {             // unsafe, use static getDerivedStateFromProps(nextProps, prevState)
+        const { name } = this.props;
+        this.props.updateRedux({ type: 'SET', key: name+'_T', value: {} });
+    }
+
+    componentDidUpdate (prevProps, prevState, snapshot) { // prevProps, prevState, snapshot
+        //console.log('DID UPTATE');
+        const { inputErrors, } = (this.state || {});
+        if (inputErrors!==(prevState && prevState.inputErrors)) {
+            // const p = document.getElementById('theErrors');
+            // if (p) p.focus();
+            // focus to error?
+            // this.focusToFirstError();
+        }
+    }
+
+    focusToFirstError (errors) {
+        if (!errors) errors = this.state.errors || []; // const { errors = [] } = (this.state || {});
+        const err = errors[0];
+        if (err) {
+            const id = err.path+'-'+err.name;
+            const p = document.getElementById(id);
+            if (p) p.focus();
+        }
+    }
+
     doCheckout = () => {
         const output = {};
         const errors = [];
-        validateTree({ validateSection: validatePaymentPage },this.props.value,output,errors,'paymentPage-checkoutForm');
+        validateTree({ validateSection: validatePaymentPage },this.props.value,output,errors,'paymentPage-checkOutForm');
         console.log('OUTPUT',output);
         console.log('ERRORS',errors);
 
         if (output.smsTrack) {
             console.log('CHGECKOUT', this.props.value);
+            this.setState({ inputErrors: undefined });
             makePayment(this, this.props.value);
         } else {
             // show errors
+            this.setState({ inputErrors: Date.now(), errors });
+            this.props.setShowErrors(true);
+            this.focusToFirstError(errors);
         }
     };
 
@@ -64,6 +94,16 @@ class PaymentPage extends React.Component {
 
         const { loading, message } = this.state || {};
         const dprops = loading ? { 'aria-disabled': true, 'aria-hidden': true, className: 'loader-blur' } : {};
+
+        const { inputErrors } = (this.state || {});
+
+        const link = (e) => {
+            this.setState({ inputErrors: undefined, errors: [] });
+            this.props.setShowErrors(false);
+            alert('!!!');
+            e.preventDefault();
+            return false;
+        };
 
         return (
             <div className="App">
@@ -79,6 +119,14 @@ class PaymentPage extends React.Component {
                         {Field( NameOnCard )}
                         <br/>
                         {Field( ConsentSMS )}
+
+                        {inputErrors &&
+                            <div id="theErrors" tabIndex="0" className="alert alert-primary">
+                                Please correct errors and continue {inputErrors}
+                                <a href="" onClick={link} tabIndex="0">Please enter a valid credit card number</a>
+                                <a href="" onClick={link} tabIndex="0">Please enter the CVV number</a>
+                            </div>
+                        }
 
                         <p style={{ textAlign: 'right' }}>
                             <Button onClick={() => { window.history.back(); }}>Cancel</Button>

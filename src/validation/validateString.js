@@ -38,6 +38,7 @@ export default function validateString (value, props, path, output) {
                     }
                 }
                 if (output) {
+                    if (props.inputClass==='upper-case') value = value.toLocaleUpperCase();
                     output[name] = value;
                 }
                 return true;

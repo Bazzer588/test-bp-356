@@ -3,8 +3,7 @@ import thunk from 'redux-thunk';
 
 const DEF_STATE = {
     coreData: {
-        lang: 'en',
-        showAllErrors: false
+        lang: 'en'
     }
 };
 
