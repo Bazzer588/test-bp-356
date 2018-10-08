@@ -1,3 +1,4 @@
+import 'react-app-polyfill/ie11'; // has to be first
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './Fixers';

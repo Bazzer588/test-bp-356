@@ -2,6 +2,8 @@
   https://yoksel.github.io/url-encoder/   handy for svg
  */
 
+$error-red: #dc3545;
+
 .App {
   text-align: center;
 }
@@ -96,7 +98,7 @@ form {
 .ff-invalid input,
 .ff-invalid select {
   border: 1px solid #efafaf;
-  /*border: 1px solid #dc3545; */
+  /*border: 1px solid $error-red; */
 }
 
 .form-field label {
@@ -108,7 +110,7 @@ form {
 }
 
 .field-error {
-  color: #dc3545;
+  color: $error-red;
   font-size: 14px;
   padding: 4px 0 4px 2px;
   display: block;
@@ -386,8 +388,8 @@ select:-webkit-autofill {
 
 .checkbox label:hover,
 .checkbox input:checked + label:hover {
-  /*color: #000030 !important;*/
-  /*background-color: #fbfbfb;*/
+  // color: #000030 !important;
+  // background-color: #fbfbfb;
   border-color: #d2d8e6;
 }
 
@@ -399,7 +401,7 @@ select:-webkit-autofill {
 }
 
 .ff-invalid .checkbox label {
-  color: #dc3545;
+  color: $error-red;
 }
 
 .forms-rtl .checkbox label {

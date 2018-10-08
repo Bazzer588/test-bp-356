@@ -26,11 +26,11 @@ export default class SearchPage extends React.Component {
         };
 
         const loading = this.state && this.state.loading;
-        const dprops = loading ? { 'aria-disabled': true, 'aria-hidden': true, className: 'loader-blur' } : {};
+        const mainDivProps = loading ? { 'aria-disabled': true, 'aria-hidden': true, className: 'loader-blur' } : {};
 
         return (
             <div className="App bg-light">
-                <div {...dprops}>
+                <div {...mainDivProps}>
                     <header className="App-header">
                         <h1 className="App-title">
                             <IconLang style={{ verticalAlign: 'top' }}/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import PageRouter from './components/PageRouter';
 // pages
 import HomePage from './pages/HomePage';

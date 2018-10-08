@@ -6,6 +6,8 @@ import FormSection from "../FormSection";
 import CheckBox from "../components/CheckBox";
 import Button from "../components/Button";
 import Loader from '../components/Loader';
+import TestPopup from './TestPopup';
+
 import {stringTypeField} from "../validation/validateString";
 import {validateTree} from '../validation';
 
@@ -92,7 +94,7 @@ class PaymentPage extends React.Component {
     render() {
         const Field = this.props.renderField;
 
-        const { loading, message } = this.state || {};
+        const { loading, message, popup } = this.state || {};
         const dprops = loading ? { 'aria-disabled': true, 'aria-hidden': true, className: 'loader-blur' } : {};
 
         const { inputErrors } = (this.state || {});
@@ -123,13 +125,14 @@ class PaymentPage extends React.Component {
                         {inputErrors &&
                             <div id="theErrors" tabIndex="0" className="alert alert-primary">
                                 Please correct errors and continue {inputErrors}
-                                <a href="" onClick={link} tabIndex="0">Please enter a valid credit card number</a>
-                                <a href="" onClick={link} tabIndex="0">Please enter the CVV number</a>
+                                <a href="/" onClick={link} tabIndex="0">Please enter a valid credit card number</a>
+                                <a href="/" onClick={link} tabIndex="0">Please enter the CVV number</a>
                             </div>
                         }
 
                         <p style={{ textAlign: 'right' }}>
                             <Button onClick={() => { window.history.back(); }}>Cancel</Button>
+                            <Button onClick={() => { this.setState({ popup: 1 }); }}>Popup</Button>
                             <Button cnm="primary" onClick={this.doCheckout} >Make Payment</Button>
                         </p>
                     </form>
@@ -139,6 +142,7 @@ class PaymentPage extends React.Component {
                     </p>
                 </div>
                 {loading && <Loader text={message}/>}
+                {popup && <TestPopup parent={this}/>}
             </div>
         );
     }
