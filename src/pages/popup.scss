@@ -29,10 +29,10 @@ p {                 // see _reboot.scss
 
 // ==========================
 
-.modal.show .modal-dialog {
-  -webkit-transform: translate(0,0);
-  transform: translate(0,0);
-  animation: modDialogIn 0.25s linear;
+/*.modal.show */.modal-dialog {
+  //-webkit-transform: translate(0,0);
+  //transform: translate(0,0);
+  animation: modDialogIn .3s ease-out;
 }
 
 @keyframes modDialogIn {
@@ -41,15 +41,16 @@ p {                 // see _reboot.scss
 }
 
 .modal.fade .modal-dialog {
-  transition: -webkit-transform .3s ease-out;
-  transition: transform .3s ease-out,-webkit-transform .3s ease-out;
-  -webkit-transform: translate(0,-25%);
+  //transition: -webkit-transform .3s ease-out;
+  //transition: transform .3s ease-out,-webkit-transform .3s ease-out;
+  //-webkit-transform: translate(0,-25%);
   transform: translate(0,-25%);
 }
 
 /*@media (min-width: 576px)*/
 
 .modal-dialog {
+  padding: 0 13px;  // BP
   max-width: 500px;
   margin: 1.75rem auto;
 }
@@ -171,18 +172,37 @@ button.close {
   left: 0;
   z-index: 1040;
   background-color: #000;
+  opacity: 0.5;
   animation: modFadeIn 0.15s linear;
 }
 
-.fade.show {
+/*.fade.show {
   opacity: 0.5;
 }
 .fade {
   //opacity: 0;
   transition: opacity .15s linear;
-}
+}*/
 
 @keyframes modFadeIn {
   0% { opacity: 0 }
   100% { opacity: 0.5 }
+}
+
+// BP fade out
+
+.modal-hiding .modal-dialog {
+  opacity: 0;
+  transform: translate(0,-25%);
+  animation: modDialogOut .3s ease-out;
+}
+
+@keyframes modDialogOut {
+  0% { opacity: 1; transform: translate(0,0); }
+  100% { opacity: 0; transform: translate(0,-25%); }
+}
+
+.modal-hiding + .modal-backdrop {
+  opacity: 0;
+  transition: opacity .25s linear;
 }

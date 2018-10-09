@@ -130,7 +130,7 @@ class PaymentPage extends React.Component {
                             </div>
                         }
 
-                        <p style={{ textAlign: 'right' }}>
+                        <p style={{ textAlign: 'right', marginTop: '12px' }}>
                             <Button onClick={() => { window.history.back(); }}>Cancel</Button>
                             <Button onClick={() => { this.setState({ popup: 1 }); }}>Popup</Button>
                             <Button cnm="primary" onClick={this.doCheckout} >Make Payment</Button>
