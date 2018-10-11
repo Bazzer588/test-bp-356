@@ -82,7 +82,8 @@ function getOptionList (name) {
     const map = {
         gender: ['M','F'],
         country: ['GB','US','CN','BW','AR'],
-        months: ['01','02','03','04','05','06','07','08','09','10','11','12']
+        months: ['01','02','03','04','05','06','07','08','09','10','11','12'],
+        languages: ['en','zh','ru','fr']
     };
     return map[name] || ['Y','N'];
 }
@@ -90,7 +91,8 @@ function getOptionList (name) {
 function getOptionDescriptions (name) {
     const map = {
         gender: { M: 'Male', F: 'Female'},
-        country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' }
+        country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' },
+        languages: { en: 'English', zh: 'Chinese', ru: 'Russian', fr: 'French' }
     };
     return map[name] || {};
 }

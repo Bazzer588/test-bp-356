@@ -25,7 +25,7 @@ export default class HomePage extends React.Component {
             <div className="App bg-light">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Tax calculator application</h1>
+                    <h1 className="App-title">Tax calculator application.</h1>
                 </header>
                 <form>
                     <TaxForm path="mainForm" name="personalRef" requireCountry/>

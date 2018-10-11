@@ -1,19 +1,20 @@
 import React from 'react';
 import './popup.scss';
+import Select from "../components/Select";
 import Button from "../components/Button";
 
-export default function TestPop ({ parent }) {
+export default function PickerPop ({ parent }) {
 
     function eat (ev) {
         ev.stopPropagation();
     }
 
-    function switchPopup () {
-        parent.setState({ popup: 2 });
+    function backPopup () {
+        parent.setState({ popup: 1 });
     }
 
     function onClose () {
-        parent.setState({ popup: 0 });
+        parent.setState({ popup: false });
         foc('ShowPopup');
     }
 
@@ -23,11 +24,11 @@ export default function TestPop ({ parent }) {
         setTimeout( () => { onClose(); }, 300 );
     }
 
-    const title = 'Cancel this purchase?';
+    const title = 'Choose your language';
     const content = (
         <>
-            <p>You can cancel this purchase now.</p>
-            <p>Your basket will be empty of products</p>
+            <p>Pick a language</p>
+            <Select options="languages"/>
         </>
     );
 
@@ -51,8 +52,8 @@ export default function TestPop ({ parent }) {
                         </div>
                         <div className="modal-footer">
                             <Button id="closePop" onClick={fadeOut}>Cancel</Button>
-                            <button type="button" className="btn btn-secondary" onClick={switchPopup}>Next</button>
-                            <button type="button" className="btn btn-primary" onClick={fadeOut}>Save changes</button>
+                            <button type="button" className="btn btn-secondary" onClick={backPopup}>Back</button>
+                            <button type="button" className="btn btn-primary" onClick={fadeOut}>Change language</button>
                         </div>
                     </div>
                 </div>

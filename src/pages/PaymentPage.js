@@ -7,6 +7,7 @@ import CheckBox from "../components/CheckBox";
 import Button from "../components/Button";
 import Loader from '../components/Loader';
 import TestPopup from './TestPopup';
+import PickerPopup from './PickerPopup';
 
 import {stringTypeField} from "../validation/validateString";
 import {validateTree} from '../validation';
@@ -132,7 +133,7 @@ class PaymentPage extends React.Component {
 
                         <p style={{ textAlign: 'right', marginTop: '12px' }}>
                             <Button onClick={() => { window.history.back(); }}>Cancel</Button>
-                            <Button onClick={() => { this.setState({ popup: 1 }); }}>Popup</Button>
+                            <Button id="ShowPopup" onClick={() => { this.setState({ popup: 1 }); }}>Popup</Button>
                             <Button cnm="primary" onClick={this.doCheckout} >Make Payment</Button>
                         </p>
                     </form>
@@ -142,7 +143,8 @@ class PaymentPage extends React.Component {
                     </p>
                 </div>
                 {loading && <Loader text={message}/>}
-                {popup && <TestPopup parent={this}/>}
+                {popup===1 && <TestPopup parent={this}/>}
+                {popup===2 && <PickerPopup parent={this}/>}
             </div>
         );
     }
