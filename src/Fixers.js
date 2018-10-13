@@ -10,6 +10,12 @@ if (!String.prototype.endsWith) {
     };
 }
 
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(search, pos) {   // eslint-disable-line
+        return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
+    };
+}
+
 if (!Array.prototype.find) {
     Array.prototype.find = function( fn ) {  // eslint-disable-line
         const len = this.length;

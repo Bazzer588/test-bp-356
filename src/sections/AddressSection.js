@@ -13,12 +13,12 @@ const ZipCode = stringTypeField( 'zipCode', {maxLength: 12, autoComplete: 'posta
 const Country = stringTypeField( 'country', {component: Select, options: 'country', required: true });
 
 export function validateAddress (v) { // v, values, sectionProps, output, errors, path
+    v(Country);
     v(Address1);
     v(Area);
     v(City);
     v(Region);
     v(ZipCode);
-    v(Country);
 }
 
 class AddressSection extends React.PureComponent {
@@ -27,12 +27,12 @@ class AddressSection extends React.PureComponent {
         //const { children } = this.props;
         const Field = this.props.renderField;
         return ([
+            Field( Country ),
             Field( Address1 ),
             Field( Area ),
             Field( City ),
             Field( Region  ),
-            Field( ZipCode ),
-            Field( Country )
+            Field( ZipCode )
         ]);
     }
 

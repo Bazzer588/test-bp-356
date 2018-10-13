@@ -39,6 +39,9 @@ if (module.hot) {
 
 registerServiceWorker();
 
+// HACK
+window.redux = store;
+
 // TODO move elsewhere POSSIBLY TO APP
 
 function translate (t,required) {
@@ -67,6 +70,8 @@ function translate (t,required) {
     if (t.endsWith('-parkingSpaces')) return 'How many parking spaces do you have exclusive use of?';
     if (t.endsWith('-preferredRetireAge')) return 'What is your preferred retirement age?';
 
+    if (t.endsWith('-regNumber')) return 'Registration number and country';
+
     if (t.endsWith('-cardNumber')) return 'Payment card number';
     if (t.endsWith('-cvvNumber')) return 'CVV';
     if (t.endsWith('-nameOnCard')) return 'Name on card';
@@ -80,6 +85,7 @@ function translate (t,required) {
 
 function getOptionList (name) {
     const map = {
+        yesno: ['M','F'],
         gender: ['M','F'],
         country: ['GB','US','CN','BW','AR'],
         months: ['01','02','03','04','05','06','07','08','09','10','11','12'],
@@ -90,6 +96,7 @@ function getOptionList (name) {
 
 function getOptionDescriptions (name) {
     const map = {
+        yesno: { Y: 'Yes', N: 'No'},
         gender: { M: 'Male', F: 'Female'},
         country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' },
         languages: { en: 'English', zh: 'Chinese', ru: 'Russian', fr: 'French' }

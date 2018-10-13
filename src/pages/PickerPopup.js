@@ -3,7 +3,7 @@ import './popup.scss';
 import Select from "../components/Select";
 import Button from "../components/Button";
 
-export default function PickerPop ({ parent }) {
+export default function PickerPop ({ parent, popupCode }) {
 
     function eat (ev) {
         ev.stopPropagation();
@@ -11,6 +11,10 @@ export default function PickerPop ({ parent }) {
 
     function backPopup () {
         parent.setState({ popup: 1 });
+    }
+
+    function nextPopup () {
+        parent.setState({ popup: popupCode===2 ? 3 : 2 });
     }
 
     function onClose () {
@@ -24,13 +28,18 @@ export default function PickerPop ({ parent }) {
         setTimeout( () => { onClose(); }, 300 );
     }
 
+    function onLang (ev) {
+        console.log('LANG',ev.target.value);
+    }
+
     const title = 'Choose your language';
-    const content = (
+    const content2 = (
         <>
             <p>Pick a language</p>
-            <Select options="languages"/>
+            <Select options="languages" onChange={onLang}/>
         </>
     );
+    const content3 = <p>Another popup</p>;
 
     setTimeout( () => { foc('exampleModalLive'); }, 100); // focus to modal
 
@@ -48,11 +57,12 @@ export default function PickerPop ({ parent }) {
                             </button>
                         </div>
                         <div className="modal-body">
-                            {content}
+                            {popupCode===2 ? content2 : content3}
                         </div>
                         <div className="modal-footer">
                             <Button id="closePop" onClick={fadeOut}>Cancel</Button>
                             <button type="button" className="btn btn-secondary" onClick={backPopup}>Back</button>
+                            <button type="button" className="btn btn-secondary" onClick={nextPopup}>Next</button>
                             <button type="button" className="btn btn-primary" onClick={fadeOut}>Change language</button>
                         </div>
                     </div>

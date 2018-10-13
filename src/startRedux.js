@@ -9,7 +9,7 @@ const DEF_STATE = {
 
 // reducer
 
-function formState(state = DEF_STATE, action) {
+function formState (state = DEF_STATE, action) {
     //console.log('REDX',action);
 
     switch(action.type) {
@@ -29,32 +29,13 @@ function formState(state = DEF_STATE, action) {
         default:
             return state;
     }
-
-    /*
-    if (action.type === 'SET') {       // { type: 'SET', key: 'myThing', value: {...} }
-        return {
-            ...state,
-            [action.key]: action.value
-        };
-    }
-    if (action.type === 'CORE') {       // { type: 'CORE', data: { lang: 'de' } }
-        return {
-            ...state,
-            coreData: {
-                ...state.coreData,
-                ...action.data
-            }
-        };
-    }
-    return state;
-    */
 }
 
 const rootReducer = combineReducers({
     formState
 });
 
-function configureStore() {
+function configureStore () {
     return createStore(
         rootReducer,
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),

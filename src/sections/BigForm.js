@@ -8,6 +8,7 @@ import ContactSection, {validateContactSection} from "./ContactSection";
 import Select from "../components/Select";
 import CheckBox from "../components/CheckBox";
 import {stringTypeField} from "../validation/validateString";
+import {comboTypeField} from './ComboField';
 
 // fields
 
@@ -17,6 +18,8 @@ const AgeRetire = stringTypeField( 'preferredRetireAge', {component: Select, req
 const ConsentSMS = { name: 'consentSMS', component: CheckBox, showLabel: false, label: 'Please send me SMS messages about the progress of my application.' };
 const ConsentEmail = { name: 'consentEmail', component: CheckBox, showLabel: false, label: 'Sign me up for regular email alerts.' };
 const ConsentOth = { name: 'consentOther', component: CheckBox, showLabel: false, label: 'Other consent option.' };
+const Thingy = comboTypeField('regNumber',{ options: 'country', required: false, minLength: 4, maxLength: 12 });
+const Whatever = comboTypeField('langCode',{ options: 'languages', required: true, minLength: 4, maxLength: 12 });
 
 // declare sections
 
@@ -41,6 +44,8 @@ class BigForm extends React.PureComponent {
                     {Field( ConsentSMS )}
                     {Field( ConsentEmail )}
                     {Field( ConsentOth )}
+                    {Field( Thingy )}
+                    {Field( Whatever )}
                     </div>
                 </FieldSet>
                 <FieldSet name="homeAddress">

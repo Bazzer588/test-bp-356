@@ -144,7 +144,7 @@ class PaymentPage extends React.Component {
                 </div>
                 {loading && <Loader text={message}/>}
                 {popup===1 && <TestPopup parent={this}/>}
-                {popup===2 && <PickerPopup parent={this}/>}
+                {popup>=2 && <PickerPopup parent={this} popupCode={popup}/>}
             </div>
         );
     }
