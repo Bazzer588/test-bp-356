@@ -6,54 +6,58 @@ import {makeContactSection} from "./ContactSection";
 import Button from "../components/Button";
 import {validateTree} from "../validation";
 
-const RoomsRequired = stringTypeField( 'roomsRequired', {component: Select, required: false, rangeFrom: 1, rangeTo: 6, inputClass: 'narrow' });
+const RoomsRequired = stringTypeField( 'roomsRequired', {component: Select, required: true, rangeFrom: 1, rangeTo: 6, inputClass: 'narrow' });
 
-function validateRoomCount (v,value) {
+function validateRoomCount (v,value = {}) {
     v(RoomsRequired);
     v(ListOfRooms,{ listLength: value.roomsRequired });
     return true;
 }
 
-class RoomCount extends React.PureComponent {
+function RoomCountSection (props) {
 
-    vlid = () => {
-        console.log(this.props.value);
+    function doReset () {
+        props.setShowErrors(false);
+        props.parent.onChangeField(props.name,{});
+        props.parent.onBlurField(props.name,{});
+    }
+
+    const vlid = () => {
+        console.log(props.value);
         const output = {};
         const errors = [];
-        validateTree({ validateSection: validateRoomCount },this.props.value,output,errors,'paymentPage-checkOutForm');
+        validateTree({ validateSection: validateRoomCount },props.value,output,errors,'paymentPage-checkOutForm');
         console.log('OUTPUT',output);
         console.log('ERRORS',errors);
-};
+        props.setShowErrors(true);
+    };
 
-    render () {
-        const { value = {} } = this.props;
-        const { roomsRequired } = value;
-        const Field = this.props.renderField;
-        /*return ([
-            Field( RoomsRequired ),
-            Field( ListOfRooms, { listLength: roomsRequired } )
-        ]);*/
-        return (
-            <div>
-                {Field( RoomsRequired )}
-                {Field( ListOfRooms, { listLength: roomsRequired } )}
-                <br/>
-                <Button cnm="primary" onClick={this.vlid}>Validate</Button>
-            </div>
-        );
-    }
+    const { value = {} } = props;
+    const { roomsRequired } = value;
+    const Field = props.renderField;
+
+    return (
+        <div>
+            {Field( RoomsRequired )}
+            {Field( ListOfRooms, { listLength: roomsRequired } )}
+            <br/>
+            <Button cnm="primary" onClick={vlid}>Validate</Button>
+            <Button onClick={() => props.setShowErrors(false)}>Clear</Button>
+            <Button onClick={doReset}>Reset</Button>
+        </div>
+    );
 
 }
 
-export default FormSection(RoomCount);
+export default FormSection(RoomCountSection);
 
 // experimental from here...
 
 class FormList extends React.PureComponent {
 
     render () {
-        const { listLength, renderField, repeatThing } = this.props;
-        const cc = parseInt(listLength);
+        const { listLength, renderField, repeatThing, fixedList, value = [] } = this.props;
+        const cc = fixedList ? value.length : parseInt(listLength);
         if (!cc)
             return null;
 
@@ -72,10 +76,9 @@ class FormList extends React.PureComponent {
 
 const ListOfThings = FormSection(FormList,true);
 
-function validateList (v, values, sectionProps) { // v, values, sectionProps, output, errors, path
-    const { listLength, repeatThing } = sectionProps;
-    const cc = parseInt(listLength);
-    console.log('VL',cc,values,repeatThing);
+function validateList (v, value, sectionProps) { // v, values, sectionProps, output, errors, path
+    const { listLength, fixedList, repeatThing } = sectionProps;
+    const cc = fixedList ? value.length : parseInt(listLength);
     for(let n=0;n<cc;n++) {
         v( repeatThing, { name: String(n) } );
     }
@@ -88,8 +91,8 @@ function makeRepeatable (name, repeatThing) {
 
 // in use
 
-const RoomNumber = stringTypeField('roomNumber',{ required: true });
-// const RoomNumber = makeContactSection();
+//const RoomNumber = stringTypeField('roomNumber',{ required: true });
+const RoomNumber = makeContactSection();
 
 // const ListOfRooms = { name: 'roomList', component: ListOfThings, validateSection: () => {}, repeatThing: RoomNumber };
 const ListOfRooms = makeRepeatable('roomList', RoomNumber );

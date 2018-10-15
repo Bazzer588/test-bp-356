@@ -29,7 +29,16 @@ export default function make (Wrapped, isArray) {
 
         onBlurField = (fieldName,newValue) => {
             const { touched, name, updateRedux, parent } = this.props;
-            const changed = { ...touched, [fieldName]: newValue };
+
+            //const changed = { ...touched, [fieldName]: newValue };
+            let changed;
+            if (isArray) {
+                changed = touched ? [...touched] : [];
+                changed[fieldName] = newValue;
+            } else {
+                changed = {...touched, [fieldName]: newValue};
+            }
+
             if (updateRedux)
                 updateRedux({ type: 'SET', key: name+'_T', value: changed });
             if (parent) {
@@ -95,10 +104,13 @@ export default function make (Wrapped, isArray) {
         };
 
         render () {
+            // console.log('REND',this.props.name,this.state.showErrors);
+
+            // ref={this.myRef}   // this does not work if Wrapped is a functional component
             return (
                 <Wrapped
+                    showErrorsWrap={this.state.showErrors}
                     {...this.props}
-                    ref={this.myRef}
                     renderField={this.renderField}
                     setShowErrors={this.setShowErrors}
                 />

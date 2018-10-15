@@ -98,4 +98,8 @@ function renderError (error, errorId) {
     extra field info ('Full name as displayed on card')
     dimmed text in label - ie 'Address 2 (optional)' where bracketed is gray
 
+
+    PASSING CUSTOM ATTRIBUTES TO THE HTML INPUT
+    https://reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html
+
  */

@@ -39,7 +39,7 @@ class BigForm extends React.PureComponent {
         const Field = this.props.renderField;
         return (
             <div>
-                <FieldSet name="Rooms">
+                <FieldSet name="Rooms" aria-label="List of rooms and contacts">
                     {Field( RoomsSection )}
                 </FieldSet>
                 <FieldSet name="About you">
