@@ -40,6 +40,7 @@ function renderOptions (props) {
                         aria-describedby={props['aria-describedby']}
                         onChange={props.onChange}
                         onBlur={props.onBlur}
+                        onClick={onClickRadio}
                     />
                     <label htmlFor={radioId}>
                         {map[row] || row}
@@ -50,4 +51,9 @@ function renderOptions (props) {
     });
 
     return opts;
+}
+
+function onClickRadio (ev) {
+    ev.target.focus();
+    // console.log('onClickRadio',ev.target.id);
 }

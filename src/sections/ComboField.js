@@ -23,16 +23,6 @@ function ComboField (props) {
     const { id, onChange, onBlur, options, minLength, maxLength, required } = props;
     const defs = { required, 'aria-describedby': props['aria-describedby'] };
 
-    /*const onSelectChange = (ev) => {
-        const country = ev.target.value;
-        onChange({ target: { value: { ...value, country } } });
-    };
-
-    const onInputChange = (ev) => {
-        const phone = ev.target.value;
-        onChange({ target: { value: { ...value, phone } } });
-    };*/
-
     const onPartChange = (item) => (ev) => {
         onChange({ target: { value: { ...value, [item]: ev.target.value } } });
     };
@@ -46,6 +36,8 @@ function ComboField (props) {
     function onFocusField () {
         clearTimeout(timer);
     }
+
+    // TODO component without label needs aria-label - in this case country - or use aria-labelledby ?
 
     return (
         <div>
@@ -67,6 +59,6 @@ function handleBlur (ev, id, onBlur) {
         }
         return;
     }
-    // use a timer allows cancel of blur
+    // use a timer to blur - can be reset on a focus event
     return setTimeout(onBlur,25);
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 import FormField from "./FormField";
 
-export default function make (Wrapped) {
+export default function make (Wrapped, isArray) {
+
+    const DEF = isArray ? DEF_ARR : DEF_VAL;
 
     class FormSection extends React.PureComponent {
 
@@ -19,11 +21,11 @@ export default function make (Wrapped) {
             this.setState({ showErrors });
         };
 
-        testClick = (ev) => {
+        /*testClick = (ev) => {
             const node = this.getWrappedInstance();
             console.log('NODE', node);
             node.testHit(ev);
-        };
+        };*/
 
         onBlurField = (fieldName,newValue) => {
             const { touched, name, updateRedux, parent } = this.props;
@@ -37,7 +39,16 @@ export default function make (Wrapped) {
 
         onChangeField = (fieldName, newValue) => {
             const {value, name, updateRedux, parent} = this.props;
-            const changed = {...value, [fieldName]: newValue};
+
+            // const changed = {...value, [fieldName]: newValue};
+            let changed;
+            if (isArray) {
+                changed = value ? [...value] : [];
+                changed[fieldName] = newValue;
+            } else {
+                changed = {...value, [fieldName]: newValue};
+            }
+
             if (updateRedux)
                 updateRedux({type: 'SET', key: name, value: changed});
             if (parent) {
@@ -51,7 +62,7 @@ export default function make (Wrapped) {
             // console.log('renderField',fieldProps);
 
             const Compo = fieldProps.validateSection ? fieldProps.component : FormField;
-            const {name, path, touched = DEF_VAL, value = DEF_VAL, coreData} = this.props;
+            const {name, path, touched = DEF, value = DEF, coreData} = this.props;
             const showErrors = this.state.showErrors || this.props.showErrors;
 
             if (!name) {  // only sections can be nameless
@@ -68,7 +79,7 @@ export default function make (Wrapped) {
             }
 
             // --- it has a name ---
-            const fullPath = path ? path + '-' + name : name;
+            const fullPath = path ? path + '-' + name : name;   // ie 'myForm-roomList-2-roomNumber'
             // console.log('RF',fullPath,fieldProps.name);
             return <Compo
                 {...fieldProps}
@@ -101,3 +112,4 @@ export default function make (Wrapped) {
 }
 
 const DEF_VAL = {};
+const DEF_ARR = [];

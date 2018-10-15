@@ -9,6 +9,7 @@ import Select from "../components/Select";
 import CheckBox from "../components/CheckBox";
 import {stringTypeField} from "../validation/validateString";
 import {comboTypeField} from './ComboField';
+import RoomCount from './RoomCount';
 
 // fields
 
@@ -30,12 +31,17 @@ const WorkAddress = { name: 'workAddress', component: AddressSection, validateSe
 const HomePhones = { name: 'contactHome', component: ContactSection, validateSection: validateContactSection };
 const OverseasPhones = { name: 'contactOver', component: ContactSection, validateSection: validateContactSection };
 
+const RoomsSection = { name: 'rooms', component: RoomCount, validateSection: () => {} };
+
 class BigForm extends React.PureComponent {
 
     render () {
         const Field = this.props.renderField;
         return (
             <div>
+                <FieldSet name="Rooms">
+                    {Field( RoomsSection )}
+                </FieldSet>
                 <FieldSet name="About you">
                     {Field( CarsInHouse )}
                     {Field( ParkingSpaces )}

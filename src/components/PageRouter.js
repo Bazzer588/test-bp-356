@@ -1,7 +1,24 @@
 import React from 'react';
 
 const pageRoutes = {};
-const pageTitles = {};
+const pageMappers = [];
+
+function getPageRoute (path) {
+    const t = pageRoutes[path];
+    if (t)
+        return t;
+
+    const pathsplit = path.split('/'); // .splice(0,1);
+    pathsplit.splice(0,1); // remove '' from start
+
+    for (let n=0;n<pageMappers.length;n++) {
+        const z = pageMappers[n](pathsplit);
+        if (z)
+            return z;
+    }
+
+    return pageRoutes['/']
+}
 
 function modPage (url, toTop, replace) {
     console.log('modPage',url,toTop);
@@ -25,12 +42,14 @@ function modPage (url, toTop, replace) {
 export default class PageRouter extends React.Component {
 
     static defineRoute (pathname, thing, title) {
-        console.log('defineRoute', pathname, typeof pathname, typeof thing, title);
+        // console.log('defineRoute', pathname, typeof pathname, typeof thing, title);
         if (typeof pathname === 'function') {
-            // to do
+            pageMappers.push(pathname);
         } else {
-            pageRoutes[pathname] = thing;
-            pageTitles[pathname] = title;
+            pageRoutes[pathname] = {
+                Compo: thing,
+                title
+            };
         }
     }
 
@@ -56,20 +75,11 @@ export default class PageRouter extends React.Component {
     };
 
     render() {
-        const path = window.location.pathname;
+        const thing = getPageRoute(window.location.pathname);
 
-        const pathsplit = path.split('/'); // .splice(0,1);
-        pathsplit.splice(0,1); // remove '' from start
-        console.log('PATHSPLIT',pathsplit);
+        if (thing.title) document.title = thing.title; // TODO translate
 
-        const Thing = pageRoutes[path] || pageRoutes['/'];
-        // location.search = '?q=875848'
-
-        const title = pageTitles[path] || pageTitles['/'];
-
-        if (title) document.title = title;
-
-        return (<Thing search={window.location.search} />);
+        return (<thing.Compo search={window.location.search} {...thing.values} />);
     }
 
 }

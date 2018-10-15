@@ -1,7 +1,11 @@
 import React from "react";
 import {translate} from './AppConfig';
 
-export default function ({ id, value, label, onChange, className = 'checkbox', ...rest }) {
+export default function CheckBox ({ id, value, label, onChange, className = 'checkbox', ...rest }) {
+
+    //function onClick () {
+    //    document.getElementById(id).focus();
+    //}
 
     return (
         <div className={className}>
@@ -10,11 +14,16 @@ export default function ({ id, value, label, onChange, className = 'checkbox', .
                 checked={!!value}
                 id={id}
                 onChange={ () => onChange({ target: { value: !value } }) }
+                onClick={onClickRadio}
                 type="checkbox"
             />
             <label htmlFor={id}>{translate(label)}</label>
         </div>
     );
+}
+
+function onClickRadio (ev) {
+    ev.target.focus();
 }
 
 /*

@@ -68,7 +68,7 @@ function translate (t,required) {
 
     if (t.endsWith('-carsInHouse')) return 'How many cars are there in your household?';
     if (t.endsWith('-parkingSpaces')) return 'How many parking spaces do you have exclusive use of?';
-    if (t.endsWith('-preferredRetireAge')) return 'What is your preferred retirement age?';
+    if (t.endsWith('-preferredRetireAge')) return <span>What is your preferred retirement age? <b>(optional)</b></span>;
 
     if (t.endsWith('-regNumber')) return 'Registration number and country';
 

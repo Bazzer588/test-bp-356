@@ -21,17 +21,22 @@ class ContactSection extends React.PureComponent {
         const z = !!touched[HomePhone.name] && !!touched[MobilePhone.name] && !!touched[Email.name] ;
         const t = (z && !v);
         return (
-            <React.Fragment>
+            <>
                 <Field {...HomePhone} required={t} sdtupid={87} />
                 <Field {...MobilePhone} required={t} />
                 <Field {...Email} required={t} />
-            </React.Fragment>
+            </>
         );
     }
 
 }
 
-export default FormSection(ContactSection);
+const Section = FormSection(ContactSection);
+export default Section;
+
+export function makeContactSection (name) {
+    return  { name, component: Section, validateSection: validateContactSection }
+}
 
 /*
     {renderField(HomePhone,{ required: t })}
