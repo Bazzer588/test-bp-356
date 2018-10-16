@@ -76,6 +76,9 @@ function translate (t,required) {
     if (t.endsWith('-cvvNumber')) return 'CVV';
     if (t.endsWith('-nameOnCard')) return 'Name on card';
 
+    if (t.endsWith('-emergencyPhone')) return 'Emergency contact number';
+    if (t.endsWith('-faxNo')) return 'Fax number';
+
     const map = {
         personalRef: 'Your personal details',
         spouseRef: 'Your spouse details'

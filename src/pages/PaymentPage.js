@@ -6,6 +6,8 @@ import FormSection from "../FormSection";
 import CheckBox from "../components/CheckBox";
 import Button from "../components/Button";
 import Loader from '../components/Loader';
+import {phoneTypeField} from '../components/PhoneInput';
+
 import TestPopup from './TestPopup';
 import PickerPopup from './PickerPopup';
 
@@ -29,6 +31,9 @@ const CardNumber = stringTypeField( 'cardNumber', { minLength: 16, maxLength: 16
 const CVV = stringTypeField( 'cvvNumber', { minLength: 3, maxLength: 4, type: 'tel', required: true, inputClass: 'tiny', pattern: '^[0-9]+$' });
 const NameOnCard = stringTypeField( 'nameOnCard', {maxLength: 40, minLength: 4, inputClass: 'upper-case', required: true, spellCheck: false, pattern: '^[a-zA-Z ]+$' });
 const ConsentSMS = { name: 'smsTrack', component: CheckBox, showLabel: false, label: 'Please send me SMS messages to track my order.', required: true, validator: validateBool };
+
+const EmoField = phoneTypeField('emergencyPhone', { maxLength: 12, minLength: 4, required: true, pattern: '^[0-9]+$' });
+const FaxField = phoneTypeField('faxNo', { maxLength: 10, minLength: 6 });
 
 function validatePaymentPage (v /*, values, sectionProps, output, errors, path */) {
     v(CardNumber);
@@ -136,11 +141,17 @@ class PaymentPage extends React.Component {
                             <Button id="ShowPopup" onClick={() => { this.setState({ popup: 1 }); }}>Popup</Button>
                             <Button cnm="primary" onClick={this.doCheckout} >Make Payment</Button>
                         </p>
+                        <p className="App-intro">
+                            Terms & conditions
+                            etc here
+                        </p>
+
+                        {Field( EmoField )}
+                        {Field( FaxField )}
+
+                        <p>&nbsp;</p>
+                        <p>Thank you for your patience</p>
                     </form>
-                    <p className="App-intro">
-                        Terms & conditions
-                        etc here
-                    </p>
                 </div>
                 {loading && <Loader text={message}/>}
                 {popup===1 && <TestPopup parent={this}/>}
