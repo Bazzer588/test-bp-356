@@ -27,7 +27,7 @@
   }
 
   input {
-    margin-bottom: 0;
+    margin: 0; // safari has default margins all around
     position: absolute;
     left: 60px;
     right: 0;

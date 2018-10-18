@@ -17,7 +17,7 @@ export default function Radios (props) {
 
 function renderOptions (props) {
 
-    const {options, allowOption, value, id, className} = props;
+    const {options, allowOption, value, id, className, afterRadio} = props;
 
     const opts = [];
 
@@ -47,6 +47,10 @@ function renderOptions (props) {
                     </label>
                 </div>
             );
+            if (afterRadio) {  // render something after this radio
+                const v = afterRadio(row);
+                if (v) opts.push(v);
+            }
         }
     });
 
