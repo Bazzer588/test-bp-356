@@ -46,8 +46,15 @@
     margin-bottom: 16px; // if at bottom of screen
     min-width: 246px;    // SHOULD BE SAME AS OVERALL WIDTH
 
-    //max-height: 90px;  // scrolling
-    //overflow: auto;
+    max-height: 152px;  // scrolling
+    overflow: auto;
+
+    // scrollbar
+    scrollbar-track-color:  #eee;
+    //scrollbar-3dlight-color:  #ccc;
+    //scrollbar-darkshadow-color:  #ccc;
+    scrollbar-arrow-color:  #aaa;
+    scrollbar-face-color:  #fff;
 
     a {
       display: block;
@@ -55,14 +62,31 @@
       cursor: default;
       color: #000;
       text-decoration: none;
+
       &:hover {
         background-color: #e8e8e8;
+        color: #000;
       }
+
+      &.checked {
+        background-color: #666; // #e8f0ff;
+        color: #fff;
+        font-weight: 500;
+        &:hover {
+          background-color: #484848;
+        }
+      }
+
       &:focus {
         outline: 0;
-        background-color: #286090;
+        background-color: #286090 !important;
         color: #fff;
       }
+    }
+
+    .code {
+      min-width: 44px;
+      display: inline-block;
     }
 
   }

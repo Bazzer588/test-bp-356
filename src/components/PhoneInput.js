@@ -1,5 +1,5 @@
 import React from "react";
-// import {translate, getOptionList, getOptionDescriptions} from './AppConfig';
+import {getOptionList, getOptionDescriptions} from './AppConfig';
 import './PhoneInput.scss';
 import validateString from "../validation/validateString";
 
@@ -21,9 +21,9 @@ export function validatePhone (value, props, path, output) {
     }
 }
 
-export default class PhoneInput extends React.Component {
+export class PhoneInput extends React.Component {
 
-    docClick = (ev) => {
+    docClick = () => {
         console.log('DOC CLICK');
         this.setState({ pop: false });
         document.removeEventListener('click',this.docClick);
@@ -43,7 +43,7 @@ export default class PhoneInput extends React.Component {
         const val = { tel: '', ...value, code: co };
         this.props.onChange({ target: { value: val } });
         this.btn();
-        document.getElementById(this.props.id+'-picker').focus();
+        focusTo( document.getElementById(this.props.id+'-picker') );
         //return false;
     }
 
@@ -53,26 +53,42 @@ export default class PhoneInput extends React.Component {
         this.props.onChange({ target: { value: val } });
     };
 
+    onBtnKey = (ev) => {
+        console.log('Key',ev.key);
+        if (ev.key==='ArrowDown' || ev.key==='ArrowUp' || ev.key==='Tab') {
+            const state = this.state || {};
+            if (state.pop) {
+                if (ev.shiftKey) {
+                    this.setState({ pop: false });
+                    return;
+                }
+                ev.preventDefault();
+                ev.stopPropagation();
+                focusTo( document.getElementById(this.props.id+'-checked') );
+            }
+        } else if (ev.key==='Escape') {
+            this.docClick();
+        }
+    };
+
     render () {
         const { value = {}, id, onBlur, minLength, maxLength, required } = this.props;
         const state = this.state || {};
         return (
             <div className="phone-input">
                 <button
-                    aria-label={'Country code'}
+                    aria-label={'Telephone country code'}
                     id={id+'-picker'}
                     onClick={this.btn}
                     type="button"
                     onFocus={this.docClick}
+                    onKeyDown={this.onBtnKey}
                 >
                     +{value.code || DEF_CODE}
                 </button>
                 {state.pop &&
                     <div className="telpopup">
-                        <a href="/" onClick={(ev) => this.setCo(ev,'44')}>44 United Kingdom</a>
-                        <a href="/" onClick={(ev) => this.setCo(ev,'47')}>47 Norway</a>
-                        <a href="/" onClick={(ev) => this.setCo(ev,'01')}>01 United States of America</a>
-                        <a href="/" onClick={(ev) => this.setCo(ev,'86')}>86 China</a>
+                        {renderOptions(this,'phoneCodes',id,value.code || DEF_CODE)}
                     </div>
                 }
                 <input
@@ -90,4 +106,49 @@ export default class PhoneInput extends React.Component {
             </div>
         );
     }
+}
+
+function renderOptions (t,options,id,value) {
+    const list = getOptionList(options);
+    const map = getOptionDescriptions(options);
+    const opts = [];
+    list.forEach(row => {
+        const check = row===value;
+        opts.push(
+            <a href="/"
+               onClick={(ev) => t.setCo(ev,row)} key={row}
+               className={check ? 'checked' : ''}
+               id={check ? id+'-checked': undefined}
+               onKeyDown={onLinkKey}
+            >
+                <span className="code">+{row}</span>
+                {map[row]}
+            </a>
+        );
+        if (check) {
+            setTimeout(() => {
+                const it = document.getElementById(id+'-checked');
+                if (it) it.scrollIntoView();
+            },10);
+        }
+    });
+    return opts;
+}
+
+function onLinkKey (ev) {
+    if (ev.key==='ArrowDown') {
+        //ev.preventDefault();
+        ev.stopPropagation();
+        focusTo(ev.target.nextSibling);
+    } else if (ev.key==='ArrowUp') {
+        //ev.preventDefault();
+        ev.stopPropagation();
+        focusTo(ev.target.previousSibling);
+    } else if (ev.key==='Escape') {
+        focusTo(ev.target.parentElement.previousSibling);
+    }
+}
+
+function focusTo (el) {
+    if (el) el.focus();
 }
