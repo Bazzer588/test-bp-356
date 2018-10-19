@@ -84,7 +84,7 @@ export class PhoneInput extends React.Component {
                     onFocus={this.docClick}
                     onKeyDown={this.onBtnKey}
                 >
-                    +{value.code || DEF_CODE}
+                    +{getPhCode(value.code)}
                 </button>
                 {state.pop &&
                     <div className="telpopup">
@@ -121,7 +121,7 @@ function renderOptions (t,options,id,value) {
                id={check ? id+'-checked': undefined}
                onKeyDown={onLinkKey}
             >
-                <span className="code">+{row}</span>
+                <span className="code">+{getPhCode(row)}</span>
                 {map[row]}
             </a>
         );
@@ -137,11 +137,11 @@ function renderOptions (t,options,id,value) {
 
 function onLinkKey (ev) {
     if (ev.key==='ArrowDown') {
-        //ev.preventDefault();
+        ev.preventDefault();
         ev.stopPropagation();
         focusTo(ev.target.nextSibling);
     } else if (ev.key==='ArrowUp') {
-        //ev.preventDefault();
+        ev.preventDefault();
         ev.stopPropagation();
         focusTo(ev.target.previousSibling);
     } else if (ev.key==='Escape') {
@@ -151,4 +151,14 @@ function onLinkKey (ev) {
 
 function focusTo (el) {
     if (el) el.focus();
+}
+
+function getPhCode (c) {
+    if (c) {
+        const i = c.indexOf('-');
+        if (i>0)
+            return c.substring(0,i);
+        return c;
+    }
+    return DEF_CODE;
 }

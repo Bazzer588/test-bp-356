@@ -93,7 +93,7 @@ function getOptionList (name) {
         country: ['GB','US','CN','BW','AR'],
         months: ['01','02','03','04','05','06','07','08','09','10','11','12'],
         languages: ['en','zh','ru','fr'],
-        phoneCodes: ['1','44','86','47','33','356']
+        phoneCodes: ['1','1-C','44','86','47','33','356']
     };
     return map[name] || ['Y','N'];
 }
@@ -104,7 +104,7 @@ function getOptionDescriptions (name) {
         gender: { M: 'Male', F: 'Female'},
         country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' },
         languages: { en: 'English', zh: 'Chinese', ru: 'Russian', fr: 'French' },
-        phoneCodes: { '1': 'United States', '44': 'United Kingdom', '86': 'China' ,'47': 'Norway', '33': 'France', '356': 'Malta' }
+        phoneCodes: { '1': 'United States', '1-C': 'Canada', '44': 'United Kingdom', '86': 'China' ,'47': 'Norway', '33': 'France', '356': 'Malta' }
     };
     return map[name] || {};
 }
