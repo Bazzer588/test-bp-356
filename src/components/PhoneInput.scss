@@ -3,7 +3,7 @@
   position: relative;
   height: 40px;
 
-  button {
+  .picker {
     background-color: #666;
     color: #eee;
     border: 1px solid transparent;
@@ -56,12 +56,18 @@
     scrollbar-arrow-color:  #aaa;
     scrollbar-face-color:  #fff;
 
-    a {
+    .list-item {
       display: block;
       padding: 8px 12px;
       cursor: default;
       color: #000;
       text-decoration: none;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-size: 1rem;
+      height: 2.5rem;
 
       &:hover {
         background-color: #e8e8e8;
@@ -69,7 +75,7 @@
       }
 
       &.checked {
-        background-color: #b0d0e0;
+        background-color: #dbe9ef;
         color: #000;
         font-weight: 500;
         &:hover {

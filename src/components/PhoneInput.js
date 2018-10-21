@@ -78,6 +78,7 @@ export class PhoneInput extends React.Component {
             <div className="phone-input">
                 <button
                     aria-label={'Telephone country code'}
+                    className="picker"
                     id={id+'-picker'}
                     onClick={this.btn}
                     type="button"
@@ -115,15 +116,17 @@ function renderOptions (t,options,id,value) {
     list.forEach(row => {
         const check = row===value;
         opts.push(
-            <a href="/"
-               onClick={(ev) => t.setCo(ev,row)} key={row}
-               className={check ? 'checked' : ''}
-               id={check ? id+'-checked': undefined}
-               onKeyDown={onLinkKey}
+            <button
+                href="/"
+                onClick={(ev) => t.setCo(ev,row)} key={row}
+                className={check ? 'list-item checked' : 'list-item'}
+                id={check ? id+'-checked': undefined}
+                onKeyDown={onLinkKey}
+                tabIndex="0"
             >
                 <span className="code">+{getPhCode(row)}</span>
                 {map[row]}
-            </a>
+            </button>
         );
         if (check) {
             setTimeout(() => {
