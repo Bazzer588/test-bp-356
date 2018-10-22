@@ -1,0 +1,88 @@
+
+$list-group-action-color: red;
+$list-group-action-hover-color: #c0c0c0;
+$list-group-hover-bg: #d0d0d0;
+$list-group-active-color: #fff;
+$list-group-active-bg: #007bff;
+$list-group-border-color: #c0c0c0;
+$list-group-active-color: #c0c0c0;
+$list-group-active-bg: #c0c0c0;
+$list-group-active-border-color: #ccc;
+
+// Base class
+//
+// Easily usable on <ul>, <ol>, or <div>.
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0; // reset padding because ul and ol
+  margin-bottom: 0;
+}
+
+// Individual list items
+
+.list-group-item {
+  font-size: 1rem;
+  text-align: left;
+  position: relative;
+  display: block;
+  padding: 12px 12px;
+  // Place the border on the list items and negative margin up for better styling
+  margin-bottom: -1px; // -$list-group-border-width;
+  background-color: #fff; // $list-group-bg;
+  border: 1px solid $list-group-border-color;
+
+  &:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    //@include border-top-radius($list-group-border-radius);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    //@include border-bottom-radius($list-group-border-radius);
+  }
+
+  &:hover {
+    background-color: #f8f9fa;
+    color: #000;
+  }
+
+  &:focus {
+    z-index: 3; // Place active items above their siblings for proper border styling
+    outline: 0;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  &:active {
+    background-color: #dfecfa;
+  }
+
+  // Include both here for `<a>`s and `<button>`s
+  &.active {
+    z-index: 2; // Place active items above their siblings for proper border styling
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  &.disabled {
+    color: #808080;
+  }
+}
+
+// hack it in
+
+.fright {
+  float: right;
+  display: inline-block;
+  background-color: #9e3232;
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 14px;
+}

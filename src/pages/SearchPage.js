@@ -6,6 +6,7 @@ import PageRouter from '../components/PageRouter';
 import IconLang from './IconLang';
 import Loader from '../components/Loader';
 import Button from "../components/Button";
+import ListGroup from "../components/ListGroup";
 
 export default class SearchPage extends React.Component {
 
@@ -25,7 +26,8 @@ export default class SearchPage extends React.Component {
             return false;
         };
 
-        const loading = this.state && this.state.loading;
+        const state = this.state || {};
+        const loading = state.loading;
         const mainDivProps = loading ? { 'aria-disabled': true, 'aria-hidden': true, className: 'loader-blur' } : {};
 
         return (
@@ -39,6 +41,14 @@ export default class SearchPage extends React.Component {
                         </h1>
                     </header>
                     <form>
+                        <p>&nbsp;</p>
+                        <ListGroup value={state.hack} onClick={(v) => this.setState({ hack: v })}>
+                            <div id="111">Some text</div>
+                            <div id="222">First applicant</div>
+                            <div id="333">Additional applicants</div>
+                            <div id="444">Employment details<span className="fright">Error</span></div>
+                            <div id="555" disabled>Summary</div>
+                        </ListGroup>
                         <BigForm path="mainForm" name="bigForm" />
                         <p style={{ textAlign: 'right' }}>
                             <Button onClick={this.goHomePage} >Home page</Button>
