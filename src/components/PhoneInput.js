@@ -35,6 +35,10 @@ export class PhoneInput extends React.Component {
         if (!state.pop) {
             document.addEventListener('click',this.docClick);
         }
+        setTimeout(() => {
+            const it = document.getElementById(this.props.id+'-checked');
+            focusTo(it);
+        },15);
     };
 
     setCo (ev,co) {
@@ -115,25 +119,28 @@ function renderOptions (t,options,id,value) {
     const opts = [];
     list.forEach(row => {
         const check = row===value;
+        const text = map[row];
+        const c1 = String(text.charAt(0)).toLowerCase();
         opts.push(
             <button
-                href="/"
                 onClick={(ev) => t.setCo(ev,row)} key={row}
                 className={check ? 'list-item checked' : 'list-item'}
                 id={check ? id+'-checked': undefined}
                 onKeyDown={onLinkKey}
                 tabIndex="0"
+                type="button"
+                data-skey={c1}
             >
                 <span className="code">+{getPhCode(row)}</span>
-                {map[row]}
+                {text}
             </button>
         );
-        if (check) {
+        /*if (check) {
             setTimeout(() => {
                 const it = document.getElementById(id+'-checked');
                 if (it) it.scrollIntoView();
             },10);
-        }
+        }*/
     });
     return opts;
 }
@@ -148,7 +155,24 @@ function onLinkKey (ev) {
         ev.stopPropagation();
         focusTo(ev.target.previousSibling);
     } else if (ev.key==='Escape') {
-        focusTo(ev.target.parentElement.previousSibling);
+        focusTo(ev.target.parentElement.previousSibling); // the popup button
+    } else if (ev.key.length===1) {
+        const f = ev.key.toLowerCase();
+        if (!gotoK(ev.target.nextSibling,f)) {
+            const par = ev.target.parentNode;
+            gotoK(par.firstChild,f);
+        }
+    }
+}
+
+function gotoK (curr, f) {
+    while(curr) {
+        const sk = curr.getAttribute('data-skey');
+        if (sk===f) {
+            focusTo(curr);
+            return 1;
+        }
+        curr = curr.nextSibling;
     }
 }
 
