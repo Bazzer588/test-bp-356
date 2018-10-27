@@ -98,6 +98,7 @@ export class PhoneInput extends React.Component {
                 }
                 <input
                     aria-describedby={this.props['aria-describedby']}
+                    className="phone"
                     id={id}
                     maxLength={maxLength}
                     minLength={minLength}
@@ -145,7 +146,7 @@ function renderOptions (t,options,id,value) {
     return opts;
 }
 
-function onLinkKey (ev) {
+export function onLinkKey (ev) {
     if (ev.key==='ArrowDown') {
         ev.preventDefault();
         ev.stopPropagation();

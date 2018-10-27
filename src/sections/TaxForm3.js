@@ -26,13 +26,13 @@ const allowCountry = (code, props) => {
 };
 
 const stripArgentina = (input) => {
-    //const { allowArgentina, ...others } = input;
-    //return others;
-    return input;
+    const { allowArgentina, ...others } = input;
+    return others;
+    //return input;
 };
 
 // const Country = stringTypeField( 'country', {component: Select, options: 'country', required: false, allowOption: allowCountry, stripProps: stripArgentina });
-const Country = stringTypeField( 'country', {component: Radios, options: 'country', required: false, allowOption: allowCountry, stripProps: stripArgentina, showLabel: false, label: 'Country' });
+const Country = stringTypeField( 'country', {component: Select, options: 'country', required: false, allowOption: allowCountry, stripProps: stripArgentina, label: 'Country' });
 
 class TaxForm extends React.PureComponent {
 

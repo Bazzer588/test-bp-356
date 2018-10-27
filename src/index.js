@@ -3,7 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Fixers';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+import { country, countryList } from './languages';
+
+// import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
+
 import {Provider} from 'react-redux'
 import store from './startRedux';
 // this app
@@ -37,7 +41,8 @@ if (module.hot) {
 
 // PROGRESSIVE APP
 
-registerServiceWorker();
+// registerServiceWorker();
+unregister();
 
 // HACK
 window.redux = store;
@@ -80,8 +85,8 @@ function translate (t,required) {
     if (t.endsWith('-faxNo')) return 'Fax number';
 
     const map = {
-        personalRef: 'Your personal details',
-        spouseRef: 'Your spouse details'
+        personalRef: 'Enter your personal details',
+        spouseRef: 'Enter your spouse details'
     };
     return map[t] || t;
 }
@@ -90,7 +95,8 @@ function getOptionList (name) {
     const map = {
         yesno: ['M','F'],
         gender: ['M','F'],
-        country: ['GB','US','CN','BW','AR'],
+        country: countryList, // ['GB','US','CN','BW','AR','BE','CH'],
+        countryDefaults: ['GB','US','CN','BW','AR','BE','CH'],
         months: ['01','02','03','04','05','06','07','08','09','10','11','12'],
         languages: ['en','zh','ru','fr'],
         phoneCodes: ['1','1-C','44','86','47','33','356']
@@ -102,7 +108,8 @@ function getOptionDescriptions (name) {
     const map = {
         yesno: { Y: 'Yes', N: 'No'},
         gender: { M: 'Male', F: 'Female'},
-        country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' },
+        // country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' },
+        country,
         languages: { en: 'English', zh: 'Chinese', ru: 'Russian', fr: 'French' },
         phoneCodes: { '1': 'United States', '1-C': 'Canada', '44': 'United Kingdom', '86': 'China' ,'47': 'Norway', '33': 'France', '356': 'Malta' }
     };

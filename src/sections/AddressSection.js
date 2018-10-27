@@ -21,7 +21,7 @@ export function validateAddress (v) { // v, values, sectionProps, output, errors
     v(ZipCode);
 }
 
-class AddressSection extends React.PureComponent {
+class AddressComponent extends React.PureComponent {
 
     render () {
         //const { children } = this.props;
@@ -38,7 +38,12 @@ class AddressSection extends React.PureComponent {
 
 }
 
-export default FormSection(AddressSection);
+const AddressSection = FormSection(AddressComponent);
+export default AddressSection;
+
+export function makeAddressSection (name) {
+    return  { name, component: AddressSection, validateSection: validateAddress };
+}
 
 /*
             <fieldset className="form-fieldset">

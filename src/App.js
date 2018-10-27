@@ -5,11 +5,12 @@ import PageRouter from './components/PageRouter';
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 import PaymentPage from './pages/PaymentPage';
+import SearchFieldsPage from './pages/SearchFieldsPage';
 
 PageRouter.defineRoute('/',HomePage,'React tax application');
 PageRouter.defineRoute('/tax-app',HomePage,'React tax application');
 PageRouter.defineRoute('/tax-app/search',SearchPage,'React search page');
-PageRouter.defineRoute('/tax-app/deals',SearchPage,'React hot deals page');
+PageRouter.defineRoute('/tax-app/deals',SearchFieldsPage,'React hot deals page');
 PageRouter.defineRoute('/tax-app/checkout',PaymentPage,'Checkout page');
 
 PageRouter.defineRoute(routePayment);

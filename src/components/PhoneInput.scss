@@ -26,7 +26,7 @@
     }
   }
 
-  input {
+  input.phone {
     margin: 0; // safari has default margins all around
     position: absolute;
     left: 60px;
@@ -38,6 +38,8 @@
 
   .telpopup {
     z-index: 4;
+    width: 100%;
+    box-sizing: border-box;
     position: absolute;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -45,7 +47,8 @@
     top: 46px;
     margin-bottom: 16px; // if at bottom of screen
     min-width: 16rem;    // SHOULD BE SAME AS OVERALL WIDTH
-    max-height: 15rem;  // scrolling
+    // max-height: 15rem;  // scrolling
+    max-height: calc(15rem + 2px);
     overflow: auto;
 
     // scrollbar
@@ -84,7 +87,7 @@
 
       &:focus, &:active {
         outline: 0;
-        background-color: #286090 !important;
+        background-color: #007bff !important;
         color: #fff;
       }
     }
