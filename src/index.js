@@ -95,7 +95,7 @@ function getOptionList (name) {
     const map = {
         yesno: ['M','F'],
         gender: ['M','F'],
-        country: countryList, // ['GB','US','CN','BW','AR','BE','CH'],
+        country: countryList, // ['GB','US','CN','BW','AR','BE','CH','FR','DE'],
         countryDefaults: ['GB','US','CN','BW','AR','BE','CH'],
         months: ['01','02','03','04','05','06','07','08','09','10','11','12'],
         languages: ['en','zh','ru','fr'],

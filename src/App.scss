@@ -313,6 +313,7 @@ select:-webkit-autofill {
   font-weight: 400;
   color: #646464;
   font-size: 16px;
+  line-height: 2;
 }
 
 .radio-fieldset input {
@@ -386,7 +387,7 @@ select:-webkit-autofill {
 
 .checkbox input:checked + label {
   color: #4d494d;
-  background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='22' height='22' rx='2' ry='2' fill='%23007bff' /%3E%3Cpath d='M 6 12 L 11 16 L 18 7' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E%0A")
+  background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='22' height='22' rx='2' ry='2' fill='%23007bff' /%3E%3Cpath d='M 6 12 L 11 16 L 18 7' stroke='%23fff' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E%0A")
     no-repeat 5px 6px;
   background-size: 24px 24px;
 }

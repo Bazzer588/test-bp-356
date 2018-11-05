@@ -24,6 +24,9 @@ export default function Select (props) {
 
 function renderOptions (options, allowOption, props, rangeFrom, rangeTo) {
 
+    if (!allowOption && statMap[options])
+        return statMap[options];
+
     const opts = [];
 
     if (rangeFrom || rangeTo) {
@@ -43,8 +46,13 @@ function renderOptions (options, allowOption, props, rangeFrom, rangeTo) {
             opts.push(<option key={row} value={row}>{map[row] || row}</option>);
     });
 
+    if (!allowOption)
+        statMap[options] = opts;
+
     return opts;
 }
 
 // useful
 // https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box
+
+const statMap = {}; // TODO should be stored in language resources
