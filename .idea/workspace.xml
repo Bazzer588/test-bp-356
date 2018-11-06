@@ -3,17 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="c1e7393b-cf0e-4e1c-8b83-63eabb96fb71" name="Default" comment="">
       <change beforePath="" afterPath="$PROJECT_DIR$/src/FormListSection.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/CheckBoxMulti.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/pages/Repeater.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/sections/PersonSection.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change beforePath="$PROJECT_DIR$/src/App.scss" afterPath="$PROJECT_DIR$/src/App.scss" />
-      <change beforePath="$PROJECT_DIR$/src/components/PhoneInput.scss" afterPath="$PROJECT_DIR$/src/components/PhoneInput.scss" />
-      <change beforePath="$PROJECT_DIR$/src/components/Select.js" afterPath="$PROJECT_DIR$/src/components/Select.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/CheckBoxMulti.js" afterPath="$PROJECT_DIR$/src/components/CheckBoxMulti.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/ListGroup.scss" afterPath="$PROJECT_DIR$/src/components/ListGroup.scss" />
       <change beforePath="$PROJECT_DIR$/src/components/SmartSearch.js" afterPath="$PROJECT_DIR$/src/components/SmartSearch.js" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/languages/index.js" afterPath="$PROJECT_DIR$/src/languages/index.js" />
       <change beforePath="$PROJECT_DIR$/src/pages/SearchFieldsPage.js" afterPath="$PROJECT_DIR$/src/pages/SearchFieldsPage.js" />
+      <change beforePath="$PROJECT_DIR$/src/sections/RoomCount.js" afterPath="$PROJECT_DIR$/src/sections/RoomCount.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,21 +26,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RoomCount.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sections/RoomCount.js">
+      <file leaf-file-name="CheckBoxMulti.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/CheckBoxMulti.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="324">
+              <caret line="39" column="57" lean-forward="true" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FormListSection.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FormListSection.js">
+      <file leaf-file-name="SearchFieldsPage.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/SearchFieldsPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="89">
+              <caret line="11" column="43" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormField.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FormField.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="518">
+              <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -61,13 +69,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>validateArraySection</find>
-      <find>AddressSection</find>
-      <find>favicon</find>
-      <find>Your pers</find>
-      <find>.state =</find>
       <find>renderOptions</find>
-      <find>Gender</find>
       <find>stripProps</find>
       <find>&lt;bu</find>
       <find>latv</find>
@@ -90,7 +92,13 @@
       <find>xxx</find>
       <find>isArray</find>
       <find>FormSection</find>
+      <find>RoomNumber</find>
+      <find>Gender</find>
+      <find>validateContactSection</find>
       <find>FormList</find>
+      <find>btn</find>
+      <find>validateTree</find>
+      <find>validateTree(</find>
     </findStrings>
     <replaceStrings>
       <replace>onChangeField</replace>
@@ -109,6 +117,7 @@
       <replace>&amp;</replace>
       <replace>MAX</replace>
       <replace>vals</replace>
+      <replace>validate</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\Dev\gort\tax-app\build</dir>
@@ -125,7 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/validation/validateString.js" />
         <option value="$PROJECT_DIR$/src/components/Loader.css" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/pages/popup.scss" />
@@ -143,7 +151,6 @@
         <option value="$PROJECT_DIR$/src/sections/ContactSection.js" />
         <option value="$PROJECT_DIR$/src/FormField.js" />
         <option value="$PROJECT_DIR$/src/FormSection.js" />
-        <option value="$PROJECT_DIR$/src/sections/RoomCount.js" />
         <option value="$PROJECT_DIR$/src/components/FieldSet.js" />
         <option value="$PROJECT_DIR$/src/sections/BigForm.js" />
         <option value="$PROJECT_DIR$/src/pages/PaymentPage.js" />
@@ -151,7 +158,6 @@
         <option value="$PROJECT_DIR$/dist/AppConfig.js" />
         <option value="$PROJECT_DIR$/src/pages/SearchPage.js" />
         <option value="$PROJECT_DIR$/src/components/ListGroup.js" />
-        <option value="$PROJECT_DIR$/src/components/ListGroup.scss" />
         <option value="$PROJECT_DIR$/build/asset-manifest.json" />
         <option value="$PROJECT_DIR$/build/static/js/1.b550eff0.chunk.js" />
         <option value="$PROJECT_DIR$/build/static/js/main.8fa41c7e.chunk.js" />
@@ -167,15 +173,18 @@
         <option value="$PROJECT_DIR$/src/languages/country.zh_Hans.json" />
         <option value="$PROJECT_DIR$/src/languages/country.de.json" />
         <option value="$PROJECT_DIR$/src/components/PhoneInput.scss" />
-        <option value="$PROJECT_DIR$/src/components/SmartSearch.js" />
         <option value="$PROJECT_DIR$/src/languages/index.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/SearchFieldsPage.js" />
         <option value="$PROJECT_DIR$/src/components/Select.js" />
-        <option value="$PROJECT_DIR$/src/App.scss" />
-        <option value="$PROJECT_DIR$/src/components/CheckBoxMulti.js" />
         <option value="$PROJECT_DIR$/src/pages/Repeater.js" />
+        <option value="$PROJECT_DIR$/src/sections/RoomCount.js" />
+        <option value="$PROJECT_DIR$/src/sections/PersonSection.js" />
+        <option value="$PROJECT_DIR$/src/App.scss" />
+        <option value="$PROJECT_DIR$/src/components/ListGroup.scss" />
         <option value="$PROJECT_DIR$/src/FormListSection.js" />
+        <option value="$PROJECT_DIR$/src/pages/SearchFieldsPage.js" />
+        <option value="$PROJECT_DIR$/src/components/SmartSearch.js" />
+        <option value="$PROJECT_DIR$/src/components/CheckBoxMulti.js" />
       </list>
     </option>
   </component>
@@ -379,7 +388,25 @@
               <item name="tax-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="tax-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tax-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tax-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tax-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tax-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sections" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tax-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tax-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="validation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tax-app" type="b2602c69:ProjectViewProjectNode" />
@@ -564,7 +591,7 @@
       <workItem from="1539023349775" duration="14929000" />
       <workItem from="1539190703147" duration="112673000" />
       <workItem from="1540234203164" duration="13303000" />
-      <workItem from="1540324986352" duration="51991000" />
+      <workItem from="1540324986352" duration="65006000" />
     </task>
     <servers />
   </component>
@@ -577,7 +604,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="470309000" />
+    <option name="totallyTimeSpent" value="483324000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -691,20 +718,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -731,14 +744,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ListGroup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="123" lean-forward="false" selection-start-line="18" selection-start-column="123" selection-end-line="18" selection-end-column="123" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -870,22 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ListGroup.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormField.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/PhoneInput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -934,14 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sections/ContactSection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sections/TaxForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102">
@@ -974,22 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/PaymentPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="195" column="4" lean-forward="true" selection-start-line="195" selection-start-column="4" selection-end-line="195" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SmartSearch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/languages/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1014,14 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/SearchFieldsPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="19" column="15" lean-forward="false" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Select.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
@@ -1038,22 +995,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="302" column="13" lean-forward="true" selection-start-line="302" selection-start-column="13" selection-end-line="302" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/CheckBoxMulti.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="47" column="33" lean-forward="true" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/Repeater.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1062,26 +1003,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormSection.js">
+    <entry file="file://$PROJECT_DIR$/src/sections/ContactSection.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="53" column="23" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormListSection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sections/RoomCount.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="307">
+          <caret line="40" column="13" lean-forward="true" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FormSection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="53" column="23" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ListGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="123" lean-forward="false" selection-start-line="18" selection-start-column="123" selection-end-line="18" selection-end-column="123" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/PaymentPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/validation/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="47" lean-forward="true" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ListGroup.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FormListSection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="72" lean-forward="false" selection-start-line="49" selection-start-column="72" selection-end-line="49" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sections/PersonSection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SmartSearch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="19" lean-forward="true" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FormField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CheckBoxMulti.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="39" column="57" lean-forward="true" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/SearchFieldsPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="11" column="43" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
           <folding />
         </state>
       </provider>

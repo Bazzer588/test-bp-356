@@ -50,6 +50,11 @@ h2 {
   margin-bottom: 8px;
 }
 
+hr {
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.1);
+}
+
 /* **************** */
 
 .upper-case {
@@ -279,6 +284,13 @@ select:-webkit-autofill {
 
 .btn + .btn {
   margin-left: 8px;
+}
+
+.btn-mini {
+  height: 26px;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 12px;
 }
 
 /*      form-fieldset       */

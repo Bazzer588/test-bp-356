@@ -47,6 +47,7 @@ function renderOptions (props) {
                     id={radioId}
                     key={radioId}
                     label={map[row]}
+                    onBlur={props.onBlur}
                     onChange={chg}
                     value={ vals.indexOf(row)>=0 }
                 />

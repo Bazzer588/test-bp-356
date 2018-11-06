@@ -1,8 +1,9 @@
 import React from "react";
 import {onLinkKey} from "./PhoneInput";
 import {getOptionList, getOptionDescriptions} from './AppConfig';
+import validateString from "../validation/validateString";
 
-export const searchTypeField = (name,props) => { return { name, component: SmartSearch, validator: () => {}, ...props } };
+export const searchTypeField = (name,props) => { return { name, component: SmartSearch, validator: validateString, ...props } };
 
 export class SmartSearch extends React.Component {
 

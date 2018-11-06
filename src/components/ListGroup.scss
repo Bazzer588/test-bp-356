@@ -70,6 +70,11 @@ $list-group-active-border-color: #ccc;
     border-color: #007bff;
   }
 
+  &.active:focus {  // BP additions
+    border-color: #295584;
+    // box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.5);
+  }
+
   &.disabled {
     color: #808080;
   }
