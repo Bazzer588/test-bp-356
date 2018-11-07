@@ -5,6 +5,7 @@ import TaxForm from '../sections/TaxForm3';
 import BigForm from '../sections/BigForm';
 import PageRouter from '../components/PageRouter';
 import Button from "../components/Button";
+import {NavLinks} from "../sections/NavLinks";
 
 export default class HomePage extends React.Component {
 
@@ -24,6 +25,7 @@ export default class HomePage extends React.Component {
         return (
             <div className="App bg-light">
                 <header className="App-header">
+                    <NavLinks/>
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">Tax calculator application.</h1>
                 </header>

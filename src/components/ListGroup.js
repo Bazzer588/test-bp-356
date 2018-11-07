@@ -14,11 +14,15 @@ function items (list, value, onClick) {
     list.forEach( item => {
         const { id, children, disabled } = item.props;
         const selected = id===value;
+        const clk = (ev) => {
+            if (ev.target) ev.target.focus();
+            onClick(id);
+        };
         r.push(
             <button
                 className={disabled ? "list-group-item disabled" : selected ? "list-group-item active" : "list-group-item"}
                 key={id}
-                onClick={disabled ? () => null : () => onClick(id)}
+                onClick={disabled ? () => null : clk}
                 role="tab"
                 type="button"
             >

@@ -15,18 +15,6 @@ PageRouter.defineRoute('/tax-app/checkout',PaymentPage,'Checkout page');
 
 PageRouter.defineRoute(routePayment);
 
-export default class App extends React.Component {
-
-    render() {
-        return <PageRouter/>
-    }
-}
-
-/*
-    wrap with this to see warnings:
-    <React.StrictMode>
- */
-
 function routePayment (pa) { // tax-app/payment/8437763
     if (pa[1]==='payment') {
         return {
@@ -38,3 +26,17 @@ function routePayment (pa) { // tax-app/payment/8437763
         };
     }
 }
+
+/** the app */
+
+export default class App extends React.Component {
+
+    render() {
+        return <PageRouter/>
+    }
+}
+
+/*
+    wrap with this to see warnings:
+    <React.StrictMode>
+*/

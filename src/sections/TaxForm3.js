@@ -10,7 +10,7 @@ import {translate} from '../components/AppConfig';
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 
 const TaxReferenceNo = stringTypeField( 'taxRef', {maxLength: 8, minLength: 5, inputClass: 'narrow upper-case', required: true, spellCheck: false, type: 'tel', pattern: '^[0-9]+$' });
-const FirstName = stringTypeField( 'firstName', {maxLength: 16, minLength: 2});
+const FirstName = stringTypeField( 'firstName', {maxLength: 16, minLength: 2, required: true});
 const LastName = stringTypeField( 'lastName', {maxLength: 30, required: true });
 const UserName = stringTypeField( 'username', {placeholder: 'Username', autoComplete: 'username', type: 'text', pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' });
 
@@ -44,7 +44,7 @@ class TaxForm extends React.PureComponent {
             <fieldset className="form-fieldset">
                 <legend>{translate(this.props.name)}</legend>
                 {Field( TaxReferenceNo )}
-                <div style={{ display: 'inline-block', verticalAlign: 'top', width: '50%', paddingRight: '16px', boxSizing: 'border-box' }}>
+                <div style={{ display: 'inline-block', verticalAlign: 'top', width: '50%', paddingRight: '12px', boxSizing: 'border-box' }}>
                     {Field( FirstName )}
                     </div>
                     <div style={{ display: 'inline-block', verticalAlign: 'top', width: '50%' }}>

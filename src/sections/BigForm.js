@@ -20,7 +20,7 @@ const ConsentSMS = { name: 'consentSMS', component: CheckBox, showLabel: false, 
 const ConsentEmail = { name: 'consentEmail', component: CheckBox, showLabel: false, label: 'Sign me up for regular email alerts.' };
 const ConsentOth = { name: 'consentOther', component: CheckBox, showLabel: false, label: 'Other consent option.' };
 const Thingy = comboTypeField('regNumber',{ options: 'country', required: false, minLength: 4, maxLength: 12 });
-const Whatever = comboTypeField('langCode',{ options: 'languages', required: true, minLength: 4, maxLength: 12 });
+const Whatever = comboTypeField('langCode',{ part1: 'lang', options: 'languages', required: true, minLength: 4, maxLength: 12 });
 
 // declare sections
 

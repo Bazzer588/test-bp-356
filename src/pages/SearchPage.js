@@ -7,6 +7,7 @@ import IconLang from './IconLang';
 import Loader from '../components/Loader';
 import Button from "../components/Button";
 import ListGroup from "../components/ListGroup";
+import {NavLinks} from "../sections/NavLinks";
 
 export default class SearchPage extends React.Component {
 
@@ -34,6 +35,7 @@ export default class SearchPage extends React.Component {
             <div className="App bg-light">
                 <div {...mainDivProps}>
                     <header className="App-header">
+                        <NavLinks/>
                         <h1 className="App-title">
                             <IconLang style={{ verticalAlign: 'top' }}/>
                             {' '}

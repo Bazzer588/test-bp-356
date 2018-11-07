@@ -5,9 +5,10 @@ import validateString from "../validation/validateString";
 function validateCombo (value, props, path, output) {
     if (!value) value = {};
     const { name, required, minLength, maxLength } = props;
-    const x = validateString(value.country, { name, required }, path, output);
+    const part1 = props.part1 || 'country';
+    const x = validateString(value[part1], { name, required }, path, output);
     if (x && x.error) {
-        x.part = 'country';
+        x.part = part1;
         return x;
     }
     const r = validateString(value.phone, { name, required, minLength, maxLength }, path, output); // only pass input props
@@ -22,6 +23,8 @@ function ComboField (props) {
     const value = props.value || {}; // value may be '' which breaks IE11
     const { id, onChange, onBlur, options, minLength, maxLength, required } = props;
     const defs = { required, 'aria-describedby': props['aria-describedby'] };
+
+    const part1 = props.part1 || 'country';
 
     const onPartChange = (item) => (ev) => {
         onChange({ target: { value: { ...value, [item]: ev.target.value } } });
@@ -41,8 +44,8 @@ function ComboField (props) {
 
     return (
         <div>
-            <span style={{ display: 'inline-block', verticalAlign: 'top', marginRight: '10px' }} >
-                <Select value={value.country || ''} onChange={onPartChange('country')} onBlur={onBlurField} onFocus={onFocusField} id={id+'-country'} options={options} {...defs}/>
+            <span style={{ display: 'inline-block', verticalAlign: 'top', marginRight: '10px', maxWidth: '50%' }} >
+                <Select value={value[part1] || ''} onChange={onPartChange(part1)} onBlur={onBlurField} onFocus={onFocusField} id={id+'-'+part1} options={options} {...defs}/>
             </span>
             <span style={{ display: 'inline-block', verticalAlign: 'top' }} >
                 <input value={value.phone || ''} onChange={onPartChange('phone')} onBlur={onBlurField} onFocus={onFocusField} id={id} type="text" minLength={minLength} maxLength={maxLength} {...defs}/>

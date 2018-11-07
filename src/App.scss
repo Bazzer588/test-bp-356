@@ -165,7 +165,7 @@ select:-webkit-autofill {
   display: inline-block;
   width: 100%;
   /*height: calc(2.25rem + 2px);*/
-  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;  // FOR IE11 needs to be 0.75rem at right !!
   line-height: 1.5;
   vertical-align: middle;
   background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
@@ -387,7 +387,9 @@ select:-webkit-autofill {
   padding: 7px 5px 8px 36px;
   line-height: 22px;
   box-sizing: border-box;
-  border: 1px solid transparent;
+  // border: 1px solid transparent;
+  border: 1px solid rgb(248, 249, 250);
+  border-top-color: transparent; // prevent shadow issue
   border-radius: 4px;
   display: inline-block;
   width: 100%;
@@ -414,7 +416,7 @@ select:-webkit-autofill {
 .checkbox input:focus + label {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  border-color: #80bdff;
+  border-color: #80bdff !important;
   z-index: 100;
 }
 

@@ -3,6 +3,18 @@ import FormSection from "./FormSection";
 
 class FormListSection extends React.PureComponent {
 
+    renderHeading = (index, text) => {
+        index = parseInt(index);
+        return (
+            <div style={{ margin: '16px 0 0 2px', fontWeight: '600', color: '#444', fontSize: '17px' }} >
+                {text} {index+1}
+                <button onClick={() => this.deleteIndex(index)} className="btn btn-secondary btn-mini" type="button" style={{ float: 'right', marginTop: '2px' }}>
+                    Delete
+                </button>
+            </div>
+        );
+    };
+
     addOne = () => {
         const { name, parent, value = [], touched = [] } = this.props;
         console.log('ADD ONE',value);
@@ -31,14 +43,16 @@ class FormListSection extends React.PureComponent {
 
         const arr = [];
         for(let n=0;n<cc;n++) {
-            arr.push( renderField({ ...repeatThing, name: String(n), deleteIndex: this.deleteIndex }) );
+            arr.push( renderField({ ...repeatThing, name: String(n), deleteIndex: this.deleteIndex, renderHeading: this.renderHeading }) );
         }
+
+        const add = cc ? 'Add another person' : 'Add a person';
 
         return (
             <div>
                 {arr}
                 {fixedList &&
-                    <button className="btn btn-secondary btn-mini" onClick={this.addOne} type="button" style={{ marginTop: '12px' }}>Add another person</button>
+                    <button className="btn btn-secondary btn-mini" onClick={this.addOne} type="button" style={{ marginTop: '12px' }}>{add}</button>
                 }
             </div>
         );

@@ -13,6 +13,7 @@ import PickerPopup from './PickerPopup';
 
 import {stringTypeField} from "../validation/validateString";
 import {validateTree} from '../validation';
+import {NavLinks} from "../sections/NavLinks";
 
 function validateBool (value, props, path, output) {
     const { name, required } = props;
@@ -97,6 +98,14 @@ class PaymentPage extends React.Component {
         }
     };
 
+    openPop = () => {
+        this.setState({ popup: 1 });
+    };
+
+    goBack = () => {
+        window.history.back();
+    };
+
     render() {
         const Field = this.props.renderField;
 
@@ -116,10 +125,7 @@ class PaymentPage extends React.Component {
         return (
             <div className="App">
                 <div {...dprops}>
-                    <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo"/>
-                        <h1 className="App-title">Checkout</h1>
-                    </header>
+                    <Header head="Checkout"/>
                     <form>
                         <h2>Your payment details</h2>
                         {Field( CardNumber )}
@@ -136,11 +142,12 @@ class PaymentPage extends React.Component {
                             </div>
                         }
 
-                        <p style={{ textAlign: 'right', marginTop: '12px' }}>
-                            <Button onClick={() => { window.history.back(); }}>Cancel</Button>
-                            <Button id="ShowPopup" onClick={() => { this.setState({ popup: 1 }); }}>Popup</Button>
+                        <ButtonStrip>
+                            <Button onClick={this.goBack}>Cancel</Button>
+                            <Button id="ShowPopup" onClick={this.openPop}>Popup</Button>
                             <Button cnm="primary" onClick={this.doCheckout} >Make Payment</Button>
-                        </p>
+                        </ButtonStrip>
+
                         <p className="App-intro">
                             Terms & conditions
                             etc here
@@ -162,6 +169,30 @@ class PaymentPage extends React.Component {
 }
 
 export default FormConnect( FormSection(PaymentPage) );
+
+// helpers
+
+function Header ({ head }) {
+    return (
+        <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo"/>
+            <h1 className="App-title">{head}</h1>
+            <NavLinks/>
+        </header>
+    );
+}
+
+
+class ButtonStrip extends React.PureComponent {
+    render () {
+        return (
+            <p style={{ textAlign: 'right', marginTop: '12px' }}>
+                {this.props.children}
+            </p>
+        );
+    }
+}
+
 
 // #######################   promise code   ###################################
 

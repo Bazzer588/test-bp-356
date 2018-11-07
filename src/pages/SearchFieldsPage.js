@@ -10,6 +10,7 @@ import CheckBoxMulti from "../components/CheckBoxMulti";
 import {makePersonSection} from "../sections/PersonSection";
 import {makeRepeatable} from "../FormListSection";
 import {validateTree} from "../validation";
+import {NavLinks} from "../sections/NavLinks";
 
 const S1 = stringTypeField('biscuits',{ required: true });
 const SX = searchTypeField('origin');
@@ -51,7 +52,13 @@ class SearchFieldsPage extends React.Component {
     render () {
         const Field = this.props.renderField;
         return (
-            <div>
+            <div className="App bg-light">
+                <header className="App-header">
+                    <NavLinks/>
+                    <h1 className="App-title">
+                        Deals Page
+                    </h1>
+                </header>
                 <form>
                     {Field(S1)}
                     {Field(SX)}

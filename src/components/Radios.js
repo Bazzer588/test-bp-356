@@ -1,5 +1,6 @@
 import React from "react";
 import {translate, getOptionList, getOptionDescriptions} from './AppConfig';
+import {stringTypeField} from "../validation/validateString";
 
 export default function Radios (props) {
 
@@ -60,4 +61,8 @@ function renderOptions (props) {
 function onClickRadio (ev) {
     ev.target.focus();
     // console.log('onClickRadio',ev.target.id);
+}
+
+export function radioTypeField (name, props) {
+    return stringTypeField(name,{ label: name, ...props, component: Radios, showLabel: false });
 }

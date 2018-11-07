@@ -6,4 +6,6 @@ const countryList = Object.keys(country);
 
 // console.log(country);
 
-export { country, countryList };
+const propertyTypeList = ['HOUSE','SEMI','TERRACE','VILLA','MANSION','FLAT','PLOT'];
+
+export { country, countryList, propertyTypeList };

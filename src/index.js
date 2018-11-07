@@ -28,8 +28,11 @@ const render = Root => {
     );
 };
 
-setTimeout( () => render(App), 500 );  // always display loader for 1 sec
-// render(App);
+// display the loader for 1/2 sec
+
+setTimeout( () => render(App), 500 );
+
+// hot loading
 
 if (module.hot) {
     module.hot.accept('./App', () => {
@@ -52,6 +55,7 @@ window.redux = store;
 function translate (t,required) {
     if (!t) return 'Undefined';
     if (t.endsWith('country-pleaseSelect')) return required ? 'Choose a country' : 'No country selected';
+    if (t.endsWith('lang-pleaseSelect')) return required ? 'Choose a language' : 'No language selected';
     if (t.endsWith('gender-pleaseSelect')) return 'Please select a gender';
     if (t.endsWith('gender-required')) return 'Please choose a gender';
     if (t.endsWith('-pleaseSelect')) return required ? 'Please choose' : 'Not specified';

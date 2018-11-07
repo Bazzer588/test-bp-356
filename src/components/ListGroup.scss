@@ -29,7 +29,7 @@ $list-group-active-border-color: #ccc;
   display: block;
   padding: 12px 12px;
   // Place the border on the list items and negative margin up for better styling
-  margin-bottom: -1px; // -$list-group-border-width;
+  margin: 0 0 -1px 0; // -$list-group-border-width;
   background-color: #fff; // $list-group-bg;
   border: 1px solid $list-group-border-color;
 
