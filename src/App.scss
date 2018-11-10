@@ -73,6 +73,11 @@ form {
   max-width: 480px;
 }
 
+.field-repeat {
+  padding: 0 0 8px 0;
+  position: relative;
+}
+
 .form-field input {
   width: 100%;
   min-height: 40px;
@@ -103,6 +108,8 @@ form {
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  z-index: 2;
+  position: relative;
 }
 
 .ff-invalid input,
@@ -181,6 +188,8 @@ select:-webkit-autofill {
   outline: 0;
   /*box-shadow: 0 0 0 0.2rem rgba(128, 189, 255, 0.5);*/
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  z-index: 2;
+  position: relative;
 }
 
 .custom-select::-ms-expand {
@@ -332,7 +341,7 @@ select:-webkit-autofill {
   opacity: 0;
   height: 22px;
   width: 22px;
-  position: absolute;
+  position: absolute !important;
   pointer-events: none;
 }
 
@@ -379,7 +388,7 @@ select:-webkit-autofill {
   opacity: 0;
   height: 22px;
   width: 22px;
-  position: absolute;
+  position: absolute !important;
   pointer-events: none;
 }
 
@@ -481,4 +490,14 @@ select:-webkit-autofill {
   border-color: #ff8080;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+.sq-left {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.sq-right {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }

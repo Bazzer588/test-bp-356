@@ -4,7 +4,7 @@ import {translate, getOptionList, getOptionDescriptions} from './AppConfig';
 export default function Select (props) {
     // console.log('SELECT',props);
 
-    const {options, allowOption, rangeFrom, rangeTo, className, ...rest} = props;
+    const {options, allowOption, rangeFrom, rangeTo, className, excludeValues, ...rest} = props;
     const {value, required, id} = props;
 
     const base = !!value ? 'custom-select' : 'custom-select no-value';
@@ -15,16 +15,16 @@ export default function Select (props) {
             {(value==='' || value===undefined || required === false) &&
                 <option value="">{translate(id + '-pleaseSelect', required)}</option>
             }
-            {renderOptions(options, allowOption, props, rangeFrom, rangeTo)}
+            {renderOptions(options, allowOption, props, rangeFrom, rangeTo, excludeValues)}
         </select>
     );
 }
 
 // render the array of <option> elements
 
-function renderOptions (options, allowOption, props, rangeFrom, rangeTo) {
+function renderOptions (options, allowOption, props, rangeFrom, rangeTo, excludeValues) {
 
-    if (!allowOption && statMap[options])
+    if (!excludeValues && !allowOption && statMap[options])
         return statMap[options];
 
     const opts = [];
@@ -40,16 +40,23 @@ function renderOptions (options, allowOption, props, rangeFrom, rangeTo) {
 
     const list = getOptionList(options);
     const map = getOptionDescriptions(options);
+    const value = props.value;
 
     list.forEach(row => {
-        if (!allowOption || allowOption(row, props))
+        if (!isExcluded(row,value,excludeValues))
             opts.push(<option key={row} value={row}>{map[row] || row}</option>);
     });
 
-    if (!allowOption)
-        statMap[options] = opts;
+    //if (!excludeValues && !allowOption)
+    //    statMap[options] = opts;
 
     return opts;
+}
+
+function isExcluded (val, current, excludeValues) {
+    return excludeValues && val!==current && excludeValues.indexOf(val)>=0;
+    //console.log('IEX',val,current,excludeValues,z);
+    //return z;
 }
 
 // useful

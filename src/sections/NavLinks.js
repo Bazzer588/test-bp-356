@@ -23,14 +23,14 @@ export class NavLinks extends React.PureComponent {
             <div className="phone-input" style={{ position: 'absolute', right: '12px', top: '20px' }}>
                 <button onClick={this.btn} className="btn btn-secondary btn-mini" type="button" style={{ float: 'right', padding: '0 6px' }}>&#9776;</button>
                 {pop &&
-                    <div className="telpopup" style={{ right: '0px', top: '30px', maxHeight: '990px' }}>
+                    <div className="telpopup" style={{ right: '0px', top: '30px', maxHeight: '990px', borderColor: '#777' }}>
                         <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/home')}>Home Page</button>
                         <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/search')}>Search</button>
                         <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/checkout')}>Checkout</button>
-                        <hr/>
+                        <hr role="presentation"/>
                         <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/payment/837463')}>Order 1</button>
                         <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/payment/716226')}>Order 2</button>
-                        <hr/>
+                        <hr role="presentation"/>
                         <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/deals')}>Deals</button>
                     </div>
                 }

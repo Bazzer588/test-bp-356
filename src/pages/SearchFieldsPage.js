@@ -25,11 +25,17 @@ const Languages = stringTypeField('languageCheck', { component: CheckBoxMulti, s
 // const Person = makePersonSection('thePerson');
 const PersonList = makeRepeatable('personList',makePersonSection(),true);
 
+//const G = searchTypeField('gen',{ showLabel: false });
+const G = stringTypeField( 'gen', {component: Select, options: 'languages', label: 'Gen', required: true, showLabel: false });
+//const G = stringTypeField( 'gen', { required: true, showLabel: false });
+const LangList = makeRepeatable('languageList',G,true,{ addLabel: 'Add a language', simpleField: true, maxLength: 3 });
+
 function validateSection (v) { // v, values, sectionProps, output, errors, path
     v(S1);
     v(SX);
     v(SZ);
     v(Country);
+    v(LangList);
     v(Languages);
     v(PersonList);
 }
@@ -64,6 +70,7 @@ class SearchFieldsPage extends React.Component {
                     {Field(SX)}
                     {Field(SZ)}
                     {Field(Country)}
+                    {Field(LangList)}
                     {Field(Languages)}
                     {Field(PersonList, { listLength: 2 })}
 
