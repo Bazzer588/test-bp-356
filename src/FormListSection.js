@@ -42,7 +42,7 @@ class FormListSection extends React.PureComponent {
         const btn = ev.target;
         const id = path+'-'+name+'-'+value.length; // ie 'page-list-0'
         setTimeout( () => {
-            btn.scrollIntoView(); // HACK scroll the add button into view
+            btn.scrollIntoView({ behavior: 'smooth' , block: 'start', inline: 'nearest'}); // HACK scroll the add button into view
             focusTo(document.getElementById(id));
         }, 25);
     };

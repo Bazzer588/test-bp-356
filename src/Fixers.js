@@ -26,3 +26,6 @@ if (!Array.prototype.find) {
         }
     }
 }
+
+// fix scrollintoview
+// https://github.com/iamdustan/smoothscroll
