@@ -1,7 +1,7 @@
 import React from 'react';
 
 const pageRoutes = {};
-const pageMappers = [];
+let pageMappers = [];
 
 function getPageRoute (path) {
     const t = pageRoutes[path];
@@ -21,7 +21,7 @@ function getPageRoute (path) {
 }
 
 function modPage (url, toTop, replace) {
-    console.log('modPage',url,toTop);
+    //console.log('modPage',url,toTop);
     if (toTop) window.scrollTo(0,0);
     if (replace) {
         window.history.replaceState(null, '', url); // data, title
@@ -44,6 +44,7 @@ export default class PageRouter extends React.Component {
     static defineRoute (pathname, thing, title) {
         // console.log('defineRoute', pathname, typeof pathname, typeof thing, title);
         if (typeof pathname === 'function') {
+            pageMappers = []; // HACK FOR HOT LOADING // HACK
             pageMappers.push(pathname);
         } else {
             pageRoutes[pathname] = {
@@ -70,7 +71,7 @@ export default class PageRouter extends React.Component {
     }
 
     listenForPopState = (ev) => {
-        console.log('POPSTATE:',ev);
+        // console.log('POPSTATE:',ev);
         this.setState( { dt: Date.now() } ); // make react redraw
     };
 

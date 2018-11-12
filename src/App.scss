@@ -167,7 +167,7 @@ select:-webkit-autofill {
 /* ----------------------- SELECT =========== */
 
 .custom-select {
-  margin-bottom: 2px;
+  margin: 0 0 2px 0;
   /*color: #495057;*/
   color: #000;
   font-size: 16px;
@@ -198,6 +198,7 @@ select:-webkit-autofill {
 
 .custom-select::-ms-expand {
   opacity: 0;
+  display: none;
 }
 
 .custom-select:focus::-ms-value {

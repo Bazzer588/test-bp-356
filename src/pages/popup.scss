@@ -51,8 +51,8 @@ p {                 // see _reboot.scss
 
 .modal-dialog {
   padding: 0 13px;  // BP
-  max-width: 500px;
-  margin: 1.75rem auto;
+  max-width: 500px;       // WIDTH of popup area
+  margin: 1.75rem auto;   // this determines margin above, ie vertical position
 }
 /*
 .modal-dialog {
@@ -153,6 +153,11 @@ button.close {
   color: #000;
   text-shadow: 0 1px 0 #fff;
   opacity: .5;
+}
+
+button.close:hover {
+  color: #600000;
+  opacity: 1;
 }
 
 // ==========================

@@ -61,6 +61,8 @@ class SearchFieldsPage extends React.Component {
             validateTree({ validateSection },data,output,errors,'dealsPage');
             console.log('OUTPUT',output);
             console.log('ERRORS',errors);
+            if (this.bar)
+                errorChange();
         }
     };
 

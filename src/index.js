@@ -36,7 +36,7 @@ setTimeout( () => render(App), 500 );
 
 if (module.hot) {
     module.hot.accept('./App', () => {
-        console.log('MOD HOT');
+        //console.log('MOD HOT');
         const NextApp = require('./App').default;
         render(NextApp);
     });

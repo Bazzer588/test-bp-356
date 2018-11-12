@@ -35,7 +35,7 @@ export default function TestPop ({ parent }) {
 
     return (
         <>
-            <div id="exampleModalLive" className="modal show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style={{ display: 'block' }}
+            <div key="bejupo" id="exampleModalLive" className="modal show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style={{ display: 'block' }}
                 onClick={fadeOut}
             >
                 <div className="modal-dialog" role="document">

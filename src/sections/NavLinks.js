@@ -9,6 +9,12 @@ export class NavLinks extends React.PureComponent {
         document.removeEventListener('click',this.docClick);
     };
 
+    link = (path) => {
+        this.setState({ pop: false });
+        PageRouter.changePage(path);
+        document.removeEventListener('click',this.docClick);
+    };
+
     btn = () => {
         const state = this.state || {};
         this.setState({ pop: !state.pop });
@@ -24,14 +30,14 @@ export class NavLinks extends React.PureComponent {
                 <button onClick={this.btn} className="btn btn-secondary btn-mini" type="button" style={{ float: 'right', padding: '0 6px' }}>&#9776;</button>
                 {pop &&
                     <div className="telpopup" style={{ right: '0px', top: '30px', maxHeight: '990px', borderColor: '#777' }}>
-                        <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/home')}>Home Page</button>
-                        <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/search')}>Search</button>
-                        <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/checkout')}>Checkout</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/home')}>Home Page</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/search')}>Search</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/checkout')}>Checkout</button>
                         <hr role="presentation"/>
-                        <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/payment/837463')}>Order 1</button>
-                        <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/payment/716226')}>Order 2</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/payment/837463')}>Order 1</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/payment/716226')}>Order 2</button>
                         <hr role="presentation"/>
-                        <button className="list-item" onClick={() => PageRouter.changePage('/tax-app/deals')}>Deals</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/deals')}>Deals</button>
                     </div>
                 }
             </div>
