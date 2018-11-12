@@ -3,7 +3,7 @@ import FormSection from '../FormSection';
 import FormConnect from '../FormConnect';
 import FieldSet from '../components/FieldSet';
 
-import AddressSection, {validateAddress} from "./AddressSection";
+import {makeAddressSection} from "./AddressSection";
 import ContactSection, {validateContactSection} from "./ContactSection";
 import Select from "../components/Select";
 import CheckBox from "../components/CheckBox";
@@ -24,9 +24,9 @@ const Whatever = comboTypeField('langCode',{ part1: 'lang', options: 'languages'
 
 // declare sections
 
-const HomeAddress = { name: 'homeAddress', component: AddressSection, validateSection: validateAddress };
-const OverseasAddress = { name: 'overseasAddress', component: AddressSection, validateSection: validateAddress };
-const WorkAddress = { name: 'workAddress', component: AddressSection, validateSection: validateAddress };
+const HomeAddress = makeAddressSection('homeAddress');
+const OverseasAddress = makeAddressSection('overseasAddress');
+const WorkAddress = makeAddressSection('workAddress');
 
 const HomePhones = { name: 'contactHome', component: ContactSection, validateSection: validateContactSection };
 const OverseasPhones = { name: 'contactOver', component: ContactSection, validateSection: validateContactSection };

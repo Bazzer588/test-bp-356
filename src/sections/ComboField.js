@@ -47,7 +47,7 @@ function ComboField (props) {
             <span style={{ display: 'inline-block', verticalAlign: 'top', marginRight: '10px', maxWidth: '50%' }} >
                 <Select value={value[part1] || ''} onChange={onPartChange(part1)} onBlur={onBlurField} onFocus={onFocusField} id={id+'-'+part1} options={options} {...defs}/>
             </span>
-            <span style={{ display: 'inline-block', verticalAlign: 'top' }} >
+            <span style={{ display: 'inline-block', verticalAlign: 'top', maxWidth: 'calc(50% - 10px)' }} >
                 <input value={value.phone || ''} onChange={onPartChange('phone')} onBlur={onBlurField} onFocus={onFocusField} id={id} type="text" minLength={minLength} maxLength={maxLength} {...defs}/>
             </span>
         </div>

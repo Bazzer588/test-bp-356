@@ -4,6 +4,7 @@ import FormField from "./FormField";
 export default function make (Wrapped, isArray) {
 
     const DEF = isArray ? DEF_ARR : DEF_VAL;
+    const wrap = Wrapped.defaultProps && Wrapped.defaultProps.wrap;
 
     class FormSection extends React.PureComponent {
 
@@ -56,6 +57,11 @@ export default function make (Wrapped, isArray) {
                 changed[fieldName] = newValue;
             } else {
                 changed = {...value, [fieldName]: newValue};
+            }
+
+            const w = this.getWrappedInstance();
+            if (w && w.onDataChange) {
+                w.onDataChange(changed,this.state.showErrors || this.props.showErrors,fieldName);
             }
 
             if (updateRedux)
@@ -113,6 +119,7 @@ export default function make (Wrapped, isArray) {
                     {...this.props}
                     renderField={this.renderField}
                     setShowErrors={this.setShowErrors}
+                    ref={wrap ? this.myRef : undefined}
                 />
             );
         }

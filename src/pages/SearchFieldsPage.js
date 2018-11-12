@@ -25,10 +25,10 @@ const Languages = stringTypeField('languageCheck', { component: CheckBoxMulti, s
 // const Person = makePersonSection('thePerson');
 const PersonList = makeRepeatable('personList',makePersonSection(),true);
 
-//const G = searchTypeField('gen',{ showLabel: false });
-const G = stringTypeField( 'gen', {component: Select, options: 'languages', label: 'Gen', required: true, showLabel: false });
+//const G = searchTypeField('gen', {});
+const G = stringTypeField( 'gen', {component: Select, options: 'languages', label: 'Gen', required: true });
 //const G = stringTypeField( 'gen', { required: true, showLabel: false });
-const LangList = makeRepeatable('languageList',G,true,{ addLabel: 'Add a language', simpleField: true, maxLength: 3 });
+const LangList = makeRepeatable('languageList',G,true,{ addLabel: 'Add a language', simpleField: true, maxLength: 4 });
 
 function validateSection (v) { // v, values, sectionProps, output, errors, path
     v(S1);
@@ -43,8 +43,25 @@ function validateSection (v) { // v, values, sectionProps, output, errors, path
 class SearchFieldsPage extends React.Component {
 
     static defaultProps = {
-        name: 'dealsPage'
+        name: 'dealsPage',
         //path: 'dealsPage'
+        wrap: true
+    };
+
+    hideErrors = () => {
+        this.props.setShowErrors(false);
+        this.props.updateRedux({ type: 'SET', key: this.props.name+'_T', value: {} }); // clear touch
+    };
+
+    onDataChange (data,showErrors,fieldName) {
+        console.log('onDATACHANGE',fieldName,showErrors,data);
+        if (showErrors) {
+            const output = {};
+            const errors = [];
+            validateTree({ validateSection },data,output,errors,'dealsPage');
+            console.log('OUTPUT',output);
+            console.log('ERRORS',errors);
+        }
     };
 
     valida = () => {
@@ -53,6 +70,7 @@ class SearchFieldsPage extends React.Component {
         validateTree({ validateSection },this.props.value,output,errors,'dealsPage');
         console.log('OUTPUT',output);
         console.log('ERRORS',errors);
+        this.props.setShowErrors(true);
     };
 
     render () {
@@ -76,6 +94,7 @@ class SearchFieldsPage extends React.Component {
 
                     <p style={{ textAlign: 'right', marginTop: '16px' }}>
                         <Button onClick={() => { window.history.back(); }}>Cancel</Button>
+                        <Button onClick={this.hideErrors}>Hide errors</Button>
                         <Button onClick={this.valida}>Validate</Button>
                         <Button cnm="primary" onClick={() => PageRouter.changePage('/tax-app') } >Continue</Button>
                     </p>
@@ -86,3 +105,23 @@ class SearchFieldsPage extends React.Component {
 }
 
 export default FormConnect( FormSection(SearchFieldsPage) );
+
+function errorChange (a,b) {
+    const len = a.length;
+    if (b.length!==len) {
+        return true;
+    }
+    for (let n=0;n<len;n++) {
+        const x = a[n];
+        const y = b[n];
+        if (x.name !== y.name ||
+            x.path !== y.path ||
+            x.error !== y.error
+            // required
+            // values
+        ) {
+            return true;
+        }
+    }
+    return false;
+}

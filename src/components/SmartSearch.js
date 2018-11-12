@@ -22,8 +22,13 @@ export class SmartSearch extends React.Component {
         document.removeEventListener('click',this.docClick);
     };
 
-    onBlur = () => {  // hide popup when input blurs
+    onBlur = (ev) => {  // hide popup when input blurs
         setTimeout( this.docClick, 250 );
+        this.foobar = setTimeout(() => { this.props.onBlur(ev) }, 25); // tell parent we blurred
+    };
+
+    onFocus = () => {
+        clearTimeout(this.foobar);
     };
 
     onClick = (ev) => {
@@ -132,7 +137,7 @@ export class SmartSearch extends React.Component {
     }
 
     render () {
-        const { id, value } = this.props;
+        const { id, value, className } = this.props;
         const { chosen, search, pop, results = [] } = this.state;
         let theText = chosen;
         if (value) {
@@ -144,6 +149,7 @@ export class SmartSearch extends React.Component {
             <div className="phone-input">
                 <input
                     id={id}
+                    className={className}
                     onBlur={this.onBlur}
                     onChange={this.onChange}
                     onClick={this.onClick}

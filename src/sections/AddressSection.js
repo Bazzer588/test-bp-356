@@ -5,14 +5,14 @@ import Select from '../components/Select';
 //import {translate} from "../components/AppConfig";
 
 // name/number + street ?
+const Country = stringTypeField( 'country', {component: Select, options: 'country', required: true }); // TODO selectTypeField
 const Address1 = stringTypeField( 'address1', {maxLength: 35, required: true });
 const Area = stringTypeField( 'address2', {maxLength: 35, required: false });
 const City = stringTypeField( 'city', {maxLength: 35, required: false });
 const Region = stringTypeField( 'region', {maxLength: 35, required: false, minLength: 2 });
-const ZipCode = stringTypeField( 'zipCode', {maxLength: 12, autoComplete: 'postal-code', required: false, inputClass: 'narrow', minLength: 4 });
-const Country = stringTypeField( 'country', {component: Select, options: 'country', required: true });
+const ZipCode = stringTypeField( 'zipCode', {maxLength: 12, autoComplete: 'postal-code', required: false, inputClass: 'narrow upper-case', minLength: 4 });
 
-export function validateAddress (v) { // v, values, sectionProps, output, errors, path
+function validateSection (v) { // v, values, sectionProps, output, errors, path
     v(Country);
     v(Address1);
     v(Area);
@@ -24,25 +24,23 @@ export function validateAddress (v) { // v, values, sectionProps, output, errors
 class AddressComponent extends React.PureComponent {
 
     render () {
-        //const { children } = this.props;
-        const Field = this.props.renderField;
+        const { renderField } = this.props;
         return ([
-            Field( Country ),
-            Field( Address1 ),
-            Field( Area ),
-            Field( City ),
-            Field( Region  ),
-            Field( ZipCode )
+            renderField( Country ),
+            renderField( Address1 ),
+            renderField( Area ),
+            renderField( City ),
+            renderField( Region  ),
+            renderField( ZipCode )
         ]);
     }
 
 }
 
-const AddressSection = FormSection(AddressComponent);
-export default AddressSection;
+const component = FormSection(AddressComponent);
 
-export function makeAddressSection (name) {
-    return  { name, component: AddressSection, validateSection: validateAddress };
+export function makeAddressSection (name, props) {
+    return  { name, component, validateSection, ...props };
 }
 
 /*
