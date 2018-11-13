@@ -18,7 +18,7 @@ class FormListSection extends React.PureComponent {
         return (
             <div style={{ margin: '16px 0 0 2px', fontWeight: '600', color: '#444', fontSize: '17px' }} >
                 {text} {index+1}
-                <button onClick={() => this.deleteIndex(index)} className="btn btn-secondary btn-mini" type="button" style={{ float: 'right', marginTop: '2px' }}>
+                <button onClick={() => this.deleteFade(index)} className="btn btn-secondary btn-mini" type="button" style={{ float: 'right', marginTop: '2px' }}>
                     Delete
                 </button>
             </div>
@@ -42,9 +42,23 @@ class FormListSection extends React.PureComponent {
         const btn = ev.target;
         const id = path+'-'+name+'-'+value.length; // ie 'page-list-0'
         setTimeout( () => {
-            btn.scrollIntoView({ behavior: 'smooth' , block: 'start', inline: 'nearest'}); // HACK scroll the add button into view
+            if (!simpleField) {
+                btn.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'}); // HACK scroll the add button into view
+            }
             focusTo(document.getElementById(id));
         }, 25);
+    };
+
+    deleteFade = (i) => {
+        const { name, path } = this.props;
+        console.log('DEL FADE',name,path,i);
+        const id = path+'-'+name+'-'+i;
+        const p = document.getElementById(id);
+        p.classList.add('div-deleting');
+        setTimeout(() => {
+            p.classList.remove('div-deleting');
+            this.deleteIndex(i);
+        },300);
     };
 
     deleteIndex = (i) => {
@@ -60,9 +74,9 @@ class FormListSection extends React.PureComponent {
         // focus
         if (i>=newValue.length) i--;
         const id = path+'-'+name+'-'+i; // ie 'page-list-0'
-        //setTimeout( () => {
-            focusTo(document.getElementById(id));
-        //}, 25);
+        setTimeout( () => {
+            focusTo(document.getElementById(id));  // iPad will open it on focus if not done with timer
+        }, 25);
     };
 
     render () {

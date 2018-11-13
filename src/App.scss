@@ -497,6 +497,8 @@ select:-webkit-autofill {
   box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
 }
 
+/** remove round corners */
+
 .sq-left {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -506,4 +508,16 @@ select:-webkit-autofill {
 .sq-right {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+/** div being deleted, animation */
+
+.div-deleting {
+  opacity: 0;
+  animation: divDeleting .3s ease-out;
+}
+
+@keyframes divDeleting {
+  0% { opacity: 1; transform: translate(0,0); }
+  100% { opacity: 0; transform: translate(-100%,0); }
 }

@@ -16,15 +16,15 @@ function validateSection (v) { // v, values, sectionProps, output, errors, path
 class PersonSection extends React.PureComponent {
 
     render () {
-        const { name, renderField, renderHeading } = this.props;
+        const { path, name, renderField, renderHeading } = this.props;
         return (
-            <>
+            <div id={path+'-'+name}>
                 {renderHeading && renderHeading(name,'Person number')}
                 {renderField(FullName)}
                 {renderField(DateOfBirth)}
                 {renderField(Gender)}
                 <hr/>
-            </>
+            </div>
         );
     }
 

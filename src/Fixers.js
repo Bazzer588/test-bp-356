@@ -1,3 +1,4 @@
+import smooth from './smoothscroll';
 
 // IE 11 rubbish
 
@@ -29,3 +30,4 @@ if (!Array.prototype.find) {
 
 // fix scrollintoview
 // https://github.com/iamdustan/smoothscroll
+smooth.polyfill();
