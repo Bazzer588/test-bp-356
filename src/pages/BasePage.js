@@ -10,6 +10,15 @@ export default class BasePage extends React.Component {
         this.setState({ ThePopup: pop });
     }
 
+    fadeOutPopup (fn) {
+        const p = document.getElementById('exampleModalLive');
+        p.classList.add('modal-hiding');
+        setTimeout( () => {
+            this.setPopup(null);
+            if (fn) fn();
+        }, 300 );
+    }
+
     render () {
         const { children } = this.props;
         const ThePopup = this.state && this.state.ThePopup;
@@ -26,17 +35,15 @@ export default class BasePage extends React.Component {
     }
 }
 
-function renderPopup (parent, { title, content, buttons }) {
+function renderPopup (parent, { title, content, buttons, noBkClose, noCancel }) {
 
     function onClose () {
         parent.setState({ ThePopup: null });
-        foc('ShowPopup');
+        foc('ShowPopup');       // TODO this button may not exist !!!
     }
 
     function fadeOut () {
-        const p = document.getElementById('exampleModalLive');
-        p.classList.add('modal-hiding');
-        setTimeout( () => { onClose(); }, 300 );
+        parent.fadeOutPopup();
     }
 
     function foc (id) {
@@ -52,22 +59,24 @@ function renderPopup (parent, { title, content, buttons }) {
 
     return (
         <>
-            <div key="bejupo" id="exampleModalLive" className="modal show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style={{ display: 'block' }}
-                 onClick={fadeOut}
+            <div id="exampleModalLive" className="modal show" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style={{ display: 'block' }}
+                 onClick={noBkClose ? undefined: fadeOut}
             >
                 <div className="modal-dialog" role="document">
                     <div className="modal-content" onClick={eat}>
                         <div className="modal-header" tabIndex="0" onFocus={() => foc('closePop')}>
                             <h5 className="modal-title" id="exampleModalLiveLabel">{title}</h5>
-                            <button type="button" className="close" aria-label="Close" onClick={onClose}>
-                                <span aria-hidden="true">×</span>
-                            </button>
+                            {!noCancel &&
+                                <button type="button" className="close" aria-label="Close" onClick={onClose}>
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            }
                         </div>
                         <div className="modal-body">
                             {content}
                         </div>
                         <div className="modal-footer">
-                            <Button id="closePop" onClick={fadeOut}>Cancel</Button>
+                            {noCancel ? null : <Button id="closePop" onClick={fadeOut}>Cancel</Button>}
                             {buttons}
                         </div>
                     </div>
@@ -77,3 +86,7 @@ function renderPopup (parent, { title, content, buttons }) {
         </>
     );
 }
+
+/*
+    modal-backdrop is the dark layer with 0.5 opacity
+*/

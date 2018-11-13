@@ -20,6 +20,9 @@ export default class FormField extends React.PureComponent {
         const { parent, coreData, name, path, showErrors, touched, required, showLabel = true, htmlId, inputClass, fieldClass = '',
             component, validator, stripProps, ...others } = this.props;
         const Compo = component || 'input';
+        const type = component ? undefined : 'text';
+        const optional = component ? undefined : (required ? undefined : 'optional');
+
         const value = this.props.value || '';
         const full = path + '-' + (htmlId || name);
         const labl = path + '-' + name;
@@ -38,11 +41,12 @@ export default class FormField extends React.PureComponent {
                 <Compo
                     aria-describedby={errorId}
                     aria-invalid={invalid}
-                    className={inputClass}
+                    className={inputClass || optional}
                     id={full}
                     onBlur={this.onBlur}
                     onChange={this.onChange}
                     required={required}
+                    type={type}
                     {...otherProps}
                     value={value}
                 />
