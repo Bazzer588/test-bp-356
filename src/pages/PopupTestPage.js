@@ -227,6 +227,9 @@ class WizTestAgain extends React.Component {
             //setTimeout(() => {
                 p.classList.add('div-sliding');
             //},25);
+            setTimeout(() => {
+                p.classList.remove('div-sliding');
+            },300);
         },300);
     };
 
