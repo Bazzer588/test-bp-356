@@ -26,7 +26,7 @@ export default class BasePage extends React.Component {
     };
 
     render () {
-        const { children } = this.props;
+        const { children, Child } = this.props;
         const state = this.state || {};
         const ThePopup = state.ThePopup;
         const PopupComponent = state.PopupComponent;
@@ -36,12 +36,17 @@ export default class BasePage extends React.Component {
             <div className="App bg-light">
                 <div {...divProps}>
                     {children}
+                    {Child && <Child page={this} />}
                 </div>
                 {ThePopup && renderPopup({ page: this, ...ThePopup })}
                 {PopupComponent && renderOuterPopup(this,PopupComponent,state.PopupOwner,state.PopupProps,state.replace)}
             </div>
         );
     }
+}
+
+export function inBasePage (Wrapped) {
+    return <BasePage Child={Wrapped}/>;
 }
 
 function foc (id) {
@@ -55,7 +60,7 @@ function eat (ev) {
 
 function renderPopup (props) {
 
-    const { page, title, children, buttons, noBkClose, noCancel, renderButtons } = props;
+    const { page, title, children, buttons, noBkClose, noCancel, renderButtons, popupClass = '' } = props;
     console.log('RENPOP',props);
 
     function onClose () {
@@ -75,7 +80,7 @@ function renderPopup (props) {
                  onClick={noBkClose ? undefined: fadeOut}
             >
                 <div className="modal-dialog" role="document">
-                    <div className="modal-content" onClick={eat}>
+                    <div className={'modal-content '+popupClass} onClick={eat}>
                         <div className="modal-header" tabIndex="0" onFocus={() => foc('closePop')}>
                             <h5 className="modal-title" id="exampleModalLiveLabel">{title}</h5>
                             {!noCancel &&

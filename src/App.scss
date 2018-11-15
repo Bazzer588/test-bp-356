@@ -301,7 +301,7 @@ select:-webkit-autofill {
 }
 
 .btn-mini {
-  height: 26px;
+  height: 28px;
   font-size: 14px;
   line-height: 1;
   padding: 0 12px;
@@ -530,4 +530,17 @@ select:-webkit-autofill {
 @keyframes divSliding {
   0% { opacity: 0; transform: translate(+100%,0); }
   100% { opacity: 1; transform: translate(0,0); }
+}
+
+/** modal options */
+
+.fatal {
+  .modal-header {
+    background-color: #ad0000;
+    color: #fff;
+  }
+  .modal-footer {
+    background-color: #fff6f2;
+    border-color: #fbd7d7;
+  }
 }

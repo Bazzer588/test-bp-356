@@ -208,7 +208,8 @@ function FatalError () {
                 <p>Your error reference number is <b>EX 8374</b></p>
             </div>,
         buttons: null,
-        noBkClose: true
+        noBkClose: true,
+        popupClass: 'fatal'
     };
 }
 

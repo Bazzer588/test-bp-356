@@ -18,7 +18,9 @@ class FormListSection extends React.PureComponent {
         return (
             <div style={{ margin: '16px 0 0 2px', fontWeight: '600', color: '#444', fontSize: '17px' }} >
                 {text} {index+1}
-                <button onClick={() => this.deleteFade(index)} className="btn btn-secondary btn-mini" type="button" style={{ float: 'right', marginTop: '2px' }}>
+                <button onClick={() => this.deleteFade(index)} className="btn btn-secondary btn-mini" type="button"
+                    style={{ float: 'right', marginTop: '-1px', zIndex: '2', position: 'relative' }}
+                >
                     Delete
                 </button>
             </div>
