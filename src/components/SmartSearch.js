@@ -149,7 +149,7 @@ export class SmartSearch extends React.Component {
         return (
             <div className="phone-input">
                 <input
-                    autoComplete="never"
+                    autoComplete="off"
                     id={id}
                     className={className}
                     onBlur={this.onBlur}
