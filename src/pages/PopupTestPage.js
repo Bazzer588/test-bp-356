@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from "../components/Button";
-import BasePage from "./BasePage";
+import BasePage, {ModalPopup} from "./BasePage";
 import {NavLinks} from "../sections/NavLinks";
 import Select from "../components/Select";
 import Radios from "../components/Radios";
@@ -12,10 +12,15 @@ export default class PopupTestPage extends React.Component {
         super(props);
         this.myRef = React.createRef();
     }
-    
+
     popup (fn,props) {
         const page = this.myRef.current;
         page.setPopup( fn({ page, compo: this, ...props }) );
+    }
+
+    popupComp (cls) {
+        const page = this.myRef.current;
+        page.setPopupComp( cls, this );
     }
 
     openWiz = () => {
@@ -50,15 +55,15 @@ export default class PopupTestPage extends React.Component {
                     </h1>
                 </header>
                 <form>
-                    <p><br/>
-                    This is the popup test page...
-                    </p>
-                    <Button onClick={() => console.log(this.myRef.current)}>Click me</Button>
+                    <p><br/>This is the popup test page...</p>
                     <Button onClick={this.openWiz}>Wizard</Button>
                     <Button onClick={this.openDel}>Delete</Button>
                     <p><br/>Errors</p>
                     <Button onClick={() => this.popup(ErrorPop)}>Error</Button>
                     <Button onClick={() => this.popup(FatalError)}>Fatal</Button>
+                    <p><br/>Test</p>
+                    <Button onClick={() => console.log(this.myRef.current)}>Debug</Button>
+                    <Button onClick={() => this.popupComp(WizTestAgain)}>Component</Button>
                 </form>
             </BasePage>
         );
@@ -78,7 +83,7 @@ function Wiz1 ({ page, compo, index }) {
 
     return {
         title: 'This is a wizard',
-        content:
+        children:
             <div>
                 Here is some content in the first bit of this wizard. Text can be very long and will wrap at some point to the next line.
                 <Radios options="languages" label="ChooseLanguage" onChange={pra} value={rad}/>
@@ -99,7 +104,7 @@ function Wiz2 ({ page, compo, index }) {
 
     return {
         title: 'Second popup',
-        content:
+        children:
             <div>
                 <p>This is the second popup which replaces the first</p>
                 <p>Pick a language</p>
@@ -119,21 +124,18 @@ function Wiz3 ({ page, compo, index }) {
     function back () { page.setPopup(Wiz2({page,compo,index})) }
     function next () { page.setPopup(ErrorPop({page,compo})) }
 
-    function foo (ev) {
+    /*function foo (ev) {
         console.log(ev.target.value);
         page.setState({ bar: Date.now(), chkkk: ev.target.value });
-    }
+    }*/
 
     const value = page.state.chkkk;
     console.log('RENDER WIZ3',value);
 
     return {
         title: 'Final Stage',
-        content:
-            <div>
-                <p>Please confirm</p>
-                <CheckBox id="wibbleBats" label="I confirm I agree to all the terms and conditions." value={value} onChange={foo}/>
-            </div>,
+        children:
+            <WizFinale/>,
         buttons:
             <>
                 <Button id="closePop" onClick={back} cnm="secondary">Back</Button>
@@ -144,12 +146,28 @@ function Wiz3 ({ page, compo, index }) {
     };
 }
 
+class WizFinale extends React.Component {
+    onLang = (ev) => { this.setState({ lang: ev.target.value }); };
+    cb = (ev) => { this.setState({ value: ev.target.value }); };
+    render () {
+        const st = this.state || {};
+        return (
+            <div>
+                <p>Please confirm your language</p>
+                <Select options="languages" value={st.lang} onChange={this.onLang}/>
+                <div style={{ height: '12px' }}/>
+                <CheckBox id="wibbleBats" label="I confirm I agree to all the terms and conditions." value={st.value} onChange={this.cb}/>
+            </div>
+        );
+    }
+}
+
 /** ---- popup to prompt for delete ----------------------------------- */
 
 function DeletePopFn ({ page, compo, index }) {
     return ({
         title: 'Delete Applicant #'+(index+1),
-        content:
+        children:
             <div>
                 <p>Please confirm</p>
                 <p>Do you want to delete this applicant?</p>
@@ -164,7 +182,7 @@ function DeletePopFn ({ page, compo, index }) {
 
 const ErrorPop = ({page, compo}) => { return {
     title: 'Oops! Something went wrong',
-    content:
+    children:
         <div>
             <p>An error occurred when submitting your application.</p>
             <p>Please check your internet connection and retry.</p>
@@ -183,7 +201,7 @@ const ErrorPop = ({page, compo}) => { return {
 function FatalError () {
     return {
         title: 'We are unable to continue with your booking',
-        content:
+        children:
             <div>
                 <p>An internal error has occurred when processing your booking.</p>
                 <p>Please call <b>0800 27636523</b> for technical support</p>
@@ -192,4 +210,85 @@ function FatalError () {
         buttons: null,
         noBkClose: true
     };
+}
+
+/** try this */
+
+class WizTestAgain extends React.Component {
+
+    slide = () => {
+        const p = document.getElementById('theModalContent');
+        p.classList.add('div-deleting');
+        //page.setPopup(Wiz1({page}))
+        setTimeout(() => {
+            // const { page, owner } = this.props;
+            p.classList.remove('div-deleting');
+            //page.setPopupComp(WizTestSecond,owner);
+            //setTimeout(() => {
+                p.classList.add('div-sliding');
+            //},25);
+        },300);
+    };
+
+    buttons = () => {
+        const { page, owner } = this.props;
+        return (
+            <>
+                <Button onClick={() => page.fadeOutPopup()}>Goodbye</Button>
+                <Button onClick={() => this.slide()}>Hello</Button>
+                <Button onClick={() => page.setPopupComp(WizTestSecond,owner)} cnm="primary">Next</Button>
+            </>
+        );
+    };
+
+    render () {
+        return (
+            <ModalPopup
+                title="Here's a component popup"
+                renderButtons={this.buttons}
+                page={this.props.page}
+            >
+                <p>Hello this is a popup</p>
+                <p>This one's a component</p>
+            </ModalPopup>
+        );
+    }
+}
+
+class WizTestSecond extends React.Component {
+
+    render () {
+        const { page, owner } = this.props;
+        const buttons = (
+            <>
+                <Button onClick={() => page.setPopupComp(WizTestAgain,owner)}>Back</Button>
+                <Button onClick={() => page.setPopupComp(WizTestThird,owner)} cnm="primary">Next</Button>
+            </>
+        );
+        return (
+            <ModalPopup
+                title="And here's a second popup"
+                buttons={buttons}
+                page={page}
+            >
+                <p>Yes this is boring</p>
+            </ModalPopup>
+        );
+    }
+}
+
+function WizTestThird ({ page, owner }) {
+
+    const buttons = <Button id="closePop" onClick={() => owner.retryThing()} cnm="primary">Retry</Button>;
+
+    return (
+        <ModalPopup
+            title="Third great popup"
+            page={page}
+            buttons={buttons}
+            noCancel
+        >
+            <p>Yet another popup here</p>
+        </ModalPopup>
+    );
 }
