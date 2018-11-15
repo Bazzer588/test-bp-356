@@ -23,7 +23,7 @@ export class SmartSearch extends React.Component {
     };
 
     onBlur = (ev) => {  // hide popup when input blurs
-        setTimeout( this.docClick, 250 );
+        setTimeout( this.docClick, 25 );
         this.foobar = setTimeout(() => { this.props.onBlur(ev) }, 25); // tell parent we blurred
     };
 
@@ -98,6 +98,7 @@ export class SmartSearch extends React.Component {
         console.log('CHOSEN',code,text);
         this.props.onChange({ target: { value: code } });
         this.setState({ chosen: text });
+        this.docClick();
         document.getElementById(this.props.id).focus();
     };
 
@@ -159,12 +160,16 @@ export class SmartSearch extends React.Component {
                     value={text}
                 />
                 {pop &&
-                <div className="telpopup" onClick={() => this.setState({ pop: false })}>
+                <div className="telpopup"
+                    onClick={() => this.setState({ pop: false })}
+                    onFocus={() => { console.log('FOCUS ON TELPOP'); clearTimeout(this.foobar); this.ignoreClick = true; } }
+                >
                     {this.renderResults(value,results,search)}
                 </div>
                 }
             </div>
         );
+        // note onFocus above - IE11 will set focus when scrollbar is clicked
     };
 
 }
