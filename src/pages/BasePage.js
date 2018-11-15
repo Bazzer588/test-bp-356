@@ -10,8 +10,10 @@ export default class BasePage extends React.Component {
         this.setState({ ThePopup: pop, PopupComponent: null });
     }
 
-    setPopupComp (cls,owner) {
-        this.setState({ ThePopup: null, PopupComponent: cls, PopupOwner: owner });
+    setPopupComp (cls, owner, popupProps) {
+        const state = this.state || {};
+        const curr = state.ThePopup || state.PopupComponent;
+        this.setState({ ThePopup: null, PopupComponent: cls, PopupOwner: owner, PopupProps: popupProps, replace: !!curr });
     }
 
     fadeOutPopup = (fn) => {
@@ -36,7 +38,7 @@ export default class BasePage extends React.Component {
                     {children}
                 </div>
                 {ThePopup && renderPopup({ page: this, ...ThePopup })}
-                {PopupComponent && renderOuterPopup(this,PopupComponent,state.PopupOwner)}
+                {PopupComponent && renderOuterPopup(this,PopupComponent,state.PopupOwner,state.PopupProps,state.replace)}
             </div>
         );
     }
@@ -102,7 +104,7 @@ function renderPopup (props) {
     modal-backdrop is the dark layer with 0.5 opacity
 */
 
-function renderOuterPopup (page, Thing, owner) {
+function renderOuterPopup (page, Thing, owner, popProps, replace) {
 
     setTimeout( () => { foc('exampleModalLive'); }, 100); // focus to modal
 
@@ -112,7 +114,7 @@ function renderOuterPopup (page, Thing, owner) {
                  onClick={() => page.fadeOutPopup()}
             >
                 <div className="modal-dialog" role="document">
-                    <Thing page={page} owner={owner}/>
+                    <Thing page={page} owner={owner} replace={replace}/>
                 </div>
             </div>
             <div className="modal-backdrop" tabIndex="0" onFocus={() => foc('closePop')}/>
@@ -120,15 +122,25 @@ function renderOuterPopup (page, Thing, owner) {
     );
 }
 
-function innerPopup ({ page, owner, title, children, buttons, renderButtons, noCancel }) {
+function innerPopup ({ page, owner, title, children, buttons, renderButtons, noCancel, replace }) {
 
     function onClose () {
         page.setState({ ThePopup: null, PopupComponent: null });
         foc('ShowPopup');       // TODO this button may not exist !!!
     }
 
+    const cnm = 'modal-content' + (replace ? ' div-sliding' : '');
+    // console.log('INNER',replace,cnm);
+
+    if (replace) { // slide it in from the side
+        setTimeout(() => {
+            const p = document.getElementById('theModalContent');
+            p.classList.remove('div-sliding');
+        },300);
+    }
+
     return (
-        <div id="theModalContent" className="modal-content" onClick={eat}>
+        <div id="theModalContent" className={cnm} onClick={eat}>
             <div className="modal-header" tabIndex="0" onFocus={() => foc('closePop')}>
                 <h5 className="modal-title" id="exampleModalLiveLabel">{title}</h5>
                 {!noCancel &&
@@ -150,3 +162,12 @@ function innerPopup ({ page, owner, title, children, buttons, renderButtons, noC
 }
 
 export const ModalPopup = innerPopup;
+
+
+/* find focusable elements
+
+var focusable = document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+var firstFocusable = focusable[0];
+var lastFocusable = focusable[focusable.length - 1];
+
+*/
