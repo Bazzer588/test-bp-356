@@ -7,12 +7,14 @@ import SearchPage from './pages/SearchPage';
 import PaymentPage from './pages/PaymentPage';
 import SearchFieldsPage from './pages/SearchFieldsPage';
 import PopupTestPage from './pages/PopupTestPage';
+import RepeaterPage from './pages/RepeaterPage';
 
 PageRouter.defineRoute('/',HomePage,'React tax application');
 PageRouter.defineRoute('/tax-app',HomePage,'React tax application');
 PageRouter.defineRoute('/tax-app/search',SearchPage,'React search page');
 PageRouter.defineRoute('/tax-app/deals',SearchFieldsPage,'React hot deals page');
 PageRouter.defineRoute('/tax-app/checkout',PaymentPage,'Checkout page');
+PageRouter.defineRoute('/tax-app/repeat',RepeaterPage,'Repeater page');
 
 // console.log('DEFINING ROUTE');
 PageRouter.defineRoute(routePayment);

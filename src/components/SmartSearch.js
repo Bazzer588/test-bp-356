@@ -13,7 +13,7 @@ export class SmartSearch extends React.Component {
     }
 
     docClick = () => {
-        console.log('DOC CLICK',this.ignoreClick);
+        console.log('DOC CLICK',this.ignoreClick,this.props.id);
         if (this.ignoreClick) {
             this.ignoreClick = false;
             return;
@@ -38,6 +38,10 @@ export class SmartSearch extends React.Component {
         this.openPop();
         ev.stopPropagation();
         ev.preventDefault();
+        // const btn = ev.target;
+        // if (mobile or iPad) ...
+        const lbl = document.querySelector("label[for=" + this.props.id + "]");
+        lbl.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
     };
 
     onChange = (ev) => {
@@ -162,6 +166,7 @@ export class SmartSearch extends React.Component {
                 {pop &&
                 <div className="telpopup"
                     onClick={() => this.setState({ pop: false })}
+                    onBlur={this.onBlur}
                     onFocus={() => { console.log('FOCUS ON TELPOP'); clearTimeout(this.foobar); this.ignoreClick = true; } }
                 >
                     {this.renderResults(value,results,search)}

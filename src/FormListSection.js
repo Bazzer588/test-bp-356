@@ -147,7 +147,7 @@ export function makeRepeatable (name, repeatThing, fixedList, props) {
 // helper
 
 function focusTo (el) {
-    if (el) el.focus();
+    if (el) { el.focus(); return true; }
 }
 
 /** class to render an OriginalComp component with a delete button to the right */

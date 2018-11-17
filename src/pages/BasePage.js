@@ -20,13 +20,13 @@ export default class BasePage extends React.Component {
         const p = document.getElementById('exampleModalLive');
         p.classList.add('modal-hiding');
         setTimeout( () => {
-            this.setPopup(null);
+            this.setPopupComp(null);
             if (fn) fn();
         }, 300 );
     };
 
     render () {
-        const { children, Child } = this.props;
+        const { children, Child, ...rest } = this.props;
         const state = this.state || {};
         const ThePopup = state.ThePopup;
         const PopupComponent = state.PopupComponent;
@@ -36,7 +36,7 @@ export default class BasePage extends React.Component {
             <div className="App bg-light">
                 <div {...divProps}>
                     {children}
-                    {Child && <Child page={this} />}
+                    {Child && <Child page={this} {...rest} />}
                 </div>
                 {ThePopup && renderPopup({ page: this, ...ThePopup })}
                 {PopupComponent && renderOuterPopup(this,PopupComponent,state.PopupOwner,state.PopupProps,state.replace)}
@@ -45,9 +45,11 @@ export default class BasePage extends React.Component {
     }
 }
 
-export function inBasePage (Wrapped) {
-    return <BasePage Child={Wrapped}/>;
-}
+export const useBasePage = (Wrapped) => (props) => {
+    return <BasePage Child={Wrapped} {...props}/>;
+};
+
+/** focus helper */
 
 function foc (id) {
     const p = document.getElementById(id);
@@ -127,7 +129,7 @@ function renderOuterPopup (page, Thing, owner, popProps, replace) {
     );
 }
 
-function innerPopup ({ page, owner, title, children, buttons, renderButtons, noCancel, replace }) {
+function innerPopup ({ page, owner, title, children, continueAction, buttons, renderButtons, noCancel, replace }) {
 
     function onClose () {
         page.setState({ ThePopup: null, PopupComponent: null });
@@ -144,6 +146,8 @@ function innerPopup ({ page, owner, title, children, buttons, renderButtons, noC
         },300);
     }
 
+    const canc = (buttons || renderButtons || continueAction) ? undefined : 'primary';
+
     return (
         <div id="theModalContent" className={cnm} onClick={eat}>
             <div className="modal-header" tabIndex="0" onFocus={() => foc('closePop')}>
@@ -158,9 +162,12 @@ function innerPopup ({ page, owner, title, children, buttons, renderButtons, noC
                 {children}
             </div>
             <div className="modal-footer">
-                {noCancel ? null : <Button id="closePop" onClick={() => page.fadeOutPopup()}>Cancel</Button>}
+                {noCancel ? null : <Button id="closePop" cnm={canc} onClick={() => page.fadeOutPopup()}>Cancel</Button>}
                 {buttons}
                 {renderButtons && renderButtons()}
+                {continueAction &&
+                    <Button id="continuePop" onClick={() => continueAction()} cnm="primary">Continue</Button>
+                }
             </div>
         </div>
     );
