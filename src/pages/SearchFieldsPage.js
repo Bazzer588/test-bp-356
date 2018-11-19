@@ -100,7 +100,7 @@ class SearchFieldsPage extends React.Component {
                         <Button onClick={this.valida}>Validate</Button>
                         <Button cnm="primary" onClick={() => PageRouter.changePage('/tax-app') } >Continue</Button>
                     </p>
-                    <div style={{ marginTop: '300px' }}>...</div>
+                    <div style={{ marginTop: '2300px' }}>...</div>
                 </form>
             </div>
         );

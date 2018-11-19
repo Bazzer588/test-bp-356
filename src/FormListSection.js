@@ -16,7 +16,7 @@ class FormListSection extends React.PureComponent {
     renderHeading = (index, text) => {
         index = parseInt(index);
         return (
-            <div style={{ margin: '16px 0 0 2px', fontWeight: '600', color: '#444', fontSize: '17px' }} >
+            <div style={{ padding: '16px 0 0 2px', fontWeight: '600', color: '#444', fontSize: '17px' }} >
                 {text} {index+1}
                 <button onClick={() => this.deleteFade(index)} className="btn btn-secondary btn-mini" type="button"
                     style={{ float: 'right', marginTop: '-1px', zIndex: '2', position: 'relative' }}
@@ -25,6 +25,17 @@ class FormListSection extends React.PureComponent {
                 </button>
             </div>
         );
+    };
+
+    deleteFade = (i) => {   // sets CSS class for the animation, then calls deleteIndex
+        const { name, path } = this.props;
+        const id = path+'-'+name+'-'+i;
+        const p = document.getElementById(id);
+        p.classList.add('div-deleting');
+        setTimeout(() => {
+            p.classList.remove('div-deleting');
+            this.deleteIndex(i);
+        },300);
     };
 
     baseArray () {
@@ -42,31 +53,25 @@ class FormListSection extends React.PureComponent {
         parent.onChangeField(name,newValue);
         parent.onBlurField(name,newTouched);
         const btn = ev.target;
-        const id = path+'-'+name+'-'+value.length; // ie 'page-list-0'
         setTimeout( () => {
-            if (!simpleField) {
-                btn.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'}); // HACK scroll the add button into view
+            if (simpleField) {
+                const id = path+'-'+name+'-'+value.length; // ie 'page-list-0'
+                focusTo(document.getElementById(id));
+            } else {
+                // const thing = document.getElementById(id);
+                // this works on Chrome - scrolls the parent div of the button into view at bottom
+                // on IE11 + Edge it scrolls the damned thing to the top
+                // btn.parentNode.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'}); // HACK scroll the add button into view
+                calcScrollToView(btn.parentNode);
+                //focusTo(btn);
             }
-            focusTo(document.getElementById(id));
         }, 25);
-    };
-
-    deleteFade = (i) => {
-        const { name, path } = this.props;
-        console.log('DEL FADE',name,path,i);
-        const id = path+'-'+name+'-'+i;
-        const p = document.getElementById(id);
-        p.classList.add('div-deleting');
-        setTimeout(() => {
-            p.classList.remove('div-deleting');
-            this.deleteIndex(i);
-        },300);
     };
 
     deleteIndex = (i) => {
         const base = this.baseArray();
-        const { name, path, parent, value = base, touched = base } = this.props;
-        console.log('deleteIndex',i,value);
+        const { name, path, parent, value = base, touched = base, simpleField } = this.props;
+        //console.log('deleteIndex',i,value);
         const newValue = [ ...value ];
         const newTouched = [ ...touched ];
         newValue.splice(i,1);
@@ -76,13 +81,31 @@ class FormListSection extends React.PureComponent {
         // focus
         if (i>=newValue.length) i--;
         const id = path+'-'+name+'-'+i; // ie 'page-list-0'
+        // hack
+        //const y = window.scrollY;
+        //window.scrollBy(0,-1);  // chrome make scroll down
         setTimeout( () => {
-            focusTo(document.getElementById(id));  // iPad will open it on focus if not done with timer
+            const t = document.getElementById(id);
+            if (t) {
+                if (simpleField)
+                    focusTo(t);
+                else
+                    // t.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
+                    calcScrollToView(t);
+            }
+            if (i<0) {
+                console.log('ALL GONE');
+                const a = document.getElementById(path+'-'+name+'-addOne');
+                focusTo(a);  // NOTE always focus BEFORE scroll
+                // if (a) a.parentNode.scrollIntoView({behavior: 'smooth', block: 'center'});
+                centerScroll(a);
+                // if (a) calcScrollToView(a.parentNode);
+            }
         }, 25);
     };
 
     render () {
-        const { fixedList, listLength, renderField, repeatThing, addLabel, simpleField, maxLength = 999 } = this.props;
+        const { name, path, fixedList, listLength, renderField, repeatThing, addLabel, simpleField, maxLength = 999 } = this.props;
         const base = this.baseArray();
         const { value = base } = this.props;
         const cc = fixedList ? value.length : parseInt(listLength);
@@ -108,11 +131,20 @@ class FormListSection extends React.PureComponent {
         return (
             <div className="form-field">
                 {simpleField &&
-                    <label htmlFor={this.props.path+'-'+this.props.name+'-0'}>{this.props.path}-{this.props.name}</label>
+                    <label htmlFor={path+'-'+name+'-0'}>{path}-{name}</label>
                 }
                 {arr}
                 {fixedList && cc<maxLength &&
-                    <button className="btn btn-default btn-mini" onClick={this.addOne} type="button" style={{ marginTop: simpleField ? '4px' : '12px' }}>{add}</button>
+                    <div style={{ paddingBottom: '8px' }}>
+                    <button
+                        id={path+'-'+name+'-addOne'}
+                        className="btn btn-default btn-mini"
+                        onClick={this.addOne} type="button"
+                        style={{ marginTop: simpleField ? '4px' : '12px' }}
+                    >
+                        {add}
+                    </button>
+                    </div>
                 }
             </div>
         );
@@ -136,7 +168,7 @@ function validateSection (v, value = [], sectionProps) { // v, values, sectionPr
  * @param name - ie 'listOfThings'
  * @param repeatThing - the component to repeat
  * @param fixedList - true if list is of a fixed size
- * @param props - props for this ie maxLength: 10, simpleList: true
+ * @param [props] - props for this ie maxLength: 10, simpleList: true
  * @return object - props for the repeating section
  */
 
@@ -246,4 +278,32 @@ function fieldWithDeleteButton (index, excludeValues, deleteIndex, renderField, 
         </div>
     );
     */
+}
+
+function calcScrollToView (it) {
+    if (!it) return;
+    const r = it.getBoundingClientRect();
+    if (r.top<0) {
+        scrollBy(r.top); // scroll up
+        //return window.pageYOffset + r.top;
+    }
+    const h = document.documentElement.clientHeight;
+    const d = (r.top+r.height) - h;
+    if (d>0) {
+        scrollBy(d);
+        //return window.pageYOffset + d;
+    }
+}
+
+function centerScroll (it) {
+    if (!it) return;
+    const r = it.getBoundingClientRect();
+    const h = document.documentElement.clientHeight;
+    // const d = ((r.top*2+r.height) / 2) - (h / 2);
+    const d = (r.top + (r.height/2)) - (h / 2);
+    scrollBy(d);
+}
+
+function scrollBy (d) {
+    window.scrollBy({ top: d, left: 0, behavior: 'smooth' });
 }

@@ -2,8 +2,26 @@ import React from 'react';
 import {useBasePage, ModalPopup} from "./BasePage";
 import {NavLinks} from "../sections/NavLinks";
 import Button from "../components/Button";
+import makeGenericSection from "../sections/GenericSection";
+import FormSection from "../FormSection";
+import FormConnect from "../FormConnect";
+import {stringTypeField} from "../validation/validateString";
+import {makeRepeatable} from "../FormListSection";
+import {searchTypeField} from "../components/SmartSearch";
+
+const Geno = makeGenericSection('testThing',[
+    searchTypeField('country',{ required: true }),
+    stringTypeField('price',{ required: true })
+]);
+
+const GList = makeRepeatable('thingList',Geno,true,{ addLabel: 'Add a thing' });
 
 class RepeaterPage extends React.Component {
+
+    static defaultProps = {
+        name: 'repeaterPage',
+        wrap: true
+    };
 
     doSomething () {
         const { page } = this.props;
@@ -11,7 +29,7 @@ class RepeaterPage extends React.Component {
     }
 
     render () {
-        const { page } = this.props;
+        const { page, renderField } = this.props;
         return (
             <>
             <header className="App-header">
@@ -20,18 +38,21 @@ class RepeaterPage extends React.Component {
                     Repeater page
                 </h1>
             </header>
-            <form>
+            <form autoComplete="off">
                 <p><br/>Yet another page...</p>
                 <Button onClick={() => page.setPopupComp( MyPop, this )}>Component</Button>
-                <Button onClick={() => popAlert(page,'Warning','You better watch out')}>Warning</Button>
-                <Button onClick={() => popAlert(page,'Info','Good news! Something good just happened.')}>Info</Button>
+                <Button onClick={() => popAlert({page, title: 'Warning', text: 'You better watch out'})}>Warning</Button>
+                <Button onClick={() => popAlert({page, title: 'Info', text: 'Good news! Something good just happened.'})}>Info</Button>
+                <Button onClick={() => popAlert({page, title: 'Values', text: JSON.stringify(this.props.value,null,' ')})}>Values</Button>
+                <h2>List of things</h2>
+                {renderField(GList)}
             </form>
             </>
         );
     }
 }
 
-export default useBasePage(RepeaterPage);
+export default useBasePage( FormConnect( FormSection(RepeaterPage) ) );
 
 /** a popup */
 
@@ -49,7 +70,7 @@ function MyPop ({ page, owner }) {
 
 /** generic popup */
 
-function popAlert (page,title,text) {
+function popAlert ({page,title,text}) {
     page.setPopupComp(() => {
         return (
             <ModalPopup page={page} title={title}>

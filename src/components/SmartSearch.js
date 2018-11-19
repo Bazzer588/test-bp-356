@@ -113,6 +113,7 @@ export class SmartSearch extends React.Component {
                 className={pick===index ? 'list-item checked' : 'list-item'}
                 id={pick===index ? 'woot888' : undefined}
                 key={code}
+                onMouseDown={() => { this.ignoreClick = true; console.log('ONMOUSE',text); } }
                 onClick={() => this.choose(code,text)}
                 onKeyDown={onLinkKey}
                 tabIndex="-1"
@@ -150,10 +151,11 @@ export class SmartSearch extends React.Component {
             theText = map[value];
         }
         const text = (pop ? search : theText) || search;
+        const auto = 'rand_'+Date.now();
         return (
-            <div className="phone-input">
+            <div className="phone-input" id={id+'-the-popup'}>
                 <input
-                    autoComplete="off"
+                    autoComplete={auto}
                     id={id}
                     className={className}
                     onBlur={this.onBlur}
@@ -161,6 +163,7 @@ export class SmartSearch extends React.Component {
                     onClick={this.onClick}
                     onFocus={this.onFocus}
                     onKeyDown={this.onKeyDown}
+                    type="text"
                     value={text}
                 />
                 {pop &&
@@ -168,6 +171,7 @@ export class SmartSearch extends React.Component {
                     onClick={() => this.setState({ pop: false })}
                     onBlur={this.onBlur}
                     onFocus={() => { console.log('FOCUS ON TELPOP'); clearTimeout(this.foobar); this.ignoreClick = true; } }
+                    onMouseDown={() => { this.ignoreClick = true; }}
                 >
                     {this.renderResults(value,results,search)}
                 </div>

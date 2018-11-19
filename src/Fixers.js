@@ -30,4 +30,7 @@ if (!Array.prototype.find) {
 
 // fix scrollintoview
 // https://github.com/iamdustan/smoothscroll
+
+//window.__forceSmoothScrollPolyfill__ = true;
+//const smooth = require('./smoothscroll');
 smooth.polyfill();

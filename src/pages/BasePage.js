@@ -45,9 +45,17 @@ export default class BasePage extends React.Component {
     }
 }
 
+/*
 export const useBasePage = (Wrapped) => (props) => {
     return <BasePage Child={Wrapped} {...props}/>;
 };
+*/
+
+export function useBasePage (Wrapped) {
+    return function BasePageWrapper (props) { // name appears in React dev tools
+        return <BasePage Child={Wrapped} {...props}/>;
+    }
+}
 
 /** focus helper */
 
@@ -142,7 +150,7 @@ function innerPopup ({ page, owner, title, children, continueAction, buttons, re
     if (replace) { // slide it in from the side
         setTimeout(() => {
             const p = document.getElementById('theModalContent');
-            p.classList.remove('div-sliding');
+            if (p) p.classList.remove('div-sliding');
         },300);
     }
 
