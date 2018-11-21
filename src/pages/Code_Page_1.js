@@ -1,12 +1,15 @@
 import React from 'react';
 import {NavLinks} from "../sections/NavLinks";
-import {useBasePage} from "./BasePage";
+import {useBasePage, ModalPopup} from "./BasePage";
 import FormConnect from "../FormConnect";
 import FormSection from "../FormSection";
+import Button from "../components/Button";
+import Loader from "../components/Loader";
 
 class Code_Page_1 extends React.Component {
 
     render () {
+        const { page } = this.props;
         return (
             <>
                 <header className="App-header">
@@ -153,7 +156,9 @@ class Code_Page_1 extends React.Component {
 
                 </form>
 
-                <p>...</p>
+                <p>Want to see this in another language?</p>
+                <Button onClick={() => openPop(page,this)} cnm="primary">Yes I do!</Button>
+                <p>&nbsp;</p>
             </>
         );
     }
@@ -163,3 +168,47 @@ export default useBasePage( FormConnect( FormSection(Code_Page_1) ) );
 
 // text from
 // https://www.bennadel.com/coldfusion/privacy-policy-generator.htm
+
+let PopContent;
+
+function openPop (page,owner,popupProps) {
+
+    //if (PopContent) {
+    //    page.setPopupComp(PopContent,owner);
+    //    return;
+    //}
+
+    let wasClosed;
+
+    setTimeout( () => {
+        importPopSectionForm()
+            .then( (module) => {
+                PopContent = module.default;
+                if (!wasClosed)
+                    page.setPopupComp(PopContent,owner,popupProps);
+            })
+            .catch( (e) => {
+                console.log(e,JSON.stringify(e));
+                page.setPopupComp(() => {
+                    return (
+                        <ModalPopup page={page} title="Popup loading error">
+                            <p>There was an error loading the popup</p>
+                        </ModalPopup>
+                    );
+                });
+            });
+    }, 2000 );
+
+    page.setPopupComp(() => {
+        return (
+            <ModalPopup page={page} title="Dynamic popup" onClose={() => wasClosed = true}>
+                <Loader block text={'Loading popup content'}/>
+            </ModalPopup>
+        );
+    });
+
+}
+
+function importPopSectionForm () {
+    return import ('../sections/PopSectionForm' /* webpackChunkName: "POPUP_COMPONENT" */);
+}

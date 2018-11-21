@@ -11,12 +11,17 @@ export default class BasePage extends React.Component {
     }
 
     setPopupComp (cls, owner, popupProps) {
+        this.activePopupOnClose = null;
         const state = this.state || {};
         const curr = state.ThePopup || state.PopupComponent;
         this.setState({ ThePopup: null, PopupComponent: cls, PopupOwner: owner, PopupProps: popupProps, replace: !!curr });
     }
 
     fadeOutPopup = (fn) => {
+        if (this.activePopupOnClose) {
+            this.activePopupOnClose(); // notify the popup we are closing
+            this.activePopupOnClose = null;
+        }
         const p = document.getElementById('exampleModalLive');
         p.classList.add('modal-hiding');
         setTimeout( () => {
@@ -137,10 +142,13 @@ function renderOuterPopup (page, Thing, owner, popProps, replace) {
     );
 }
 
-function innerPopup ({ page, owner, title, children, continueAction, buttons, renderButtons, noCancel, replace }) {
+function innerPopup ({ page, owner, title, children, continueAction, buttons, renderButtons, noCancel, replace, onClose }) {
 
-    function onClose () {
-        page.setState({ ThePopup: null, PopupComponent: null });
+    page.activePopupOnClose = onClose;
+
+    function doClose () {
+        // page.setState({ ThePopup: null, PopupComponent: null });
+        page.fadeOutPopup();
         foc('ShowPopup');       // TODO this button may not exist !!!
     }
 
@@ -161,7 +169,7 @@ function innerPopup ({ page, owner, title, children, continueAction, buttons, re
             <div className="modal-header" tabIndex="0" onFocus={() => foc('closePop')}>
                 <h5 className="modal-title" id="exampleModalLiveLabel">{title}</h5>
                 {!noCancel &&
-                <button type="button" className="close" aria-label="Close" onClick={onClose}>
+                <button type="button" className="close" aria-label="Close" onClick={doClose}>
                     <span aria-hidden="true">×</span>
                 </button>
                 }
@@ -170,7 +178,7 @@ function innerPopup ({ page, owner, title, children, continueAction, buttons, re
                 {children}
             </div>
             <div className="modal-footer">
-                {noCancel ? null : <Button id="closePop" cnm={canc} onClick={() => page.fadeOutPopup()}>Cancel</Button>}
+                {noCancel ? null : <Button id="closePop" cnm={canc} onClick={doClose}>Cancel</Button>}
                 {buttons}
                 {renderButtons && renderButtons()}
                 {continueAction &&

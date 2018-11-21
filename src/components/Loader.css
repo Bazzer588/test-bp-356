@@ -4,6 +4,10 @@
   -ms-filter: blur(2px);
 }
 
+.loader-block {
+  text-align: center;
+}
+
 .loader-body {
   background-color: #e8e8e8;
   opacity: 0.7;

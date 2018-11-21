@@ -1,7 +1,7 @@
 import React from "react";
 import './Loader.css';
 
-export default function Loader ({ text }) {
+export default function Loader ({ text, block }) {
 
     text = text || 'Page loading...';
 
@@ -11,7 +11,7 @@ export default function Loader ({ text }) {
     }, 100);
 
     return (
-        <div className="loader-body">
+        <div className={block ? 'loader-block' : 'loader-body'}>
             <div className="loader-container">
                 <div className="loader">
                     <div className="loader antiloader">

@@ -97,7 +97,7 @@ function translate (t,required) {
 
 function getOptionList (name) {
     const map = {
-        yesno: ['M','F'],
+        yesno: ['Y','N'],
         gender: ['M','F'],
         country: countryList, // ['GB','US','CN','BW','AR','BE','CH','FR','DE'],
         countryDefaults: ['GB','US','CN','BW','AR','BE','CH'],
