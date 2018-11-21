@@ -39,6 +39,9 @@ export class NavLinks extends React.PureComponent {
                         <button className="list-item" onClick={() => this.link('/tax-app/repeat')}>Repeat</button>
                         <hr role="presentation"/>
                         <button className="list-item" onClick={() => this.link('/tax-app/deals')}>Deals</button>
+                        <hr role="presentation"/>
+                        <button className="list-item" onClick={() => this.link('/tax-app/code-split')}>Code Split 1</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/code-split2')}>Code Split 2</button>
                     </div>
                 }
             </div>

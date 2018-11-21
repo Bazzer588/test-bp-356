@@ -10,7 +10,7 @@ import {makeRepeatable} from "../FormListSection";
 import {searchTypeField} from "../components/SmartSearch";
 
 const Geno = makeGenericSection('testThing',[
-    searchTypeField('country',{ required: true }),
+    searchTypeField('cnid',{ required: true }),
     stringTypeField('price',{ required: true })
 ]);
 

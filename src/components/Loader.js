@@ -8,7 +8,7 @@ export default function Loader ({ text }) {
     setTimeout( () => {
         const p = document.getElementById('loader-text');
         if (p) p.focus();
-    }, 200);
+    }, 100);
 
     return (
         <div className="loader-body">

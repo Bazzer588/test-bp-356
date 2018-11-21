@@ -8,6 +8,8 @@ import PaymentPage from './pages/PaymentPage';
 import SearchFieldsPage from './pages/SearchFieldsPage';
 import PopupTestPage from './pages/PopupTestPage';
 import RepeaterPage from './pages/RepeaterPage';
+import CodeSplitPage1 from './pages/CodeSplitPage1';
+import CodeSplitPage2 from './pages/CodeSplitPage2';
 
 PageRouter.defineRoute('/',HomePage,'React tax application');
 PageRouter.defineRoute('/tax-app',HomePage,'React tax application');
@@ -15,6 +17,8 @@ PageRouter.defineRoute('/tax-app/search',SearchPage,'React search page');
 PageRouter.defineRoute('/tax-app/deals',SearchFieldsPage,'React hot deals page');
 PageRouter.defineRoute('/tax-app/checkout',PaymentPage,'Checkout page');
 PageRouter.defineRoute('/tax-app/repeat',RepeaterPage,'Repeater page');
+PageRouter.defineRoute('/tax-app/code-split',CodeSplitPage1,'Code Split Test Page 1');
+PageRouter.defineRoute('/tax-app/code-split2',CodeSplitPage2,'Code Split Test Page 2');
 
 // console.log('DEFINING ROUTE');
 PageRouter.defineRoute(routePayment);
