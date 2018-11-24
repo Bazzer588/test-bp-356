@@ -2,7 +2,7 @@ import React from 'react';
 import Loader from "./Loader";
 import {ModalPopup} from "../pages/BasePage";
 
-export default function openModulePopup (props) {
+export default function openLazyPopup (props) {
 
     const {loader, page, owner, ...popupProps} = props;
 

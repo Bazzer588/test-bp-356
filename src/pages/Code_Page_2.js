@@ -12,7 +12,7 @@ class Code_Page_2 extends React.Component {
                 <header className="App-header">
                     <NavLinks/>
                     <h1 className="App-title">
-                        Code split page 2
+                        条款和条件
                     </h1>
                 </header>
 

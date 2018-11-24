@@ -5,7 +5,7 @@ import FormConnect from "../FormConnect";
 import FormSection from "../FormSection";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
-import ModulePopup from '../components/ModulePopup';
+import LazyPopup from '../components/LazyPopup';
 
 
 function importPopSectionForm () {
@@ -15,7 +15,7 @@ function importPopSectionForm () {
 class Code_Page_1 extends React.Component {
 
     openPop = () => {
-        ModulePopup({
+        LazyPopup({
             loader: () => import ('../sections/PopSectionForm' /* webpackChunkName: "POP_1" */),
             page: this.props.page,
             owner: this
