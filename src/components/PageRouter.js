@@ -80,7 +80,7 @@ export default class PageRouter extends React.Component {
 
         if (thing.title) document.title = thing.title; // TODO translate
 
-        return (<thing.Compo search={window.location.search} {...thing.values} />);
+        return (<thing.Compo search={window.location.search} {...thing.values} router={this} />);
     }
 
 }

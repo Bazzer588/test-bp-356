@@ -8,7 +8,7 @@ import Select from "../components/Select";
 
 function PopSectionForm (props) {
 
-    const { page, renderField } = props;
+    const { page, renderField, replace } = props;
 
     function finito () {
         page.fadeOutPopup(
@@ -17,7 +17,7 @@ function PopSectionForm (props) {
     }
 
     return (
-        <ModalPopup page={page} title="Popup loaded by code splitting" continueAction={finito}>
+        <ModalPopup page={page} replace={replace} title="Popup loaded by code splitting" continueAction={finito}>
             <form>
                 {renderField(stringTypeField('AgeOfEldestChild',{ component: Select, rangeFrom: 0, rangeTo: 21 }))}
                 {renderField(stringTypeField('AgreeYouMust',{ component: Radios, showLabel: false, className: 'horizontal', label: 'You must comply', options: 'yesno' }))}

@@ -5,8 +5,22 @@ import FormConnect from "../FormConnect";
 import FormSection from "../FormSection";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
+import ModulePopup from '../components/ModulePopup';
+
+
+function importPopSectionForm () {
+    return import ('../sections/PopSectionForm' /* webpackChunkName: "POP_1" */);
+}
 
 class Code_Page_1 extends React.Component {
+
+    openPop = () => {
+        ModulePopup({
+            loader: () => import ('../sections/PopSectionForm' /* webpackChunkName: "POP_1" */),
+            page: this.props.page,
+            owner: this
+        });
+    };
 
     render () {
         const { page } = this.props;
@@ -157,7 +171,8 @@ class Code_Page_1 extends React.Component {
                 </form>
 
                 <p>Want to see this in another language?</p>
-                <Button onClick={() => openPop(page,this)} cnm="primary">Yes I do!</Button>
+                <Button onClick={() => openPop(page,this)} cnm="secondary">Yes I do!</Button>
+                <Button onClick={this.openPop} cnm="primary">Show popup</Button>
                 <p>&nbsp;</p>
             </>
         );
@@ -207,8 +222,4 @@ function openPop (page,owner,popupProps) {
         );
     });
 
-}
-
-function importPopSectionForm () {
-    return import ('../sections/PopSectionForm' /* webpackChunkName: "POPUP_COMPONENT" */);
 }
