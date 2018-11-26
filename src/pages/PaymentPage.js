@@ -14,6 +14,7 @@ import PickerPopup from './PickerPopup';
 import {stringTypeField} from "../validation/validateString";
 import {validateTree} from '../validation';
 import {NavLinks} from "../sections/NavLinks";
+import walkTree from "../validation/walkTree";
 
 function validateBool (value, props, path, output) {
     const { name, required } = props;
@@ -145,6 +146,7 @@ class PaymentPage extends React.Component {
                         <ButtonStrip>
                             <Button onClick={this.goBack}>Cancel</Button>
                             <Button id="ShowPopup" onClick={this.openPop}>Popup</Button>
+                            <Button onClick={() => walkTree(this)}>Check</Button>
                             <Button cnm="primary" onClick={this.doCheckout} >Make Payment</Button>
                         </ButtonStrip>
 

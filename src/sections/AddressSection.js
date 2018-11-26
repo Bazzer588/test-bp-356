@@ -24,17 +24,24 @@ function validateSection (v) { // v, values, sectionProps, output, errors, path
 class AddressComponent extends React.PureComponent {
 
     render () {
-        const { renderField } = this.props;
+        const { renderField, value } = this.props;
+        if (value && value.country==='AX') { // Aland islands
+            return ([
+                renderField( Country ),
+                renderField( Address1 ),
+                renderField( ZipCode )
+            ]);
+        }
+        const required = value && value.country==='AL'; // test, require city & zip for Albania...
         return ([
             renderField( Country ),
             renderField( Address1 ),
             renderField( Area ),
-            renderField( City ),
-            renderField( Region  ),
-            renderField( ZipCode )
+            renderField( City, { required } ),
+            renderField( Region ),
+            renderField( ZipCode, { required } )
         ]);
     }
-
 }
 
 const component = FormSection(AddressComponent);

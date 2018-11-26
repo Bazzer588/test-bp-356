@@ -6,8 +6,14 @@ import BigForm from '../sections/BigForm';
 import PageRouter from '../components/PageRouter';
 import Button from "../components/Button";
 import {NavLinks} from "../sections/NavLinks";
+import walkTree from "../validation/walkTree";
 
 export default class HomePage extends React.Component {
+
+    constructor (props) {
+        super(props);
+        this.bigFormRef = React.createRef();
+    }
 
     render() {
 
@@ -32,8 +38,9 @@ export default class HomePage extends React.Component {
                 <form>
                     <TaxForm path="mainForm" name="personalRef" requireCountry/>
                     <TaxForm path="mainForm" name="spouseRef" allowArgentina={false}/>
-                    <BigForm path="mainForm" name="bigForm" />
+                    <BigForm path="mainForm" name="bigForm" ref={this.bigFormRef}/>
                     <p style={{ textAlign: 'right' }}>
+                        <Button onClick={() => walkTree(this.bigFormRef.current)} >Errors</Button>
                         <Button onClick={() => PageRouter.changePage('/tax-app/search')} >Search</Button>
                         <Button cnm="secondary" onClick={reset} >Reset</Button>
                         <Button cnm="primary" onClick={clk}>Continue</Button>

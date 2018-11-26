@@ -11,8 +11,10 @@ export class NavLinks extends React.PureComponent {
 
     link = (path) => {
         this.setState({ pop: false });
-        PageRouter.changePage(path);
         document.removeEventListener('click',this.docClick);
+        setTimeout( () => {
+            PageRouter.changePage(path);
+        }, 25 );
     };
 
     btn = () => {

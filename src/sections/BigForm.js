@@ -10,6 +10,7 @@ import CheckBox from "../components/CheckBox";
 import {stringTypeField} from "../validation/validateString";
 import {comboTypeField} from './ComboField';
 import RoomCount from './RoomCount';
+import walkTree from '../validation/walkTree';
 
 // fields
 
@@ -65,6 +66,7 @@ class BigForm extends React.PureComponent {
                 <FieldSet name="workAddress">
                     {Field( WorkAddress )}
                 </FieldSet>
+                <button onClick={() => walkTree(this)} type="button">Walk</button>
             </div>
         );
     }
