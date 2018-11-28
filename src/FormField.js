@@ -24,7 +24,7 @@ export default class FormField extends React.PureComponent {
         const optional = component ? undefined : (required ? undefined : 'optional');
 
         const value = this.props.value || '';
-        const full = path + '-' + (htmlId || name);
+        const full = path + '-' + name; // const full = path + '-' + (htmlId || name); // TODO htmlId screws up error link
         const labl = path + '-' + name;
 
         const error = (!!touched || showErrors) && validator && validator(value,this.props,path);

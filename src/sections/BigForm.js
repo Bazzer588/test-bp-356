@@ -11,6 +11,7 @@ import {stringTypeField} from "../validation/validateString";
 import {comboTypeField} from './ComboField';
 import RoomCount from './RoomCount';
 import walkTree from '../validation/walkTree';
+import ErrorList from "../components/ErrorList";
 
 // fields
 
@@ -36,8 +37,38 @@ const RoomsSection = { name: 'rooms', component: RoomCount, validateSection: () 
 
 class BigForm extends React.PureComponent {
 
+    checkErrors = () => {
+        this.props.setShowErrors(true);
+        const errors = walkTree(this);
+        this.setState({ errors });
+        if (errors && errors.length)
+            ErrorList.autoFocusPlease();
+    };
+
+    onDataChange = () => {
+
+    };
+
     render () {
+        const st = this.state || {};
+        let errors = st.errors;
+
         const Field = this.props.renderField;
+        const { /*owner, */ name, setRef, showErrors, showErrorsWrap } = this.props;
+        // console.log('OWNER is',owner);
+        console.log('showErrors',showErrors);
+        if (setRef) setRef(name,this);
+        /*if (owner) {
+            owner.theBigForm = this;
+            owner.things[name] = this;
+        }*/
+
+        if (!this.crazyFlag && (showErrors || showErrorsWrap)) { // why showErrorsWrap ????
+            this.crazyFlag = true;
+            errors = walkTree(this);      // YOU CAN'T CALL WALK TREE DURING RENDER !!!!
+            this.crazyFlag = false;
+        }
+
         return (
             <div>
                 <FieldSet name="Rooms" aria-label="List of rooms and contacts">
@@ -66,7 +97,8 @@ class BigForm extends React.PureComponent {
                 <FieldSet name="workAddress">
                     {Field( WorkAddress )}
                 </FieldSet>
-                <button onClick={() => walkTree(this)} type="button">Walk</button>
+                {errors && errors.length>0 && <ErrorList errors={errors} />}
+                <button onClick={this.checkErrors} type="button">Walk</button>
             </div>
         );
     }

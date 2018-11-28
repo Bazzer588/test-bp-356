@@ -15,6 +15,7 @@ import {stringTypeField} from "../validation/validateString";
 import {validateTree} from '../validation';
 import {NavLinks} from "../sections/NavLinks";
 import walkTree from "../validation/walkTree";
+import ErrorList from "../components/ErrorList";
 
 function validateBool (value, props, path, output) {
     const { name, required } = props;
@@ -107,13 +108,18 @@ class PaymentPage extends React.Component {
         window.history.back();
     };
 
+    checkErrs = () => {
+        const errors = walkTree(this);
+        this.setState({ errors });
+    };
+
     render() {
         const Field = this.props.renderField;
 
         const { loading, message, popup } = this.state || {};
         const dprops = loading ? { 'aria-disabled': true, 'aria-hidden': true, className: 'loader-blur' } : {};
 
-        const { inputErrors } = (this.state || {});
+        const { inputErrors, errors } = (this.state || {});
 
         const link = (e) => {
             this.setState({ inputErrors: undefined, errors: [] });
@@ -143,10 +149,12 @@ class PaymentPage extends React.Component {
                             </div>
                         }
 
+                        {errors && errors.length>0 && <ErrorList errors={errors} />}
+
                         <ButtonStrip>
                             <Button onClick={this.goBack}>Cancel</Button>
                             <Button id="ShowPopup" onClick={this.openPop}>Popup</Button>
-                            <Button onClick={() => walkTree(this)}>Check</Button>
+                            <Button onClick={this.checkErrs}>Check</Button>
                             <Button cnm="primary" onClick={this.doCheckout} >Make Payment</Button>
                         </ButtonStrip>
 

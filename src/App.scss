@@ -462,13 +462,15 @@ select:-webkit-autofill {
   transition: box-shadow 0.15s ease-in-out;
 }
 
-.alert a {
+.alert a,
+.alert .link {
   display: block;
   margin: 6px 0;
   padding: 4px 12px;
   text-decoration: none;
   color: inherit;
   border-radius: .25rem;
+  background-color: transparent;
   transition: box-shadow 0.15s ease-in-out;
 }
 
@@ -485,6 +487,7 @@ select:-webkit-autofill {
 }
 
 .alert a:focus,
+.alert .link:focus,
 .alert:focus {
   border-color: #80bdff;
   outline: 0;

@@ -1,15 +1,15 @@
 import React from "react";
 
 export default function walkTree (thing) {
-    console.log('WALK',thing);
+    //console.log('WALK',thing);
     const rendered = thing.render();
-    console.log('RENDER',rendered);
+    //console.log('RENDER',rendered);
 
-    const stt = Date.now();
+    // const stt = Date.now();
     // tree(re.props);
     const errors = [];
     tree2(rendered,errors);
-    console.log('TOOK',Date.now()-stt, 'for', errors.length, JSON.stringify(errors,null,' '));
+    //console.log('TOOK',Date.now()-stt, 'for', errors.length, JSON.stringify(errors,null,' '));
 
     return errors;
 }
@@ -55,11 +55,19 @@ function tree2 (rendered,errList) {
             tree2( Compo(props), errList );
         }
     } else if (props) {     // div, span, p etc
-        if (Compo==='select')
+        if (ignore(Compo))
             return;
         React.Children.forEach( props.children, (child) => {
             tree2(child,errList);
         });
+    }
+}
+
+function ignore (it) {
+    switch(it) {
+        case 'select':
+            return true;
+        default:
     }
 }
 

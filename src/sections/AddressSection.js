@@ -28,7 +28,7 @@ class AddressComponent extends React.PureComponent {
         if (value && value.country==='AX') { // Aland islands
             return ([
                 renderField( Country ),
-                renderField( Address1 ),
+                renderField( Address1, { required: false } ),
                 renderField( ZipCode )
             ]);
         }
