@@ -52,13 +52,20 @@ class PaymentPage extends React.Component {
 
     static defaultProps = {
         name: 'checkOutForm',
-        path: 'paymentPage'
+        path: 'paymentPage',
+        wrap: true  // onDataChange will only be called if this is set
     };
 
-    componentWillMount () {             // unsafe, use static getDerivedStateFromProps(nextProps, prevState)
+    constructor (props) {
+        super(props);
         const { name } = this.props;
-        this.props.updateRedux({ type: 'SET', key: name+'_T', value: {} });
+        this.props.updateRedux({ type: 'SET', key: name+'_T', value: {} }); // RESET touched FIELDS
     }
+
+    /*componentWillMount () {             // unsafe, use static getDerivedStateFromProps(nextProps, prevState)
+        const { name } = this.props;
+        this.props.updateRedux({ type: 'SET', key: name+'_T', value: {} }); // RESET touched FIELDS
+    }*/
 
     componentDidUpdate (prevProps, prevState, snapshot) { // prevProps, prevState, snapshot
         //console.log('DID UPTATE');
@@ -108,9 +115,23 @@ class PaymentPage extends React.Component {
         window.history.back();
     };
 
+    onDataChange = (changed,errs) => {
+        //console.log('PP DCH',errs);
+        if (errs) {
+            const form = FormSection(PaymentPage);
+            const bf = new form({...this.props, setRef: null, value: changed });
+            const errors = walkTree(bf);
+            // console.log('DCH',changed.workAddress,errors);
+            this.setState({errors});
+        }
+    };
+
     checkErrs = () => {
+        this.props.setShowErrors(true);
         const errors = walkTree(this);
         this.setState({ errors });
+        if (errors && errors.length)
+            ErrorList.autoFocusPlease();
     };
 
     render() {
@@ -151,12 +172,12 @@ class PaymentPage extends React.Component {
 
                         {errors && errors.length>0 && <ErrorList errors={errors} />}
 
-                        <ButtonStrip>
+                        <p style={{ textAlign: 'right', marginTop: '12px' }}>
                             <Button onClick={this.goBack}>Cancel</Button>
                             <Button id="ShowPopup" onClick={this.openPop}>Popup</Button>
                             <Button onClick={this.checkErrs}>Check</Button>
                             <Button cnm="primary" onClick={this.doCheckout} >Make Payment</Button>
-                        </ButtonStrip>
+                        </p>
 
                         <p className="App-intro">
                             Terms & conditions
@@ -192,7 +213,7 @@ function Header ({ head }) {
     );
 }
 
-
+/*
 class ButtonStrip extends React.PureComponent {
     render () {
         return (
@@ -202,7 +223,7 @@ class ButtonStrip extends React.PureComponent {
         );
     }
 }
-
+*/
 
 // #######################   promise code   ###################################
 

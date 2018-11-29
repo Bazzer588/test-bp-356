@@ -37,7 +37,17 @@ const RoomsSection = { name: 'rooms', component: RoomCount, validateSection: () 
 
 class BigForm extends React.PureComponent {
 
+    static defaultProps = {
+        wrap: true  // onDataChange will only be called if this is set
+    };
+
+    /*static getDerivedStateFromProps(props, state) {
+        console.log('GDSFP',props.showErrorsWrap);
+        return null;
+    }*/
+
     checkErrors = () => {
+        // console.log('BIGFORM',this.props);
         this.props.setShowErrors(true);
         const errors = walkTree(this);
         this.setState({ errors });
@@ -45,8 +55,14 @@ class BigForm extends React.PureComponent {
             ErrorList.autoFocusPlease();
     };
 
-    onDataChange = () => {
-
+    onDataChange = (changed,errs) => {
+        if (errs) {
+            const form = FormSection(BigForm);
+            const bf = new form({...this.props, setRef: null, value: changed });
+            const errors = walkTree(bf);
+            // console.log('DCH',changed.workAddress,errors);
+            this.setState({errors});
+        }
     };
 
     render () {
@@ -54,23 +70,24 @@ class BigForm extends React.PureComponent {
         let errors = st.errors;
 
         const Field = this.props.renderField;
-        const { /*owner, */ name, setRef, showErrors, showErrorsWrap } = this.props;
+        const { /*owner, */ name, setRef /*, showErrors, showErrorsWrap*/, errorsAtTop } = this.props;
         // console.log('OWNER is',owner);
-        console.log('showErrors',showErrors);
+        // console.log('showErrors',showErrors);
         if (setRef) setRef(name,this);
         /*if (owner) {
             owner.theBigForm = this;
             owner.things[name] = this;
         }*/
 
-        if (!this.crazyFlag && (showErrors || showErrorsWrap)) { // why showErrorsWrap ????
+        /*if (!this.crazyFlag && (showErrors || showErrorsWrap)) { // why showErrorsWrap ????
             this.crazyFlag = true;
             errors = walkTree(this);      // YOU CAN'T CALL WALK TREE DURING RENDER !!!!
             this.crazyFlag = false;
-        }
+        }*/
 
         return (
             <div>
+                {errorsAtTop && errors && errors.length>0 && <ErrorList errors={errors} />}
                 <FieldSet name="Rooms" aria-label="List of rooms and contacts">
                     {Field( RoomsSection )}
                 </FieldSet>
@@ -97,11 +114,13 @@ class BigForm extends React.PureComponent {
                 <FieldSet name="workAddress">
                     {Field( WorkAddress )}
                 </FieldSet>
-                {errors && errors.length>0 && <ErrorList errors={errors} />}
+                {!errorsAtTop && errors && errors.length>0 && <ErrorList errors={errors} />}
                 <button onClick={this.checkErrors} type="button">Walk</button>
             </div>
         );
     }
 }
 
-export default FormConnect( FormSection(BigForm) );
+const form = FormSection(BigForm);
+
+export default FormConnect(form);

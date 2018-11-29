@@ -5,10 +5,10 @@ export default function walkTree (thing) {
     const rendered = thing.render();
     //console.log('RENDER',rendered);
 
-    // const stt = Date.now();
-    // tree(re.props);
+    //const stt = Date.now();
     const errors = [];
     tree2(rendered,errors);
+    //console.log('TOOK',Date.now()-stt, 'for', errors.length);
     //console.log('TOOK',Date.now()-stt, 'for', errors.length, JSON.stringify(errors,null,' '));
 
     return errors;

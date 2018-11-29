@@ -54,6 +54,13 @@ window.redux = store;
 
 function translate (t,required) {
     if (!t) return 'Undefined';
+    if (t.error) {
+        if (t.error==='minLength') return 'Please enter at least '+t.values.minLength+' characters for '+t.name;
+        if (t.name==='langCode') {
+            if (t.error==='required') return '这是一个非常长的文本行，必须包装在一个小显示器上。';
+        }
+        return t.path + '-' + t.name + '-' + t.error;
+    }
     if (t.endsWith('country-pleaseSelect')) return required ? 'Choose a country' : 'No country selected';
     if (t.endsWith('lang-pleaseSelect')) return required ? 'Choose a language' : 'No language selected';
     if (t.endsWith('gender-pleaseSelect')) return 'Please select a gender';
