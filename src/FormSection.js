@@ -19,7 +19,7 @@ export default function make (Wrapped, isArray) {
         }
 
         setShowErrors = (showErrors) => {
-            console.log('YOU CALLED IT',this);
+            console.log('CALLED setShowErrors',this);
             this.setState({ showErrors });
         };
 

@@ -462,18 +462,6 @@ select:-webkit-autofill {
   transition: box-shadow 0.15s ease-in-out;
 }
 
-.alert a,
-.alert .link {
-  display: block;
-  margin: 6px 0;
-  padding: 4px 12px;
-  text-decoration: none;
-  color: inherit;
-  border-radius: .25rem;
-  background-color: transparent;
-  transition: box-shadow 0.15s ease-in-out;
-}
-
 .alert-primary {
   color: #004085;
   background-color: #cce5ff;
@@ -484,6 +472,22 @@ select:-webkit-autofill {
   color: #721c24;
   background-color: #f8d7da;
   border-color: #f5c6cb;
+}
+
+.alert a,
+.alert .link {
+  display: block;
+  margin: 6px 0;
+  padding: 4px 12px;
+  text-decoration: none;
+  color: inherit;
+  border-radius: .25rem;
+  background-color: transparent;
+  transition: box-shadow 0.15s ease-in-out;
+  max-width: 100%;
+  white-space: pre-wrap;
+  text-align: left;
+  // word-wrap: break-word;   // IE ?
 }
 
 .alert a:focus,
@@ -499,6 +503,12 @@ select:-webkit-autofill {
   border-color: #ff8080;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+.alert .link:active {
+  color: #fff;
+  background-color: #007BFF;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 /** remove round corners */
@@ -546,5 +556,22 @@ select:-webkit-autofill {
   .modal-footer {
     background-color: #fff6f2;
     border-color: #fbd7d7;
+  }
+}
+
+.genTable {
+  border-collapse: collapse;
+
+  tr {
+    cursor: default;
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+
+  td {
+    border: 1px solid #e0e0e0;
+    vertical-align: top;
+    padding: 2px 8px;
   }
 }

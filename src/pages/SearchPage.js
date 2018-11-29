@@ -51,7 +51,7 @@ export default class SearchPage extends React.Component {
                             <div id="444">Employment details<span className="fright">Error</span></div>
                             <div id="555" disabled>Summary</div>
                         </ListGroup>
-                        <BigForm path="mainForm" name="bigForm" />
+                        <BigForm path="mainForm" name="bigForm" errorsAtTop />
                         <p style={{ textAlign: 'right' }}>
                             <Button onClick={this.goHomePage} >Home page</Button>
                             <Button cnm="primary" onClick={clk}>Continue</Button>

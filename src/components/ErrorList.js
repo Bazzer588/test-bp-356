@@ -1,4 +1,5 @@
 import React from 'react';
+import {translate} from "./AppConfig";
 
 let grab;
 
@@ -6,26 +7,39 @@ export default class ErrorList extends React.Component {
 
     shouldComponentUpdate ( nextProps, nextState, nextContext ) {
         const { errors } = this.props;
+
+        this.grabCheck();
+
         if (nextProps.errors.length === errors.length) {
-            // TODO have to check each as error code may have changed
             const next = nextProps.errors;
             return !errors.every( (err,index) => {
                 const nxt = next[index];
-                return nxt.error === err.error && nxt.name === err.name;
+                return (
+                    nxt.error === err.error &&
+                    nxt.name === err.name &&
+                    nxt.path === err.path
+                    // TODO values, field
+                );
             });
         }
         return true;
     }
 
-    render () {
-        console.log('RENDER ERROS');
-        const { errors } = this.props;
+    grabCheck () {
         if (grab) {
             grab = false;
             setTimeout( () => {
-                document.getElementById('theErrors').focus();
+                const t = document.getElementById('theErrors');
+                t.focus();
+                t.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
             }, 25);
         }
+    }
+
+    render () {
+        // console.log('RENDER ERROS');
+        this.grabCheck();
+        const { errors } = this.props;
         return (
             <div id="theErrors" tabIndex="0" className="alert alert-primary">
                 <p>Fix these errors</p>
@@ -42,6 +56,7 @@ ErrorList.autoFocusPlease = () => {
 function list (errors) {
     const r = [];
     errors.forEach( err => {
+        const tx = translate(err); // {err.path}-{err.name}-{err.error}
         r.push(
             <button
                 className='btn link'
@@ -49,7 +64,7 @@ function list (errors) {
                 type="button"
                 key={err.path+'/'+err.name+'/'+err.error}
             >
-                {err.path}-{err.name}-{err.error}
+                {tx}
             </button>
         );
     });
@@ -57,11 +72,13 @@ function list (errors) {
 }
 
 function link (err) {
-    console.log('link',err);
+    // console.log('link',err);
     const id = err.path+'-'+err.name;
     const t = document.getElementById(id);
     if (t) {
-        t.focus();
-        return;
+        t.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+        setTimeout(() => {
+            t.focus();
+        },300);
     }
 }

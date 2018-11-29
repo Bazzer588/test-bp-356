@@ -8,6 +8,7 @@ import FormConnect from "../FormConnect";
 import {stringTypeField} from "../validation/validateString";
 import {makeRepeatable} from "../FormListSection";
 import {searchTypeField} from "../components/SmartSearch";
+import {fetchAirports} from "./fetchAirports";
 
 const Geno = makeGenericSection('testThing',[
     searchTypeField('cnid',{ required: true }),
@@ -28,6 +29,27 @@ class RepeaterPage extends React.Component {
         page.fadeOutPopup( () => alert('done') );
     }
 
+    testApi = () => {
+        const { value, page } = this.props;
+        const v = value.findAirport;
+        fetchAirports(v)
+            .then( list => {
+                console.log('PAGE GOT',list);
+
+                if (Array.isArray(list)) {
+                    const rows = [];
+                    list.forEach( port => {
+                        rows.push(<tr key={port.Code}><td>{port.Code}</td><td>{port.City}</td><td>{port.Name}</td><td>{port.Country}</td></tr>);
+                    });
+                    const text = <table className="genTable"><tbody>{rows}</tbody></table>;
+                    popAlert({page, title: 'Airports', text });
+                    return;
+                }
+
+                popAlert({page, title: 'Airports', text: JSON.stringify(list) });
+            });
+    };
+
     render () {
         const { page, renderField } = this.props;
         return (
@@ -35,15 +57,18 @@ class RepeaterPage extends React.Component {
             <header className="App-header">
                 <NavLinks/>
                 <h1 className="App-title">
-                    Repeater page
+                    Repeat page
                 </h1>
             </header>
-            <form autoComplete="off">
+            <form autoComplete="off" onSubmit={(e) => { e.preventDefault(); console.log('WTF'); this.testApi(); }}>
                 <p><br/>Yet another page...</p>
                 <Button onClick={() => page.setPopupComp( MyPop, this )}>Component</Button>
                 <Button onClick={() => popAlert({page, title: 'Warning', text: 'You better watch out'})}>Warning</Button>
                 <Button onClick={() => popAlert({page, title: 'Info', text: 'Good news! Something good just happened.'})}>Info</Button>
                 <Button onClick={() => popAlert({page, title: 'Values', text: JSON.stringify(this.props.value,null,' ')})}>Values</Button>
+                {renderField(stringTypeField('findAirport'))}
+                <br/>
+                <Button onClick={this.testApi}>Find</Button>
                 <h2>List of things</h2>
                 {renderField(GList)}
             </form>
