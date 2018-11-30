@@ -11,10 +11,23 @@ export default class BasePage extends React.Component {
     }
 
     setPopupComp (cls, owner, popupProps) {
+        //const vs = document.body.scrollHeight > document.body.clientHeight;
+        //console.log('VS',vs, document.body.scrollHeight, document.body.clientHeight);
+        const ww = window.innerWidth > document.documentElement.clientWidth;
+        console.log('WW', window.innerWidth, document.documentElement.clientWidth);
+
         this.activePopupOnClose = null;
         const state = this.state || {};
         const curr = state.ThePopup || state.PopupComponent;
         this.setState({ ThePopup: null, PopupComponent: cls, PopupOwner: owner, PopupProps: popupProps, replace: !!curr });
+        const d = document.body.classList;
+        if (cls) {
+            d.add(ww ? 'doc-modal-17' : 'doc-modal');
+        }
+        else {
+            d.remove('doc-modal');
+            d.remove('doc-modal-17');
+        }
     }
 
     fadeOutPopup = (fn) => {
@@ -124,9 +137,11 @@ function renderPopup (props) {
     modal-backdrop is the dark layer with 0.5 opacity
 */
 
-function renderOuterPopup (page, Thing, owner, popProps, replace) {
+function renderOuterPopup (page, PopupComponent, owner, popProps, replace) {
 
     setTimeout( () => { foc('exampleModalLive'); }, 100); // focus to modal
+
+    // you can apply extra styles to 'modal-dialog' below to change max width
 
     return (
         <>
@@ -134,7 +149,7 @@ function renderOuterPopup (page, Thing, owner, popProps, replace) {
                  onClick={() => page.fadeOutPopup()}
             >
                 <div className="modal-dialog" role="document">
-                    <Thing page={page} owner={owner} replace={replace}/>
+                    <PopupComponent page={page} owner={owner} replace={replace}/>
                 </div>
             </div>
             <div className="modal-backdrop" tabIndex="0" onFocus={() => foc('closePop')}/>
@@ -192,10 +207,14 @@ function innerPopup ({ page, owner, title, children, continueAction, buttons, re
 export const ModalPopup = innerPopup;
 
 
-/* find focusable elements
+/*  find focusable elements
 
-var focusable = document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-var firstFocusable = focusable[0];
-var lastFocusable = focusable[focusable.length - 1];
+    var focusable = document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    var firstFocusable = focusable[0];
+    var lastFocusable = focusable[focusable.length - 1];
+
+    is scrollbar visible?
+
+    https://tylercipriani.com/blog/2014/07/12/crossbrowser-javascript-scrollbar-detection/
 
 */

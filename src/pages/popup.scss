@@ -6,15 +6,22 @@ p {                 // see _reboot.scss
 
 // --------------------------
 
-.modal-open .modal {
-  overflow-x: hidden;
-  overflow-y: auto;
+.doc-modal {
+  overflow: hidden;
 }
 
-.modal {
-  z-index: 1072;
+.doc-modal-17 {
+  overflow: hidden;
+  padding-right: 17px;
 }
+
+/*.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}*/
+
 .modal {
+  //z-index: 1072;
   text-align: left;
   position: fixed;
   top: 0;
@@ -22,9 +29,12 @@ p {                 // see _reboot.scss
   bottom: 0;
   left: 0;
   z-index: 1050;
-  display: none;
-  overflow: hidden;
+  //display: none;
+  //overflow: hidden;
   outline: 0;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 // ==========================
@@ -50,9 +60,15 @@ p {                 // see _reboot.scss
 /*@media (min-width: 576px)*/
 
 .modal-dialog {
-  padding: 0 13px;  // BP
+  // padding: 0 13px;  // BP
   max-width: 500px;       // WIDTH of popup area
-  margin: 1.75rem auto;   // this determines margin above, ie vertical position
+  // margin: 1.75rem auto;   // this determines margin above, ie vertical position
+  margin-left: auto;
+  margin-right: auto;
+  // height: 100%; // BP v size
+  position: relative;
+  box-sizing: border-box;
+  padding: 1.75rem 13px;  // BP
 }
 /*
 .modal-dialog {
@@ -73,6 +89,7 @@ p {                 // see _reboot.scss
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  flex-grow: 1;
   width: 100%;
   pointer-events: auto;
   background-color: #fff;
@@ -80,6 +97,8 @@ p {                 // see _reboot.scss
   border: 1px solid rgba(0,0,0,.2);
   border-radius: .3rem;
   outline: 0;
+  //max-height: 100%; // BP v size
+  margin-bottom: 32px; // space below if scroll
 }
 
 .modal-header {
@@ -104,6 +123,8 @@ p {                 // see _reboot.scss
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1rem;
+  //overflow-y: auto; // BP v size
+  //overflow: hidden;
 }
 
 .modal-footer {

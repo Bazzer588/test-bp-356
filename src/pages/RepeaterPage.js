@@ -39,10 +39,10 @@ class RepeaterPage extends React.Component {
                 if (Array.isArray(list)) {
                     const rows = [];
                     list.forEach( port => {
-                        rows.push(<tr key={port.Code}><td>{port.Code}</td><td>{port.City}</td><td>{port.Name}</td><td>{port.Country}</td></tr>);
+                        rows.push(<tr key={port.Code}><td title={JSON.stringify(port,null,' ')}>{port.Code}</td><td>{port.City}</td><td>{port.Name}</td><td>{port.Country}</td></tr>);
                     });
                     const text = <table className="genTable"><tbody>{rows}</tbody></table>;
-                    popAlert({page, title: 'Airports', text });
+                    popAlert({page, title: 'Aeropuertos', text });
                     return;
                 }
 
@@ -99,7 +99,7 @@ function popAlert ({page,title,text}) {
     page.setPopupComp(() => {
         return (
             <ModalPopup page={page} title={title}>
-                <p>{text}</p>
+                {text}
             </ModalPopup>
         );
     });
