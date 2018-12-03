@@ -73,10 +73,13 @@ function list (errors) {
 
 function link (err) {
     // console.log('link',err);
-    const id = err.path+'-'+err.name;
+    const id = err.linkToPath ? err.path : err.path+'-'+err.name;
+
+    const x = document.querySelector("label[for='" + id + "']");
+
     const t = document.getElementById(id);
     if (t) {
-        t.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+        (x || t).scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
         setTimeout(() => {
             t.focus();
         },300);

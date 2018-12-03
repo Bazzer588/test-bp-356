@@ -228,6 +228,7 @@ select:-webkit-autofill {
 /* ---------------------- buttons ------------- */
 
 .btn {
+  position: relative; // BP prevent shift on IE ?
   display: inline-block;
   padding: 5px 12px 6px;
   margin-bottom: 0;
@@ -248,6 +249,10 @@ select:-webkit-autofill {
   border: 1px solid transparent;
   border-radius: 4px;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+  * {
+    position: relative; // ie shift
+  }
 }
 
 .btn-default {

@@ -12,6 +12,7 @@ import {comboTypeField} from './ComboField';
 import RoomCount from './RoomCount';
 import walkTree from '../validation/walkTree';
 import ErrorList from "../components/ErrorList";
+import makeMultiInput from "../components/MultiInput";
 
 // fields
 
@@ -23,6 +24,29 @@ const ConsentEmail = { name: 'consentEmail', component: CheckBox, showLabel: fal
 const ConsentOth = { name: 'consentOther', component: CheckBox, showLabel: false, label: 'Other consent option.' };
 const Thingy = comboTypeField('regNumber',{ options: 'country', required: false, minLength: 4, maxLength: 12 });
 const Whatever = comboTypeField('langCode',{ part1: 'lang', options: 'languages', required: true, minLength: 4, maxLength: 12 });
+
+const Another = makeMultiInput('andMore', { defaultField: 1, inputs: [
+        stringTypeField('zurgThing',{ component: Select, options: 'languages' }),
+        stringTypeField('woota',{ minLength: 4, maxLength: 12 }),
+        stringTypeField('utta',{ component: Select, options: 'yesno' })
+        //stringTypeField('zorb',{})
+    ]});
+
+const DateThing = makeMultiInput('dob', {
+    required: true,
+    inputs: [
+        stringTypeField('day',  { maxLength: 2, placeholder: 'DD', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartDay' }),
+        stringTypeField('month',{ maxLength: 2, placeholder: 'MM', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartMonth' }),
+        stringTypeField('year', { minLength: 4, maxLength: 4, placeholder: 'YYYY', style: { width: '90px' }, ariaLabel: 'datePartYear' }),
+    ]});
+
+const DateMonthThing = makeMultiInput('expiryDate', {
+    required: true,
+    inputs: [
+        stringTypeField('day',  { maxLength: 2, placeholder: 'DD', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartDay' }),
+        stringTypeField('month',{ component: Select, options: 'months', span: { style: { marginRight: '10px', display: 'inline-block' } } } ),
+        stringTypeField('year', { minLength: 4, maxLength: 4, placeholder: 'YYYY', style: { width: '90px' }, ariaLabel: 'datePartYear' }),
+    ]});
 
 // declare sections
 
@@ -101,6 +125,9 @@ class BigForm extends React.PureComponent {
                     {Field( ConsentOth )}
                     {Field( Thingy )}
                     {Field( Whatever )}
+                    {Field( Another )}
+                    {Field( DateThing )}
+                    {Field( DateMonthThing )}
                     </div>
                 </FieldSet>
                 <FieldSet name="homeAddress">

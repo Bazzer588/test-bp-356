@@ -23,3 +23,7 @@ export default class Button extends React.PureComponent {
         return <button className={"btn btn-"+cnm} id={id} onClick={onClick} type="button">{children}</button>;
     }
 }
+
+/** IE 11 - add a <span> to children and no shifting
+ *
+ */

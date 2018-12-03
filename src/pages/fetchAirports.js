@@ -32,7 +32,7 @@ export function fetchAirports (code) {
         })
         .catch( err => {
             console.log('WAS AN ERROR',err);
-            return err;
+            return { err, errs: String(err) };
         });
 }
 
