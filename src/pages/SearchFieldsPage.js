@@ -3,7 +3,7 @@ import FormSection from "../FormSection";
 import FormConnect from "../FormConnect";
 import {stringTypeField} from "../validation/validateString";
 import {searchTypeField} from '../components/SmartSearch';
-import Select from "../components/Select";
+import {selectTypeField} from "../components/Select";
 import Button from "../components/Button";
 import PageRouter from "../components/PageRouter";
 import CheckBoxMulti from "../components/CheckBoxMulti";
@@ -15,7 +15,7 @@ import {NavLinks} from "../sections/NavLinks";
 const S1 = stringTypeField('biscuits',{ required: true });
 const SX = searchTypeField('origin');
 const SZ = searchTypeField('destination');
-const Country = stringTypeField( 'alternate', {component: Select, options: 'country', label: 'Country', required: false });
+const Country = selectTypeField( 'alternate', { options: 'country', label: 'Country', required: false });
 //const Languages = { name: 'languageCheck', component: CheckBoxMulti, showLabel: false, label: 'Please select languages in which you are fluent.', required: true, options: 'languages',
 //    validator: () => {} };
 
@@ -26,7 +26,7 @@ const Languages = stringTypeField('languageCheck', { component: CheckBoxMulti, s
 const PersonList = makeRepeatable('personList',makePersonSection(),true,undefined);
 
 //const G = searchTypeField('gen', {});
-const G = stringTypeField( 'gen', {component: Select, options: 'languages', label: 'Gen', required: true });
+const G = selectTypeField( 'gen', { options: 'languages', label: 'Gen', required: true });
 //const G = stringTypeField( 'gen', { required: true, showLabel: false });
 const LangList = makeRepeatable('languageList',G,true,{ addLabel: 'Add a language', simpleField: true, maxLength: 4 });
 

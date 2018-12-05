@@ -19,11 +19,13 @@ function MultiInput (props) {
                 const type = component ? undefined : 'text';
                 const key = id+'-'+name;
                 const full = index===defaultField ? id : key;
+                const label = 'aria thing '+props.id+' - '+name;
                 acc.push(
                     <span style={{ display: 'inline-block', verticalAlign: 'top' }} key={key} {...span}>
                         <Compo
                             aria-describedby={props['aria-describedby']}
                             aria-invalid={props['aria-invalid']}
+                            aria-label={label}
                             {...rest}
                             id={full}
                             value={value[name]}

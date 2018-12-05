@@ -1,11 +1,11 @@
 import React from 'react';
 import {stringTypeField} from '../validation/validateString';
 import FormSection from '../FormSection';
-import Select from '../components/Select';
+import {selectTypeField} from '../components/Select';
 //import {translate} from "../components/AppConfig";
 
 // name/number + street ?
-const Country = stringTypeField( 'country', {component: Select, options: 'country', required: true }); // TODO selectTypeField
+const Country = selectTypeField( 'country', { options: 'country', required: true });
 const Address1 = stringTypeField( 'address1', {maxLength: 35, required: true });
 const Area = stringTypeField( 'address2', {maxLength: 35, required: false });
 const City = stringTypeField( 'city', {maxLength: 35, required: false });

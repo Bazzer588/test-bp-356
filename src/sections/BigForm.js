@@ -5,7 +5,7 @@ import FieldSet from '../components/FieldSet';
 
 import {makeAddressSection} from "./AddressSection";
 import ContactSection, {validateContactSection} from "./ContactSection";
-import Select from "../components/Select";
+import Select, {selectTypeField} from "../components/Select";
 import CheckBox from "../components/CheckBox";
 import {stringTypeField} from "../validation/validateString";
 import {comboTypeField} from './ComboField';
@@ -16,9 +16,9 @@ import makeMultiInput from "../components/MultiInput";
 
 // fields
 
-const CarsInHouse = stringTypeField( 'carsInHouse', {component: Select, required: true, rangeFrom: 0, rangeTo: 4, inputClass: 'narrow' });
-const ParkingSpaces = stringTypeField( 'parkingSpaces', {component: Select, required: false, rangeFrom: 0, rangeTo: 2, inputClass: 'narrow' });
-const AgeRetire = stringTypeField( 'preferredRetireAge', {component: Select, required: false, rangeFrom: 70, rangeTo: 55, inputClass: 'narrow' });
+const CarsInHouse = selectTypeField( 'carsInHouse', { required: true, rangeFrom: 0, rangeTo: 4, inputClass: 'narrow' });
+const ParkingSpaces = selectTypeField( 'parkingSpaces', { required: false, rangeFrom: 0, rangeTo: 2, inputClass: 'narrow' });
+const AgeRetire = selectTypeField( 'preferredRetireAge', { required: false, rangeFrom: 70, rangeTo: 55, inputClass: 'narrow' });
 const ConsentSMS = { name: 'consentSMS', component: CheckBox, showLabel: false, label: 'Please send me SMS messages about the progress of my application.' };
 const ConsentEmail = { name: 'consentEmail', component: CheckBox, showLabel: false, label: 'Sign me up for regular email alerts.' };
 const ConsentOth = { name: 'consentOther', component: CheckBox, showLabel: false, label: 'Other consent option.' };
@@ -26,9 +26,9 @@ const Thingy = comboTypeField('regNumber',{ options: 'country', required: false,
 const Whatever = comboTypeField('langCode',{ part1: 'lang', options: 'languages', required: true, minLength: 4, maxLength: 12 });
 
 const Another = makeMultiInput('andMore', { defaultField: 1, inputs: [
-        stringTypeField('zurgThing',{ component: Select, options: 'languages' }),
+        selectTypeField('zurgThing',{ options: 'languages' }),
         stringTypeField('woota',{ minLength: 4, maxLength: 12 }),
-        stringTypeField('utta',{ component: Select, options: 'yesno' })
+        selectTypeField('utta',{ options: 'yesno' })
         //stringTypeField('zorb',{})
     ]});
 
@@ -44,7 +44,7 @@ const DateMonthThing = makeMultiInput('expiryDate', {
     required: true,
     inputs: [
         stringTypeField('day',  { maxLength: 2, placeholder: 'DD', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartDay' }),
-        stringTypeField('month',{ component: Select, options: 'months', span: { style: { marginRight: '10px', display: 'inline-block' } } } ),
+        selectTypeField('month',{ options: 'months', span: { style: { marginRight: '10px', display: 'inline-block' } } } ),
         stringTypeField('year', { minLength: 4, maxLength: 4, placeholder: 'YYYY', style: { width: '90px' }, ariaLabel: 'datePartYear' }),
     ]});
 

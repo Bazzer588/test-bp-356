@@ -105,7 +105,7 @@ class FormListSection extends React.PureComponent {
     };
 
     render () {
-        const { name, path, fixedList, listLength, renderField, repeatThing, addLabel, simpleField, maxLength = 999 } = this.props;
+        const { name, path, fixedList, listLength, renderField, repeatThing, addLabel, simpleField, maxLength = 999, extras } = this.props;
         const base = this.baseArray();
         const { value = base } = this.props;
         const cc = fixedList ? value.length : parseInt(listLength);
@@ -134,6 +134,7 @@ class FormListSection extends React.PureComponent {
                     <label htmlFor={path+'-'+name+'-0'}>{path}-{name}</label>
                 }
                 {arr}
+                {extras}
                 {fixedList && cc<maxLength &&
                     <div style={{ paddingBottom: '8px' }}>
                     <button

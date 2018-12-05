@@ -1,13 +1,12 @@
 import React from 'react';
 import FormSection from '../FormSection';
-import Select from '../components/Select';
-import {stringTypeField} from "../validation/validateString";
+import {selectTypeField} from '../components/Select';
 import {makeContactSection} from "./ContactSection";
 import Button from "../components/Button";
 import {validateTree} from "../validation";
 import {makeRepeatable} from "../FormListSection";
 
-const RoomsRequired = stringTypeField( 'roomsRequired', {component: Select, required: true, rangeFrom: 1, rangeTo: 6, inputClass: 'narrow' });
+const RoomsRequired = selectTypeField( 'roomsRequired', { required: true, rangeFrom: 1, rangeTo: 6, inputClass: 'narrow' });
 
 function validateRoomCount (v,value = {}) {
     v(RoomsRequired);

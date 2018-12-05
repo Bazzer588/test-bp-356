@@ -1,5 +1,6 @@
 import React from "react";
 import {translate, getOptionList, getOptionDescriptions} from './AppConfig';
+import validateString from "../validation/validateString";
 
 export default function Select (props) {
     // console.log('SELECT',props);
@@ -63,3 +64,5 @@ function isExcluded (val, current, excludeValues) {
 // https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box
 
 const statMap = {}; // TODO should be stored in language resources
+
+export const selectTypeField = (name,props) => { return { name, component: Select, ...props, validator: validateString } };

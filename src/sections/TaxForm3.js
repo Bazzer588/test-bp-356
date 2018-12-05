@@ -2,7 +2,7 @@ import React from "react";
 import FormSection from '../FormSection';
 import FormConnect from '../FormConnect';
 import ContactSection, {validateContactSection} from "./ContactSection";
-import Select from "../components/Select";      // eslint-disable-line no-unused-vars
+import {selectTypeField} from "../components/Select";      // eslint-disable-line no-unused-vars
 import Radios from "../components/Radios";
 import { stringTypeField } from '../validation/validateString'
 import {translate} from '../components/AppConfig';
@@ -31,8 +31,7 @@ const stripArgentina = (input) => {
     //return input;
 };
 
-// const Country = stringTypeField( 'country', {component: Select, options: 'country', required: false, allowOption: allowCountry, stripProps: stripArgentina });
-const Country = stringTypeField( 'country', {component: Select, options: 'country', required: false, allowOption: allowCountry, stripProps: stripArgentina, label: 'Country' });
+const Country = selectTypeField( 'country', { options: 'country', required: false, allowOption: allowCountry, stripProps: stripArgentina, label: 'Country' });
 
 class TaxForm extends React.PureComponent {
 

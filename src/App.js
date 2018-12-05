@@ -9,6 +9,7 @@ import SearchFieldsPage from './pages/SearchFieldsPage';
 import PopupTestPage from './pages/PopupTestPage';
 import RepeaterPage from './pages/RepeaterPage';
 import LazyPage from './components/LazyPage';
+import DemoPage2 from "./pages/DemoPage2";
 
 PageRouter.defineRoute('/',HomePage,'React tax application');
 PageRouter.defineRoute('/tax-app',HomePage,'React tax application');
@@ -16,6 +17,7 @@ PageRouter.defineRoute('/tax-app/search',SearchPage,'React search page');
 PageRouter.defineRoute('/tax-app/deals',SearchFieldsPage,'React hot deals page');
 PageRouter.defineRoute('/tax-app/checkout',PaymentPage,'Checkout page');
 PageRouter.defineRoute('/tax-app/repeat',RepeaterPage,'Repeater page');
+PageRouter.defineRoute('/tax-app/another',DemoPage2,'Another');
 
 // PageRouter.defineRoute('/tax-app/code-split',CodeSplitPage1,'Code Split Test Page 1');
 

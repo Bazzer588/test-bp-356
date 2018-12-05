@@ -4,7 +4,7 @@ import FormSection from "../FormSection";
 import {stringTypeField} from "../validation/validateString";
 import FormConnect from "../FormConnect";
 import Radios from "../components/Radios";
-import Select from "../components/Select";
+import {selectTypeField} from "../components/Select";
 
 function PopSectionForm (props) {
 
@@ -19,7 +19,7 @@ function PopSectionForm (props) {
     return (
         <ModalPopup page={page} replace={replace} title="Popup loaded by code splitting" continueAction={finito}>
             <form>
-                {renderField(stringTypeField('AgeOfEldestChild',{ component: Select, rangeFrom: 0, rangeTo: 21 }))}
+                {renderField(selectTypeField('AgeOfEldestChild',{ rangeFrom: 0, rangeTo: 21 }))}
                 {renderField(stringTypeField('AgreeYouMust',{ component: Radios, showLabel: false, className: 'horizontal', label: 'You must comply', options: 'yesno' }))}
                 {renderField(stringTypeField('CostOfLastHols'))}
             </form>
