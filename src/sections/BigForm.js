@@ -5,7 +5,7 @@ import FieldSet from '../components/FieldSet';
 
 import {makeAddressSection} from "./AddressSection";
 import ContactSection, {validateContactSection} from "./ContactSection";
-import Select, {selectTypeField} from "../components/Select";
+import {selectTypeField} from "../components/Select";
 import CheckBox from "../components/CheckBox";
 import {stringTypeField} from "../validation/validateString";
 import {comboTypeField} from './ComboField';
@@ -25,7 +25,8 @@ const ConsentOth = { name: 'consentOther', component: CheckBox, showLabel: false
 const Thingy = comboTypeField('regNumber',{ options: 'country', required: false, minLength: 4, maxLength: 12 });
 const Whatever = comboTypeField('langCode',{ part1: 'lang', options: 'languages', required: true, minLength: 4, maxLength: 12 });
 
-const Another = makeMultiInput('andMore', { defaultField: 1, inputs: [
+const Another = makeMultiInput('andMore', { defaultField: 1, typeName: 'testType',
+    inputs: [
         selectTypeField('zurgThing',{ options: 'languages' }),
         stringTypeField('woota',{ minLength: 4, maxLength: 12 }),
         selectTypeField('utta',{ options: 'yesno' })
@@ -33,7 +34,7 @@ const Another = makeMultiInput('andMore', { defaultField: 1, inputs: [
     ]});
 
 const DateThing = makeMultiInput('dob', {
-    required: true,
+    required: true, typeName: 'dateInput',
     inputs: [
         stringTypeField('day',  { maxLength: 2, placeholder: 'DD', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartDay' }),
         stringTypeField('month',{ maxLength: 2, placeholder: 'MM', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartMonth' }),
@@ -41,7 +42,7 @@ const DateThing = makeMultiInput('dob', {
     ]});
 
 const DateMonthThing = makeMultiInput('expiryDate', {
-    required: true,
+    required: true, typeName: 'dateInput',
     inputs: [
         stringTypeField('day',  { maxLength: 2, placeholder: 'DD', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartDay' }),
         selectTypeField('month',{ options: 'months', span: { style: { marginRight: '10px', display: 'inline-block' } } } ),

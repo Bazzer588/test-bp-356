@@ -40,7 +40,7 @@ export default class HomePage extends React.Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">Tax calculator application.</h1>
                 </header>
-                <form>
+                <form autoComplete="off">
                     <TaxForm path="mainForm" name="personalRef" requireCountry/>
                     <TaxForm path="mainForm" name="spouseRef" allowArgentina={false}/>
                     <BigForm path="mainForm" name="bigForm" ref={this.bigFormRef} owner={this} setRef={this.setRef}/>

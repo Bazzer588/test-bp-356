@@ -5,7 +5,7 @@ import {selectTypeField} from '../components/Select';
 //import {translate} from "../components/AppConfig";
 
 // name/number + street ?
-const Country = selectTypeField( 'country', { options: 'country', required: true });
+const Country = selectTypeField( 'country', { options: 'country', required: true, showCode: true });
 const Address1 = stringTypeField( 'address1', {maxLength: 35, required: true });
 const Area = stringTypeField( 'address2', {maxLength: 35, required: false });
 const City = stringTypeField( 'city', {maxLength: 35, required: false });

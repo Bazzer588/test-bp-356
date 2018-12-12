@@ -61,10 +61,11 @@ function translate (t,required) {
         }
         return t.path + '-' + t.name + '-' + t.error;
     }
-    if (t.endsWith('country-pleaseSelect')) return required ? 'Choose a country' : 'No country selected';
-    if (t.endsWith('lang-pleaseSelect')) return required ? 'Choose a language' : 'No language selected';
-    if (t.endsWith('gender-pleaseSelect')) return 'Please select a gender';
-    if (t.endsWith('gender-required')) return 'Please choose a gender';
+    if (t.endsWith('-country-pleaseSelect')) return required ? 'Choose a country' : 'No country selected';
+    if (t.endsWith('-lang-pleaseSelect')) return required ? 'Choose a language' : 'No language selected';
+    if (t.endsWith('-gender-pleaseSelect')) return 'Please select a gender';
+    if (t.endsWith('-gender-required')) return 'Please choose a gender';
+    if (t.endsWith('-month-pleaseSelect')) return required ? 'MM' : 'MM';
     if (t.endsWith('-pleaseSelect')) return required ? 'Please choose' : 'Not specified';
 
     if (t.endsWith('-address1')) return 'First line of address, for example house number and street';

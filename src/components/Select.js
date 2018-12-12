@@ -5,7 +5,7 @@ import validateString from "../validation/validateString";
 export default function Select (props) {
     // console.log('SELECT',props);
 
-    const {options, allowOption, rangeFrom, rangeTo, className, excludeValues, ...rest} = props;
+    const {options, allowOption, rangeFrom, rangeTo, className, excludeValues, showCode, ...rest} = props;
     const {value, required, id} = props;
 
     const base = !!value ? 'custom-select' : 'custom-select no-value';
@@ -16,14 +16,14 @@ export default function Select (props) {
             {(value==='' || value===undefined || required === false) &&
                 <option value="">{translate(id + '-pleaseSelect', required)}</option>
             }
-            {renderOptions(options, allowOption, props, rangeFrom, rangeTo, excludeValues)}
+            {renderOptions(options, allowOption, props, rangeFrom, rangeTo, excludeValues, showCode)}
         </select>
     );
 }
 
 // render the array of <option> elements
 
-function renderOptions (options, allowOption, props, rangeFrom, rangeTo, excludeValues) {
+function renderOptions (options, allowOption, props, rangeFrom, rangeTo, excludeValues, showCode) {
 
     if (!excludeValues && !allowOption && statMap[options])
         return statMap[options];
@@ -45,7 +45,11 @@ function renderOptions (options, allowOption, props, rangeFrom, rangeTo, exclude
 
     list.forEach(row => {
         if (!isExcluded(row,value,excludeValues))
-            opts.push(<option key={row} value={row}>{map[row] || row}</option>);
+            opts.push(
+                <option key={row} value={row}>
+                    {showCode ? row+' - '+map[row] : map[row] || row}
+                </option>
+            );
     });
 
     //if (!excludeValues && !allowOption)

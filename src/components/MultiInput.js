@@ -4,7 +4,8 @@ function MultiInput (props) {
 
     //console.log('Multi',props);
 
-    const { inputs, id, onBlur, onChange, defaultField = 0, required } = props;
+    // typeName is used for copy, ie 'dateInput', 'currencyInput', 'hongKongId'
+    const { inputs, id, onBlur, onChange, defaultField = 0, required, typeName } = props;
     const value = props.value || {}; // value may be '' which breaks IE11
 
     const onPartChange = (name) => (ev) => {
@@ -18,8 +19,8 @@ function MultiInput (props) {
                 const Compo = component || 'input';
                 const type = component ? undefined : 'text';
                 const key = id+'-'+name;
-                const full = index===defaultField ? id : key;
-                const label = 'aria thing '+props.id+' - '+name;
+                const full = index === defaultField ? id : key;
+                const label = id + '/' + typeName + '/' + name;
                 acc.push(
                     <span style={{ display: 'inline-block', verticalAlign: 'top' }} key={key} {...span}>
                         <Compo
