@@ -4,23 +4,29 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "https://jarnell.org",
-  "dependencies": {
-    "node-sass": "^4.9.3",
-    "prop-types": "^15.6.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-redux": "^5.1.1",
-    "react-scripts": "2.0.4",
-    "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
-  },
   "scripts": {
     "start": "PORT=3900 react-scripts start",
     "win": "set PORT=3900 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "XXact-scripts eject",
-    "coverage": "react-scripts test --env=jsdom --coverage"
+    "coverage": "react-scripts test --env=jsdom --coverage",
+    "hack": "set NODE_ENV=production&& babel src/components --out-dir lib --source-maps inline --copy-files"
+  },
+  "dependencies": {
+    "node-sass": "^4.11.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-redux": "^6.0.0",
+    "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",
