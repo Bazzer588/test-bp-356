@@ -20,7 +20,7 @@ function PopSectionForm (props) {
         <ModalPopup page={page} replace={replace} title="Popup loaded by code splitting" continueAction={finito}>
             <form>
                 {renderField(selectTypeField('AgeOfEldestChild',{ rangeFrom: 0, rangeTo: 21 }))}
-                {renderField(stringTypeField('AgreeYouMust',{ component: Radios, showLabel: false, className: 'horizontal', label: 'You must comply', options: 'yesno' }))}
+                {renderField(stringTypeField('AgreeYouMust',{ component: Radios, showLabel: false, className: 'horizontal', label: 'You must comply', options: 'yesNo' }))}
                 {renderField(stringTypeField('CostOfLastHols'))}
             </form>
         </ModalPopup>

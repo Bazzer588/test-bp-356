@@ -22,5 +22,20 @@ export default function FormConnect (reactClass) {
         };
     }
 
-    return connect(mapStateToProps,{updateRedux},null,{ withRef: true })(reactClass);
+    // return connect(mapStateToProps,{updateRedux},null,{ withRef: true })(reactClass);
+    return connect(mapStateToProps,{updateRedux})(reactClass);
+}
+
+/** connect something which is not a form */
+
+export function justConnect (reactClass) {
+
+    function mapStateToProps (state) {
+        return {
+            coreData: state.formState.coreData // language etc
+        };
+    }
+
+    //return connect(mapStateToProps,{updateRedux},null,{ withRef: true })(reactClass);
+    return connect(mapStateToProps,{updateRedux})(reactClass);
 }

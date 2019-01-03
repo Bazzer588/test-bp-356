@@ -10,6 +10,10 @@ export default class ErrorList extends React.Component {
 
         this.grabCheck();
 
+        if (nextProps.coreData !== this.props.coreData) { // ie language change
+            return true;
+        }
+
         if (nextProps.errors.length === errors.length) {
             const next = nextProps.errors;
             return !errors.every( (err,index) => {
@@ -30,8 +34,10 @@ export default class ErrorList extends React.Component {
             grab = false;
             setTimeout( () => {
                 const t = document.getElementById('theErrors');
-                t.focus();
-                t.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
+                if (t) {
+                    t.focus();
+                    t.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
+                }
             }, 25);
         }
     }

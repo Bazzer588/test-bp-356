@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.scss';
 import PageRouter from './components/PageRouter';
+// language
+import { changeLang } from './languages';
 // pages
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
@@ -10,6 +12,8 @@ import PopupTestPage from './pages/PopupTestPage';
 import RepeaterPage from './pages/RepeaterPage';
 import LazyPage from './components/LazyPage';
 import DemoPage2 from "./pages/DemoPage2";
+
+/** defined app routes */
 
 PageRouter.defineRoute('/',HomePage,'React tax application');
 PageRouter.defineRoute('/tax-app',HomePage,'React tax application');
@@ -57,10 +61,23 @@ function routePayment (pa) { // tax-app/payment/8437763
 export default class App extends React.Component {
 
     render() {
-        console.log('APP RENDER');
+        console.log('APP RENDER', appCount);
+        appCount++;
+        if (appCount===1 || !window.currentLang) {
+            changeLang(window.currentLang || 'en',null,() => this.setState({ w: 1 }));
+            //return <div>Loding</div>;
+            return null;
+        }
         return <PageRouter/>
     }
 }
+
+let appCount = 0;
+
+App.initialize = (fn) => {
+    appCount++;
+    changeLang('en',null,fn);
+};
 
 /*
     wrap with this to see warnings:

@@ -5,10 +5,12 @@ import TaxForm from '../sections/TaxForm3';
 import BigForm from '../sections/BigForm';
 import PageRouter from '../components/PageRouter';
 import Button from "../components/Button";
-import {NavLinks} from "../sections/NavLinks";
+import NavLinks from "../sections/NavLinks";
+import {useBasePage} from "./BasePage";
+import {translate} from "../components/AppConfig";
 // import walkTree from "../validation/walkTree";
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
 
     constructor (props) {
         super(props);
@@ -36,9 +38,9 @@ export default class HomePage extends React.Component {
         return (
             <div className="App bg-light">
                 <header className="App-header">
-                    <NavLinks/>
+                    <NavLinks page={this.props.page}/>
                     <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Tax calculator application.</h1>
+                    <h1 className="App-title">{translate('Home page title')}</h1>
                 </header>
                 <form autoComplete="off">
                     <TaxForm path="mainForm" name="personalRef" requireCountry/>
@@ -52,9 +54,11 @@ export default class HomePage extends React.Component {
                     </p>
                 </form>
                 <p className="App-intro">
-                    Thank you
+                    Thank you.
                 </p>
             </div>
         );
     }
 }
+
+export default useBasePage(HomePage);

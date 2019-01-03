@@ -13,7 +13,7 @@ import PickerPopup from './PickerPopup';
 
 import {stringTypeField} from "../validation/validateString";
 import {validateTree} from '../validation';
-import {NavLinks} from "../sections/NavLinks";
+import NavLinks from "../sections/NavLinks";
 import walkTree from "../validation/walkTree";
 import ErrorList from "../components/ErrorList";
 
@@ -153,7 +153,7 @@ class PaymentPage extends React.Component {
         return (
             <div className="App">
                 <div {...dprops}>
-                    <Header head="Checkout"/>
+                    <Header head="Checkout" doNotWalkTree />
                     <form>
                         <h2>Your payment details</h2>
                         {Field( CardNumber )}

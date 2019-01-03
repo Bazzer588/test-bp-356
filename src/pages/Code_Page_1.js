@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLinks} from "../sections/NavLinks";
+import NavLinks from "../sections/NavLinks";
 import {useBasePage, ModalPopup} from "./BasePage";
 import FormConnect from "../FormConnect";
 import FormSection from "../FormSection";
@@ -27,7 +27,7 @@ class Code_Page_1 extends React.Component {
         return (
             <>
                 <header className="App-header">
-                    <NavLinks/>
+                    <NavLinks owner={this} page={this.props.page}/>
                     <h1 className="App-title">
                         Code split page 1
                     </h1>

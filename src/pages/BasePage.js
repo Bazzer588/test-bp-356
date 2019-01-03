@@ -1,10 +1,15 @@
 import React from 'react';
 // import Loader from '../components/Loader';
 import Button from "../components/Button";
+import {translate} from "../components/AppConfig";
 
 const disabled = { 'aria-disabled': true, 'aria-hidden': true /*, className: 'loader-blur'*/ };
 
 export default class BasePage extends React.Component {
+
+    setLoader (TheLoader) {
+        this.setState({ TheLoader });
+    }
 
     setPopup (pop) {
         this.setState({ ThePopup: pop, PopupComponent: null });
@@ -46,9 +51,8 @@ export default class BasePage extends React.Component {
     render () {
         const { children, Child, ...rest } = this.props;
         const state = this.state || {};
-        const ThePopup = state.ThePopup;
-        const PopupComponent = state.PopupComponent;
-        const divProps = (ThePopup || PopupComponent) ? disabled : {};
+        const { ThePopup, PopupComponent, TheLoader } = state;
+        const divProps = (TheLoader || ThePopup || PopupComponent) ? disabled : {};
 
         return (
             <div className="App bg-light">
@@ -58,6 +62,7 @@ export default class BasePage extends React.Component {
                 </div>
                 {ThePopup && renderPopup({ page: this, ...ThePopup })}
                 {PopupComponent && renderOuterPopup(this,PopupComponent,state.PopupOwner,state.PopupProps,state.replace)}
+                {TheLoader && <TheLoader/>}
             </div>
         );
     }
@@ -149,7 +154,7 @@ function renderOuterPopup (page, PopupComponent, owner, popProps, replace) {
                  onClick={() => page.fadeOutPopup()}
             >
                 <div className="modal-dialog" role="document">
-                    <PopupComponent page={page} owner={owner} replace={replace}/>
+                    <PopupComponent page={page} owner={owner} replace={replace} {...popProps} />
                 </div>
             </div>
             <div className="modal-backdrop" tabIndex="0" onFocus={() => foc('closePop')}/>
@@ -193,11 +198,11 @@ function innerPopup ({ page, owner, title, children, continueAction, buttons, re
                 {children}
             </div>
             <div className="modal-footer">
-                {noCancel ? null : <Button id="closePop" cnm={canc} onClick={doClose}>Cancel</Button>}
+                {noCancel ? null : <Button id="closePop" cnm={canc} onClick={doClose}>{translate('Cancel')}</Button>}
                 {buttons}
                 {renderButtons && renderButtons()}
                 {continueAction &&
-                    <Button id="continuePop" onClick={() => continueAction()} cnm="primary">Continue</Button>
+                    <Button id="continuePop" onClick={() => continueAction()} cnm="primary">{translate('Continue')}</Button>
                 }
             </div>
         </div>

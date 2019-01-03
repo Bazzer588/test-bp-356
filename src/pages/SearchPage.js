@@ -7,7 +7,7 @@ import IconLang from './IconLang';
 import Loader from '../components/Loader';
 import Button from "../components/Button";
 import ListGroup from "../components/ListGroup";
-import {NavLinks} from "../sections/NavLinks";
+import NavLinks from "../sections/NavLinks";
 
 export default class SearchPage extends React.Component {
 

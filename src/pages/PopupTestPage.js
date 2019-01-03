@@ -1,12 +1,13 @@
 import React from 'react';
 import Button from "../components/Button";
 import BasePage, {ModalPopup} from "./BasePage";
-import {NavLinks} from "../sections/NavLinks";
+import NavLinks from "../sections/NavLinks";
 import Select from "../components/Select";
 import Radios from "../components/Radios";
 import CheckBox from "../components/CheckBox";
+import {justConnect} from "../FormConnect";
 
-export default class PopupTestPage extends React.Component {
+class PopupTestPage extends React.Component {
 
     constructor (props) {
         super(props);
@@ -43,13 +44,17 @@ export default class PopupTestPage extends React.Component {
         );
     }
 
+    getBasePage () {
+        return this.myRef.current;
+    }
+
     render () {
         return (
             <BasePage
                 ref={this.myRef}
             >
                 <header className="App-header">
-                    <NavLinks/>
+                    <NavLinks owner={this}/>
                     <h1 className="App-title">
                         Modal test page
                     </h1>
@@ -70,6 +75,10 @@ export default class PopupTestPage extends React.Component {
     }
 
 }
+
+export default justConnect(PopupTestPage);
+
+/** POPUPS */
 
 function Wiz1 ({ page, compo, index }) {
 

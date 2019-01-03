@@ -1,4 +1,5 @@
 import React from "react";
+import {translate} from "./AppConfig";
 
 function MultiInput (props) {
 
@@ -15,18 +16,18 @@ function MultiInput (props) {
     return (
         <div>
             {inputs.reduce( (acc,item,index) => {
-                const { name, component, validator, span, ...rest } = item;
+                const { name, component, validator, span, ariaLabel, ...rest } = item;
                 const Compo = component || 'input';
                 const type = component ? undefined : 'text';
                 const key = id+'-'+name;
                 const full = index === defaultField ? id : key;
-                const label = id + '/' + typeName + '/' + name;
+                const label = id + '-' + typeName + '-' + name + '-ariaLabel';
                 acc.push(
-                    <span style={{ display: 'inline-block', verticalAlign: 'top' }} key={key} {...span}>
+                    <span style={{ display: 'inline-block', verticalAlign: 'top', marginLeft: index ? '-1px' : undefined }} key={key} {...span}>
                         <Compo
-                            aria-describedby={props['aria-describedby']}
+                            aria-describedby={props['aria-describedby']} // main props not item
                             aria-invalid={props['aria-invalid']}
-                            aria-label={label}
+                            aria-label={translate(label,props)}
                             {...rest}
                             id={full}
                             value={value[name]}
@@ -72,3 +73,23 @@ function validator (value, props, path, output) {
 export default function makeMultiInput (name, props) {
     return { name, ...props, validator, component: MultiInput };
 }
+
+/*
+    typeName: 'dateInput'
+    id: 'form2-paymentMethod-expiryDate'
+    inputs[0].name: 'day'
+    inputs[1].name: 'month'
+    inputs[2].name: 'year'
+
+    aria-label: 'Policy expiry date: select a month'        {f}: select a month
+    aria-label: 'Policy expiry date: please enter a year'   {f}: please enter a year
+
+    error: 'Please enter a future date'
+    error: 'Please enter a valid day of month'
+
+    -------------
+
+    aria-label: 'ID number: part one'
+    aria-label: 'ID number: part two'
+
+ */

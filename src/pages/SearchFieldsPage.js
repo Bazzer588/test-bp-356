@@ -10,7 +10,9 @@ import CheckBoxMulti from "../components/CheckBoxMulti";
 import {makePersonSection} from "../sections/PersonSection";
 import {makeRepeatable} from "../FormListSection";
 import {validateTree} from "../validation";
-import {NavLinks} from "../sections/NavLinks";
+import NavLinks from "../sections/NavLinks";
+import {useBasePage} from "./BasePage";
+import {translate} from "../components/AppConfig";
 
 const S1 = stringTypeField('biscuits',{ required: true });
 const SX = searchTypeField('origin');
@@ -80,7 +82,7 @@ class SearchFieldsPage extends React.Component {
         return (
             <div className="App bg-light">
                 <header className="App-header">
-                    <NavLinks/>
+                    <NavLinks owner={this} page={this.props.page}/>
                     <h1 className="App-title">
                         Deals Page
                     </h1>
@@ -95,10 +97,10 @@ class SearchFieldsPage extends React.Component {
                     {Field(PersonList, { listLength: 2 })}
 
                     <p style={{ textAlign: 'right', marginTop: '16px' }}>
-                        <Button onClick={() => { window.history.back(); }}>Cancel</Button>
+                        <Button onClick={() => { window.history.back(); }}>{translate('Cancel')}</Button>
                         <Button onClick={this.hideErrors}>Hide errors</Button>
                         <Button onClick={this.valida}>Validate</Button>
-                        <Button cnm="primary" onClick={() => PageRouter.changePage('/tax-app') } >Continue</Button>
+                        <Button cnm="primary" onClick={() => PageRouter.changePage('/tax-app') } >{translate('Continue')}</Button>
                     </p>
                     <div style={{ marginTop: '2300px' }}>...</div>
                 </form>
@@ -107,7 +109,7 @@ class SearchFieldsPage extends React.Component {
     }
 }
 
-export default FormConnect( FormSection(SearchFieldsPage) );
+export default useBasePage( FormConnect( FormSection(SearchFieldsPage) ) );
 
 function errorChange (a,b) {
     const len = a.length;

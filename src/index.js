@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Fixers';
 import './index.css';
-import { country, countryList } from './languages';
+// import {changeLang} from './languages';
 
 // import registerServiceWorker from './registerServiceWorker';
 import { unregister } from './registerServiceWorker';
@@ -11,13 +11,13 @@ import { unregister } from './registerServiceWorker';
 import {Provider} from 'react-redux'
 import store from './startRedux';
 // this app
-import { setTranslator, setGetOptionList, setGetOptionDescriptions } from './components/AppConfig';
+// import { setTranslator } from './components/AppConfig';
 import App from './App';
 
 // SET UP DEFAULTS
-setTranslator( translate );
-setGetOptionList( getOptionList );
-setGetOptionDescriptions( getOptionDescriptions );
+// setTranslator( translate );
+//setGetOptionList( getOptionList );
+//setGetOptionDescriptions( getOptionDescriptions );
 
 // RENDER
 
@@ -28,9 +28,13 @@ const render = Root => {
     );
 };
 
-// display the loader for 1/2 sec
+App.initialize( () => render(App) );
 
-setTimeout( () => render(App), 500 );
+// set an initial language - could be from cookie, session state etc
+// changeLang('en',null,() => render(App) );
+
+// display the loader for 1/2 sec
+//setTimeout( () => render(App), 500 );
 
 // hot loading
 
@@ -51,7 +55,7 @@ unregister();
 window.redux = store;
 
 // TODO move elsewhere POSSIBLY TO APP
-
+/*
 function translate (t,required) {
     if (!t) return 'Undefined';
     if (t.error) {
@@ -105,12 +109,12 @@ function translate (t,required) {
 
 function getOptionList (name) {
     const map = {
-        yesno: ['Y','N'],
+        yesNo: ['Y','N'],
         gender: ['M','F'],
         country: countryList, // ['GB','US','CN','BW','AR','BE','CH','FR','DE'],
         countryDefaults: ['GB','US','CN','BW','AR','BE','CH'],
         months: ['01','02','03','04','05','06','07','08','09','10','11','12'],
-        languages: ['en','zh','ru','fr'],
+        languages: ['en','zh','fr','de','ru'],
         phoneCodes: ['1','1-C','44','86','47','33','356'],
         cashFrom: ['F','S','I','X']
     };
@@ -119,16 +123,17 @@ function getOptionList (name) {
 
 function getOptionDescriptions (name) {
     const map = {
-        yesno: { Y: 'Yes', N: 'No'},
+        yesNo: { Y: 'Yes', N: 'No'},
         gender: { M: 'Male', F: 'Female'},
         // country: { GB: 'United Kingdom', US: 'United States', CN: 'China', BW: 'Botswana', AR: 'Argentina' },
         country,
-        languages: { en: 'English', zh: 'Chinese', ru: 'Russian', fr: 'French' },
+        languages: { en: 'English', zh: 'Chinese', ru: 'Russian', fr: 'French', de: 'German' },
         phoneCodes: { '1': 'United States', '1-C': 'Canada', '44': 'United Kingdom', '86': 'China' ,'47': 'Norway', '33': 'France', '356': 'Malta' },
         cashFrom: {'F':'Family','S':'Savings','I':'Investments',X:'Other sources'}
     };
     return map[name] || {};
 }
+*/
 
 // countries with translations
 // https://github.com/umpirsky/country-list/tree/master/data

@@ -46,7 +46,7 @@ function renderOptions (props) {
                 <CheckBox
                     id={radioId}
                     key={radioId}
-                    label={map[row]}
+                    label={map[row] || row}
                     onBlur={props.onBlur}
                     onChange={chg}
                     value={ vals.indexOf(row)>=0 }

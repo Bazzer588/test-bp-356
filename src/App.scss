@@ -7,6 +7,12 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.forms-rtl {
+  direction: rtl;
+}
+
+$active-bg: #007bff;
+
 $error-red: #dc3545;
 
 .App {
@@ -74,6 +80,10 @@ form {
   max-width: 480px;
 }
 
+.forms-rtl form {
+  text-align: right;
+}
+
 .rep-no-label {
   padding-bottom: 10px;
 }
@@ -103,6 +113,10 @@ form {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.forms-rtl .form-field input {
+  padding: 5px 10px 5px 2px;
 }
 
 .form-field input:focus {
@@ -304,6 +318,11 @@ select:-webkit-autofill {
 
 .btn + .btn {
   margin-left: 8px;
+}
+
+.forms-rtl .btn + .btn {
+  margin-left: 0;
+  margin-right: 8px;
 }
 
 .btn-mini {
@@ -519,6 +538,7 @@ select:-webkit-autofill {
 
 /** remove round corners */
 
+.form-field .sq-left,
 .sq-left {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

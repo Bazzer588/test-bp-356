@@ -183,6 +183,17 @@ button.close:hover {
   opacity: 1;
 }
 
+.forms-rtl {
+  .modal {
+    text-align: right;
+  }
+  .close {
+    float: left;
+    position: absolute;
+    left: 0;
+  }
+}
+
 // ==========================
 
 .modal-backdrop.show {

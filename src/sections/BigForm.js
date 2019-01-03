@@ -27,9 +27,9 @@ const Whatever = comboTypeField('langCode',{ part1: 'lang', options: 'languages'
 
 const Another = makeMultiInput('andMore', { defaultField: 1, typeName: 'testType',
     inputs: [
-        selectTypeField('zurgThing',{ options: 'languages' }),
-        stringTypeField('woota',{ minLength: 4, maxLength: 12 }),
-        selectTypeField('utta',{ options: 'yesno' })
+        selectTypeField('zurgThing',{ options: 'languages', className: 'sq-right' }),
+        stringTypeField('woota',{ minLength: 4, maxLength: 12, className: 'sq-left sq-right' }),
+        selectTypeField('utta',{ options: 'yesNo', className: 'sq-left' })
         //stringTypeField('zorb',{})
     ]});
 
@@ -85,7 +85,7 @@ class BigForm extends React.PureComponent {
             const form = FormSection(BigForm);
             const bf = new form({...this.props, setRef: null, value: changed });
             const errors = walkTree(bf);
-            // console.log('DCH',changed.workAddress,errors);
+            console.log('onDataChange',changed.workAddress,errors);
             this.setState({errors});
         }
     };
@@ -95,7 +95,7 @@ class BigForm extends React.PureComponent {
         let errors = st.errors;
 
         const Field = this.props.renderField;
-        const { /*owner, */ name, setRef /*, showErrors, showErrorsWrap*/, errorsAtTop } = this.props;
+        const { /*owner, */ name, setRef /*, showErrors, showErrorsWrap*/, errorsAtTop, coreData } = this.props;
         // console.log('OWNER is',owner);
         // console.log('showErrors',showErrors);
         if (setRef) setRef(name,this);
@@ -142,7 +142,7 @@ class BigForm extends React.PureComponent {
                 <FieldSet name="workAddress">
                     {Field( WorkAddress )}
                 </FieldSet>
-                {!errorsAtTop && errors && errors.length>0 && <ErrorList errors={errors} />}
+                {!errorsAtTop && errors && errors.length>0 && <ErrorList errors={errors} coreData={coreData} />}
                 <button onClick={this.checkErrors} type="button">Walk</button>
             </div>
         );

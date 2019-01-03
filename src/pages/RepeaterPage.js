@@ -1,6 +1,6 @@
 import React from 'react';
 import {useBasePage, ModalPopup} from "./BasePage";
-import {NavLinks} from "../sections/NavLinks";
+import NavLinks from "../sections/NavLinks";
 import Button from "../components/Button";
 import makeGenericSection from "../sections/GenericSection";
 import FormSection from "../FormSection";
@@ -55,7 +55,7 @@ class RepeaterPage extends React.Component {
         return (
             <>
             <header className="App-header">
-                <NavLinks/>
+                <NavLinks owner={this} page={page}/>
                 <h1 className="App-title">
                     Repeat page
                 </h1>

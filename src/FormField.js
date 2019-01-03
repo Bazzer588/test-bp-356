@@ -18,14 +18,17 @@ export default class FormField extends React.PureComponent {
 
     render () {
         const { parent, coreData, name, path, showErrors, touched, required, showLabel = true, htmlId, inputClass, fieldClass = '',
-            component, validator, stripProps, ...others } = this.props;
+            component, validator, stripProps, labelId,
+            ...others
+        } = this.props;
+
         const Compo = component || 'input';
         const type = component ? undefined : 'text';
         const optional = component ? undefined : (required ? undefined : 'optional');
 
         const value = this.props.value || '';
         const full = path + '-' + name; // const full = path + '-' + (htmlId || name); // TODO htmlId screws up error link
-        const labl = path + '-' + name;
+        const labl = path + '-' + (labelId || name);
 
         const error = (!!touched || showErrors) && validator && validator(value,this.props,path);
         const invalid = error && !!error.error;
@@ -37,7 +40,7 @@ export default class FormField extends React.PureComponent {
         const divClass = invalid ? 'form-field ff-invalid' : 'form-field';
         return (
             <div className={divClass+' '+fieldClass}>
-                {showLabel && <label htmlFor={full}>{translate(labl,required)}</label>}
+                {showLabel && <label htmlFor={full}>{translate(labl,this.props)}</label>}
                 <Compo
                     aria-describedby={errorId}
                     aria-invalid={invalid}

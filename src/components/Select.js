@@ -6,15 +6,16 @@ export default function Select (props) {
     // console.log('SELECT',props);
 
     const {options, allowOption, rangeFrom, rangeTo, className, excludeValues, showCode, ...rest} = props;
-    const {value, required, id} = props;
+    const {defaultValue, value, required, id} = props;
+    const actual = value || defaultValue;
 
-    const base = !!value ? 'custom-select' : 'custom-select no-value';
+    const base = !!actual ? 'custom-select' : 'custom-select no-value';
     const cnm = className ? base+' '+className : base;
 
     return (
         <select {...rest} className={cnm}>
-            {(value==='' || value===undefined || required === false) &&
-                <option value="">{translate(id + '-pleaseSelect', required)}</option>
+            {(actual==='' || actual===undefined || required === false) &&
+                <option value="">{translate(id + '-pleaseSelect', props)}</option>
             }
             {renderOptions(options, allowOption, props, rangeFrom, rangeTo, excludeValues, showCode)}
         </select>
@@ -47,7 +48,7 @@ function renderOptions (options, allowOption, props, rangeFrom, rangeTo, exclude
         if (!isExcluded(row,value,excludeValues))
             opts.push(
                 <option key={row} value={row}>
-                    {showCode ? row+' - '+map[row] : map[row] || row}
+                    {showCode ? map[row] +' ('+row+')' : map[row] || row}
                 </option>
             );
     });

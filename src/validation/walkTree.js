@@ -1,4 +1,7 @@
 import React from "react";
+import store from '../startRedux';
+
+const currentContext = { store }; // HACK so connected components work
 
 export default function walkTree (thing) {
     //console.log('WALK',thing);
@@ -23,6 +26,7 @@ function tree2 (rendered,errList) {
     }
 
     if (Array.isArray(rendered)) {
+        // console.log('RENDER ARRAY',rendered);
         rendered.forEach( child => {
             tree2(child,errList);
         });
@@ -48,15 +52,21 @@ function tree2 (rendered,errList) {
         // console.log('INSTANCE',React.isValidElement(inst),inst);
 
         if (isClassComponent(Compo)) { // inst.render
-            const inst = new Compo( props ); // currentContext
+
+            // console.log('HWHO',Compo,props); // ??? doNotWalkTree
+
+            const inst = new Compo( props, currentContext ); // currentContext
             const next = inst.render();
             tree2(next,errList);
         } else {
+            //console.log('WHHWJ',Compo,props);
+            if (props.doNotWalkTree) return; // HACK
             tree2( Compo(props), errList );
         }
     } else if (props) {     // div, span, p etc
         if (ignore(Compo))
             return;
+        // console.log('CHILDREN',props.children);
         React.Children.forEach( props.children, (child) => {
             tree2(child,errList);
         });
