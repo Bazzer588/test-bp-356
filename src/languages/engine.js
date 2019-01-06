@@ -1,5 +1,6 @@
 
 function lookup (dict, names, required) {
+    //console.log('LUP',names);
     for(let n=0;n<names.length;n++) {
         const r = exact(dict,names,n,required);
         if (r)
@@ -58,9 +59,10 @@ export function translate (t,props) {
         // insert field name ?
         if (g.indexOf('{f}')>=0) {
             // to get {f}, combine path + name
-            const f = lookup(std,[ ...ap, name ],t.required);
-            console.log('LOOKUP ERROR',t,JSON.stringify(f));
-            g = g.replace('{f}', f || name );
+            const get = t.errorFieldName ? ap : [ ...ap, name ]; // is the error from a multi field?
+            const f = lookup(std,get,t.required);
+            //console.log('LOOKUP ERROR',t,JSON.stringify(f));
+            g = g.replace('{f}', f || t.errorFieldName || name );
         }
         // replace values
         if (t.values) {

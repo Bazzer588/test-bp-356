@@ -54,10 +54,8 @@ function validator (value, props, path, output) {
         const r = item.validator( value[fld], { ...item, required }, path+'-'+name, out );
         if (r && r.error && !err) {
             if (index===defaultField) r.linkToPath = true;
-            //r.path = path;
-            //r.name = props.name;
-            //r.field = name;
-            console.log('GOTATTA',r);
+            r.errorFieldName = name;
+            //console.log('GOTATTA',r);
             err = r;
         }
     });
