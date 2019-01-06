@@ -50,6 +50,7 @@ const labels = {
     // headings
     'personalRef': '输入您的个人信息',
     'Home page title': '这是主页',
+    homeAddress: '家庭地址',
     // labels
     country: '国家',
     zipCode: '邮政编码/邮政编码',
@@ -68,7 +69,7 @@ const labels = {
     'Change Language': '改变语言',
     'Select your language': '选择你的语言',
 
-    dob: 'Date of Birth',
+    dob: '出生日期',
     expiryDate: '合同到期日',
 
     roomsRequired: {
@@ -102,6 +103,8 @@ const labels = {
     minLength: '{f} must be at least {minLength} characters',
     errorMoreThan: '{f} must be more than {minValue}',
 
-    // fix
-    YYYY: '年（数字）'
+    // fix, placeholders
+    YYYY: '年（数字）',
+    MM: '月',
+    DD: '天'
 };

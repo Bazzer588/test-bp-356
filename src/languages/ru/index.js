@@ -20,7 +20,8 @@ function getOptionDescriptions (name) {
 }
 
 function translate (t) {
-    //if (!t) return 'Undefined';
+    if (!t)
+        return t;
     if (t.error) {
         return t.path + ' ' + t.name + ' ' + t.error + (t.values ? ' ('+JSON.stringify(t.values)+')' : '');
     }
