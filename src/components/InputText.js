@@ -1,12 +1,14 @@
 import React from "react";
+import {translate} from "./AppConfig";
 
 export default function InputText (props) {
 
     return (
         <input
             type="text"
-            value=""
             {...props}
+            placeholder={translate(props.placeholder)}
+            value={props.value || ''}
         />
     );
 }

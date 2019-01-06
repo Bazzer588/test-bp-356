@@ -1,5 +1,6 @@
 import React from "react";
 import {translate} from "./AppConfig";
+import InputText from "./InputText";
 
 function MultiInput (props) {
 
@@ -17,7 +18,7 @@ function MultiInput (props) {
         <div>
             {inputs.reduce( (acc,item,index) => {
                 const { name, component, validator, span, ariaLabel, ...rest } = item;
-                const Compo = component || 'input';
+                const Compo = component || InputText;
                 const type = component ? undefined : 'text';
                 const key = id+'-'+name;
                 const full = index === defaultField ? id : key;

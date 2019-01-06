@@ -50,6 +50,8 @@ export function stripNum (a) {
 }
 
 export function translate (t,props) {
+    if (!t)
+        return t;
     if (t.error) {
         // { name, path, required, error: 'invalidEmail', values: { found } };
         const { error, name, path } = t;
