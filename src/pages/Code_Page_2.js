@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLinks} from "../sections/NavLinks";
+import NavLinks from "../sections/NavLinks";
 import {useBasePage} from "./BasePage";
 import FormConnect from "../FormConnect";
 import FormSection from "../FormSection";
