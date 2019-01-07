@@ -1,12 +1,23 @@
 import { default as country } from './country.ru.json';
+import {setLangMap} from "../index";
+import {translate} from "../engine";
 
 export default {
     woot: 'ru',
     getOptionDescriptions,
-    translate
+    translate,
+    init
 };
 
-const map = {
+function init () {
+    setLangMap(labels);
+}
+
+function getOptionDescriptions (name) {
+    return options[name] || {};
+}
+
+const options = {
     yesNo: { Y: 'да', N: 'нет'},
     gender: { M: 'мужчина', F: 'женский'},
     country,
@@ -15,40 +26,40 @@ const map = {
     cashFrom: {'F':'Family','S':'Savings','I':'Investments',X:'Other sources'}
 };
 
-function getOptionDescriptions (name) {
-    return map[name] || {};
-}
+const labels = {
+    pleaseSelect: {
+        $: 'Пожалуйста выберите',
+        $$: '(необязательный выбор)'
+    },
+    // headings
+    gender: 'Пол',
+    firstName: 'имя',
+    lastName: 'Фамилия',
+    country: 'Страна',
+    zipCode: 'почтовый индекс',
+    homePhone: 'Домашний телефон',
+    mobilePhone: 'Мобильный телефон',
+    emailAddress: 'Адрес электронной почты',
 
-function translate (t) {
-    if (!t)
-        return t;
-    if (t.error) {
-        return t.path + ' ' + t.name + ' ' + t.error + (t.values ? ' ('+JSON.stringify(t.values)+')' : '');
-    }
-    const w = std[t];
-    if (w)
-        return w;
+    nameOnCard: 'Имя на платежной карте',
+    findAirport: 'Название аэропорта',
 
-    if (t.endsWith('-gender')) return 'Пол';
-    if (t.endsWith('-firstName')) return 'имя';
-    if (t.endsWith('-lastName')) return 'Фамилия';
-    if (t.endsWith('-country')) return 'Страна';
-    if (t.endsWith('-zipCode')) return 'почтовый индекс';
-    if (t.endsWith('-homePhone')) return 'Домашний телефон';
-    if (t.endsWith('-mobilePhone')) return 'Мобильный телефон';
-    if (t.endsWith('-emailAddress')) return 'Адрес электронной почты';
-
-    if (t.endsWith('-nameOnCard')) return 'Имя на платежной карте';
-    if (t.endsWith('-findAirport')) return 'Название аэропорта';
-
-    return t;
-}
-
-const std = {
     'Gender': 'Пол',
     'Continue': 'Продолжить',
     'Cancel': 'отменить',
     'Change Language': 'изменение языка',
     'Select your language': 'Выберите ваш язык',
-    'Home page title': 'Это домашняя страница'
+    'Home page title': 'Это домашняя страница',
+
+    // ------ errors ---------
+    required: '{f} требуется',
+    errorNoFuture: '{f} can not be a future date',
+    errorNoPast: '{f} must be a date in the future',
+    minLength: '{f} must be at least {minLength} characters',
+    errorMoreThan: '{f} must be more than {minValue}',
+
+    // fix, placeholders
+    YYYY: 'год ГГГГ',
+    MM: 'месяц',
+    DD: 'день',
 };
