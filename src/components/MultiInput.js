@@ -19,7 +19,7 @@ function MultiInput (props) {
             {inputs.reduce( (acc,item,index) => {
                 const { name, component, validator, span, ariaLabel, ...rest } = item;
                 const Compo = component || InputText;
-                const type = component ? undefined : 'text';
+                //const type = component ? undefined : 'text';
                 const key = id+'-'+name;
                 const full = index === defaultField ? id : key;
                 const label = id + '-' + typeName + '-' + name + '-ariaLabel';
@@ -35,7 +35,7 @@ function MultiInput (props) {
                             onBlur={onBlur}
                             onChange={onPartChange(name)}
                             required={required}
-                            type={type}
+                            //type={type}
                         />
                     </span>
                 );
