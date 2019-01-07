@@ -9,11 +9,11 @@ export default {
     init
 };
 
-function init() {
+function init () {
     setLangMap(labels);
 }
 
-function getOptionDescriptions(name) {
+function getOptionDescriptions (name) {
     return options[name] || {};
 }
 
@@ -39,7 +39,12 @@ const options = {
         '33': 'France',
         '356': 'Malta'
     },
-    cashFrom: {'F': 'Family', 'S': 'Savings', 'I': 'Investments', X: 'Other sources'}
+    cashFrom: {
+        'F': 'Family',
+        'S': 'Savings',
+        'I': 'Investments',
+        X: 'Other sources'
+    }
 };
 
 const labels = {
@@ -49,17 +54,28 @@ const labels = {
     },
     // headings
     'personalRef': '输入您的个人信息',
+    spouseRef: 'Enter your spouse details',
     'Home page title': '这是主页',
     homeAddress: '家庭地址',
+    overseasAddress: 'Overseas address',
+    workAddress: 'Employment or work address',
     // labels
+    address1: '第一行地址',
+    address2: '第二行地址',
+    city: '市',
+    region: '州或省',
     country: '国家',
     zipCode: '邮政编码/邮政编码',
-    Gender: '性别',
-    gender: '性别',
     firstName: '名字',
     lastName: '姓',
 
     taxRef: '税号',
+    username: 'User name',
+    Gender: '性别',
+    gender: '性别',
+    homePhone: '家庭电话',
+    mobilePhone: '移动电话',
+    emailAddress: '电子邮件',
 
     destination: '目的地',
     alternate: '替代目的地',
@@ -88,7 +104,8 @@ const labels = {
     },
     year: {
         $: '年',
-        required: '{f} 年份是必需的'
+        required: '{f} 年份是必需的',
+        minLength: '{f} year of 4 chars please'
     },
 
     thingList: {
@@ -100,7 +117,7 @@ const labels = {
     required: '{f} 是必须的 *',
     errorNoFuture: '{f} can not be a future date',
     errorNoPast: '{f} must be a date in the future',
-    minLength: '{f} must be at least {minLength} characters',
+    minLength: '{f}必须至少为{minLength}个字符',
     errorMoreThan: '{f} must be more than {minValue}',
 
     // fix, placeholders
