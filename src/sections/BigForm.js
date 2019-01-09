@@ -28,9 +28,17 @@ const Whatever = comboTypeField('langCode',{ part1: 'lang', options: 'languages'
 const Another = makeMultiInput('andMore', { defaultField: 1, typeName: 'testType',
     inputs: [
         selectTypeField('zurgThing',{ options: 'languages', className: 'sq-right' }),
-        stringTypeField('woota',{ minLength: 4, maxLength: 12, className: 'sq-left sq-right' }),
+        stringTypeField('woota',{ minLength: 4, maxLength: 12, className: 'sq-left sq-right', span: { className: 'w4c' } }),
         selectTypeField('utta',{ options: 'yesNo', className: 'sq-left' })
         //stringTypeField('zorb',{})
+    ]});
+
+const DateThingX = makeMultiInput('startDate', {
+    required: true, typeName: 'dateInput',
+    inputs: [
+        stringTypeField('day',  { type: 'tel', maxLength: 2, placeholder: 'DD', span: { className: 'w2c pr12' } }),
+        stringTypeField('month',{ type: 'tel', maxLength: 2, placeholder: 'MM', span: { className: 'w2c pr12' } }),
+        stringTypeField('year', { type: 'tel', minLength: 4, maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' } }),
     ]});
 
 const DateThing = makeMultiInput('dob', {
@@ -127,6 +135,7 @@ class BigForm extends React.PureComponent {
                     {Field( Thingy )}
                     {Field( Whatever )}
                     {Field( Another )}
+                    {Field( DateThingX )}
                     {Field( DateThing )}
                     {Field( DateMonthThing )}
                     </div>

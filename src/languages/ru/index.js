@@ -21,7 +21,7 @@ const options = {
     yesNo: { Y: 'да', N: 'нет'},
     gender: { M: 'мужчина', F: 'женский'},
     country,
-    languages: { en: 'английский', zh: 'китайский язык', ru: 'русский', fr: 'Французский', de: 'Немецкий' },
+    languages: { en: 'английский', zh: 'китайский язык', ru: 'русский', fr: 'Французский', de: 'Немецкий', he: 'иврит (עברית)' },
     phoneCodes: { '1': 'United States', '1-C': 'Canada', '44': 'United Kingdom', '86': 'China' ,'47': 'Norway', '33': 'France', '356': 'Malta' },
     cashFrom: {'F':'Family','S':'Savings','I':'Investments',X:'Other sources'}
 };

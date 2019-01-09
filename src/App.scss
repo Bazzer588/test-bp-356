@@ -464,8 +464,10 @@ select:-webkit-autofill {
   color: $error-red;
 }
 
+.forms-rtl .checkbox input:checked + label,
 .forms-rtl .checkbox label {
   padding: 7px 36px 6px 5px;
+  background-position: right 5px top 6px;
 }
 
 /*
@@ -600,4 +602,18 @@ select:-webkit-autofill {
     vertical-align: top;
     padding: 2px 8px;
   }
+}
+
+/** TEST */
+
+.w2c { width: 52px; }
+.w4c { width: 72px; }
+
+.pr12 {
+  padding-right: 12px;
+}
+
+.forms-rtl .pr12 {
+  padding-left: 12px;
+  padding-right: 0;
 }

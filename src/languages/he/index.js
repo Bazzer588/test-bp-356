@@ -28,6 +28,12 @@ const options = {
 };
 
 const labels = {
+    pleaseSelect: {
+        $: '(בבקשה תבחר)',
+        $$: '(בחירה אופציונלית)'
+    },
+    // headings
+    // labels
     'Gender': 'מין',
     'Continue': 'המשך',
     'Cancel': 'בטל',

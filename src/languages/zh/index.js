@@ -57,8 +57,8 @@ const labels = {
     spouseRef: 'Enter your spouse details',
     'Home page title': '这是主页',
     homeAddress: '家庭地址',
-    overseasAddress: 'Overseas address',
-    workAddress: 'Employment or work address',
+    overseasAddress: '海外地址',
+    workAddress: '就业或工作地址',
     // labels
     address1: '第一行地址',
     address2: '第二行地址',

@@ -1,58 +1,76 @@
 import { default as country } from './country.de.json';
+import {setLangMap} from "../index";
+import {translate} from "../engine";
 
 export default {
     woot: 'de',
     getOptionDescriptions,
-    translate
+    translate,
+    init
 };
 
+function init () {
+    setLangMap(labels);
+}
+
 function getOptionDescriptions (name) {
-    const map = {
-        yesNo: { Y: 'Ja', N: 'Nein'},
-        gender: { M: 'Männlich', F: 'Weiblich'},
-        country,
-        languages: { en: 'Englisch', zh: 'Chinesisch', ru: 'Russisch', fr: 'Französisch', de: 'Deutsche', he: 'Hebräisch' },
-        phoneCodes: { '1': 'United States', '1-C': 'Canada', '44': 'United Kingdom', '86': 'China' ,'47': 'Norway', '33': 'France', '356': 'Malta' },
-        cashFrom: {'F':'Family','S':'Savings','I':'Investments',X:'Other sources'}
-    };
-    return map[name] || {};
+    return options[name] || {};
 }
 
-function translate (t) {
-    if (!t)
-        return t;
-    if (t.error) {
-        return t.path + ' ' + t.name + ' ' + t.error + (t.values ? ' ('+JSON.stringify(t.values)+')' : '');
-    }
-    const w = std[t];
-    if (w) return w;
+const options = {
+    yesNo: { Y: 'Ja', N: 'Nein'},
+    gender: { M: 'Männlich', F: 'Weiblich'},
+    country,
+    languages: { en: 'Englisch', zh: 'Chinesisch', ru: 'Russisch', fr: 'Französisch', de: 'Deutsche', he: 'Hebräisch' },
+    phoneCodes: { '1': 'United States', '1-C': 'Canada', '44': 'United Kingdom', '86': 'China' ,'47': 'Norway', '33': 'France', '356': 'Malta' },
+    cashFrom: {'F':'Family','S':'Savings','I':'Investments',X:'Other sources'}
+};
 
-    if (t==='Gender') return 'Geschlecht';
-    if (t.endsWith('-gender')) return 'Geschlecht';
-    if (t.endsWith('-firstName')) return 'Vorname';
-    if (t.endsWith('-lastName')) return 'Nachname';
-    if (t.endsWith('-homePhone')) return 'Haustelefon';
-    if (t.endsWith('-mobilePhone')) return 'Handynummer';
-    if (t.endsWith('-zipCode')) return 'Postleitzahl';
-
-    if (t.endsWith('-country')) return 'Ursprungsland';
-    if (t.endsWith('-username')) return 'Nutzername';
-    if (t.endsWith('-emailAddress')) return 'Email addresse';
-    if (t.endsWith('-taxRef')) return 'Steuernummer';
-    if (t.endsWith('-findAirport')) return 'Name des Flughafens';
-
-    if (t.endsWith('-AgeOfEldestChild')) return 'Age of Firstborn';
-    if (t.endsWith('-preferredRetireAge')) return 'Bevorzugtes Rentenalter';
-    if (t.endsWith('-parkingSpaces')) return 'Wie viele Parkplätze?';
-
-    // buttons
-    if (t==='Continue') return 'Fortsetzen';
-    if (t==='Cancel') return 'Stornieren';
-    return t;
-}
-
-const std = {
+const labels = {
+    pleaseSelect: {
+        $: 'Bitte auswählen',
+        $$: 'Optionale Auswahl'
+    },
+    // headings
     'Change Language': 'Sprache ändern',
     'Select your language': 'Wähle deine Sprache',
-    'Home page title': 'Dies ist die Startseite'
+    'Home page title': 'Dies ist die Startseite',
+
+    Gender: 'Geschlecht',
+    gender: 'Geschlecht',
+    firstName: 'Vorname',
+    lastName: 'Nachname',
+    homePhone: 'Haustelefon',
+    mobilePhone: 'Handynummer',
+    zipCode: 'Postleitzahl',
+
+    country: 'Ursprungsland',
+    username: 'Nutzername',
+    emailAddress: 'Email addresse',
+    taxRef: 'Steuernummer',
+    findAirport: 'Name des Flughafens',
+
+    AgeOfEldestChild: 'Age of Firstborn',
+    preferredRetireAge: 'Bevorzugtes Rentenalter',
+    parkingSpaces: 'Wie viele Parkplätze?',
+
+    // buttons
+    Continue: 'Fortsetzen',
+    Cancel: 'Stornieren',
+
+    month: {
+        pleaseSelect: 'MM',
+        required: '{f} Monat ist erforderlich',
+        $: 'Monat'
+    },
+    year: 'Jahr',
+
+    // fix, placeholders
+    YYYY: 'JJJJ',
+    MM: 'MM',
+    DD: 'TT',
+
+    // ------ errors ---------
+    required: '{f} ist erforderlich',
+
 };
