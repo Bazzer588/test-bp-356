@@ -604,6 +604,22 @@ select:-webkit-autofill {
   }
 }
 
+
+
+.form-field {
+  textarea {
+    font-size: 1rem;
+    padding: 8px;
+
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 5rem;
+    box-sizing: border-box;
+  }
+}
+
+
 /** TEST */
 
 .w2c { width: 52px; }

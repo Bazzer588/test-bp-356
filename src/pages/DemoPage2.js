@@ -15,6 +15,11 @@ const others = stringTypeField('otherSource',{ required: true });
 
 const TotalDeposit = stringTypeField('totalDeposit',{ required: true });
 
+const Upload1 = stringTypeField('upload1',{ type: 'file' });
+const Upload2 = stringTypeField('upload2',{ type: 'file', value: 'Yeah', placeholder: 'Yoyoyo' });
+const Comments = stringTypeField('yourComments',{ component: 'textarea', rows: 9 });
+const Comments2 = stringTypeField('yourComments2',{ component: 'textarea', rows: 4 });
+
 class DemoPage2 extends React.Component {
 
     static defaultProps = {
@@ -34,6 +39,10 @@ class DemoPage2 extends React.Component {
                 <h2>Source of funds for deposit</h2>
                 {Field(LangList,{ extras })}
                 {Field(TotalDeposit)}
+                {Field(Upload1)}
+                {Field(Upload2)}
+                {Field(Comments)}
+                {Field(Comments2)}
             </form>
         );
     }
