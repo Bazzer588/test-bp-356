@@ -52,7 +52,7 @@ const labels = {
     emailAddress: 'כתובת דוא"ל',
 
     nameOnCard: 'Имя на платежной карте',
-    findAirport: 'Название аэропорта',
+    findAirport: 'שם שדה התעופה',
 
     // ------ errors ---------
     required: 'נדרש {f}',
