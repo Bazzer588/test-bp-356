@@ -73,6 +73,7 @@ export default function FileUpload (props) {
                     alt="Pre-loading"
                     style={{ display: 'none' }}
                     onError={onImgError}
+                    onLoad={onImgLoad}
                 />
             }
         </>
@@ -85,6 +86,11 @@ const onImgError = (ev) => {
     ev.target.style.display = 'none';
 };
 
+const onImgLoad = (ev) => {
+    const v = ev.target;
+    console.log('IMG W&H',v.naturalWidth,v.naturalHeight);
+};
+
 const preload = (props) => (event) => {
     props.onChange(event);
     const file = event.target.files[0];
@@ -92,6 +98,18 @@ const preload = (props) => (event) => {
     if (file) {
         const reader = new FileReader();
         reader.addEventListener('load', () => {
+            // get size of image
+            /*
+            const test = new Image();
+            test.onload = function () {
+                console.log('IMAGE SIZE IS',this.width,this.height);
+            };
+            test.src = reader.result;
+            */
+            /*preview.addEventListener('load', () => {
+                console.log('IMG WH',preview.naturalWidth,preview.naturalHeight);
+            });*/
+            // SET THE IMAGE
             preview.src = reader.result;
             preview.style.display = ''; // un hide it
         });
