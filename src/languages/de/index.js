@@ -35,6 +35,9 @@ const labels = {
     'Change Language': 'Sprache ändern',
     'Select your language': 'Wähle deine Sprache',
     'Home page title': 'Dies ist die Startseite',
+    homeAddress: 'Heimatadresse',
+    overseasAddress: 'Überseeadresse',
+    workAddress: 'Arbeitsadresse',
 
     Gender: 'Geschlecht',
     gender: 'Geschlecht',
@@ -42,6 +45,11 @@ const labels = {
     lastName: 'Nachname',
     homePhone: 'Haustelefon',
     mobilePhone: 'Handynummer',
+
+    address1: 'Anschrift Zeile 1',
+    address2: 'Adresszeile 2',
+    city: 'Stadt',
+    region: 'Bundesstaat oder Region',
     zipCode: 'Postleitzahl',
 
     country: 'Ursprungsland',

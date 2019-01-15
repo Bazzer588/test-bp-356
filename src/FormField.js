@@ -60,6 +60,7 @@ export default class FormField extends React.PureComponent {
 }
 
 function renderError (error, errorId) {
+    /*
     function vals (error, values) {
         if (values) {
             if (values.minLength) return 'Please enter at least '+error.values.minLength+' characters';
@@ -68,13 +69,17 @@ function renderError (error, errorId) {
         }
         return error.error;
     }
+    const text = vals(error,error.values);
+    */
+    const text = translate(error);
+
     return (
         <span
             aria-live="assertive"
             className="field-error"
             id={errorId}
         >
-            {vals(error,error.values)}
+            {text}
             {error.required && ' *'}
         </span>
     );
