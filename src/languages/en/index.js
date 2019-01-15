@@ -124,8 +124,8 @@ const labels = {
 
     // ------ errors ---------
     required: '{f} is required',
+    minLength: '{f} must be at least {minLength} characters',
     errorNoFuture: '{f} can not be a future date',
     errorNoPast: '{f} must be a date in the future',
-    minLength: '{f} must be at least {minLength} characters',
     errorMoreThan: '{f} must be more than {minValue}',
 };

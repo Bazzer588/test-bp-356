@@ -32,6 +32,16 @@ const labels = {
         $$: '(необязательный выбор)'
     },
     // headings
+    'Home page title': 'Это домашняя страница',
+    'Search Page': 'Страница поиска',
+    'Home Page': 'Главная страница',
+    'Search': 'Поиск',
+    'Checkout': 'покупка',
+    personalRef: 'Персональные данные',
+    spouseRef: 'Детали супруга',
+
+    taxRef: 'Налоговый номер',
+    username: 'имя пользователя',
     gender: 'Пол',
     firstName: 'имя',
     lastName: 'Фамилия',
@@ -49,7 +59,6 @@ const labels = {
     'Cancel': 'отменить',
     'Change Language': 'изменение языка',
     'Select your language': 'Выберите ваш язык',
-    'Home page title': 'Это домашняя страница',
 
     // ------ errors ---------
     required: '{f} требуется',

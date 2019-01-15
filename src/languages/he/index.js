@@ -33,15 +33,22 @@ const labels = {
         $$: '(בחירה אופציונלית)'
     },
     // headings
+    'Home page title': 'זהו דף הבית',
+    'Search Page': 'דף חיפוש',
+    'Home Page': 'דף הבית',
+    'Search': 'לחפש',
+    'Checkout': 'לבדוק',
+    personalRef: 'פרטים אישיים',
+    spouseRef: 'פרטים על בני זוג',
     // labels
     'Gender': 'מין',
     'Continue': 'המשך',
     'Cancel': 'בטל',
     'Change Language': 'שנה שפה',
     'Select your language': 'בחר את השפה שלך',
-    'Home page title': 'זהו דף הבית',
     homeAddress: 'כתובת בית',
 
+    taxRef: 'הפניה למס',
     gender: 'מין',
     firstName: 'שם פרטי',
     lastName: 'שם משפחה',
@@ -56,4 +63,5 @@ const labels = {
 
     // ------ errors ---------
     required: 'נדרש {f}',
+    minLength: '{f} חייב להיות לפחות {minLength} תווים',
 };

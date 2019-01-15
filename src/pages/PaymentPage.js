@@ -7,6 +7,7 @@ import CheckBox from "../components/CheckBox";
 import Button from "../components/Button";
 import Loader from '../components/Loader';
 import {phoneTypeField} from '../components/PhoneInput';
+import {translate} from '../components/AppConfig';
 
 import TestPopup from './TestPopup';
 import PickerPopup from './PickerPopup';
@@ -153,7 +154,7 @@ class PaymentPage extends React.Component {
         return (
             <div className="App">
                 <div {...dprops}>
-                    <Header head="Checkout" doNotWalkTree />
+                    <Header head={translate('Checkout')} doNotWalkTree />
                     <form>
                         <h2>Your payment details</h2>
                         {Field( CardNumber )}

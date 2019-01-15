@@ -66,11 +66,11 @@ class NavLinks extends React.PureComponent {
                 <button onClick={this.btn} className="btn btn-secondary btn-mini" type="button" style={{ padding: '0 6px' }}>&#9776;</button>
                 {pop &&
                     <div className="telpopup" style={{ right: '0px', top: '30px', maxHeight: '990px', borderColor: '#777' }}>
-                        <button className="list-item" onClick={() => this.link('/tax-app/home')}>Home Page</button>
-                        <button className="list-item" onClick={() => this.link('/tax-app/search')}>Search</button>
-                        <button className="list-item" onClick={() => this.link('/tax-app/checkout')}>Checkout</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/home')}>{translate('Home Page')}</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/search')}>{translate('Search')}</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/checkout')}>{translate('Checkout')}</button>
                         <hr role="presentation"/>
-                        <button className="list-item" onClick={this.pickLang}>Change Language</button>
+                        <button className="list-item" onClick={this.pickLang}>{translate('Change Language')}</button>
                         <hr role="presentation"/>
                         <button className="list-item" onClick={() => this.link('/tax-app/payment/837463')}>Order 1</button>
                         <button className="list-item" onClick={() => this.link('/tax-app/payment/716226')}>Order 2</button>

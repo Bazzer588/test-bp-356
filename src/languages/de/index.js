@@ -35,6 +35,13 @@ const labels = {
     'Change Language': 'Sprache ändern',
     'Select your language': 'Wähle deine Sprache',
     'Home page title': 'Dies ist die Startseite',
+    'Search Page': 'Suchseite',
+    'Home Page': 'Startseite',
+    'Search': 'Suche',
+    'Checkout': 'Auschecken',
+    personalRef: 'Persönliche Details',
+    spouseRef: 'Deteils zum Lebenspartner',
+
     homeAddress: 'Heimatadresse',
     overseasAddress: 'Überseeadresse',
     workAddress: 'Arbeitsadresse',
@@ -58,6 +65,7 @@ const labels = {
     taxRef: 'Steuernummer',
     findAirport: 'Name des Flughafens',
 
+    cardNumber: 'Kredit-oder Debitkartennummer',
     AgeOfEldestChild: 'Age of Firstborn',
     preferredRetireAge: 'Bevorzugtes Rentenalter',
     parkingSpaces: 'Wie viele Parkplätze?',
@@ -80,5 +88,6 @@ const labels = {
 
     // ------ errors ---------
     required: '{f} ist erforderlich',
+    minLength: '{f} muss mindestens {minLength} Zeichen sein',
 
 };

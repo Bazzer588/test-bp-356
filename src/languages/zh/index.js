@@ -54,11 +54,17 @@ const labels = {
     },
     // headings
     'personalRef': '输入您的个人信息',
-    spouseRef: 'Enter your spouse details',
+    spouseRef: '配偶细节',
     'Home page title': '这是主页',
+    'Search Page': '第二页申请',
+    'Home Page': '主页',
+    'Search': '搜索',
+    'Checkout': '查看',
+
     homeAddress: '家庭地址',
     overseasAddress: '海外地址',
     workAddress: '就业或工作地址',
+
     // labels
     address1: '第一行地址',
     address2: '第二行地址',
@@ -70,13 +76,15 @@ const labels = {
     lastName: '姓',
 
     taxRef: '税号',
-    username: 'User name',
+    username: '用户名',
     Gender: '性别',
     gender: '性别',
     homePhone: '家庭电话',
     mobilePhone: '移动电话',
     emailAddress: '电子邮件',
 
+    carsInHouse: '你家里的汽车',
+    preferredRetireAge: '首选退休年龄',
     destination: '目的地',
     alternate: '替代目的地',
 
@@ -114,7 +122,7 @@ const labels = {
     },
 
     // ------ errors ---------
-    required: '{f} 是必须的 *',
+    required: '{f} 是必须的',
     errorNoFuture: '{f} can not be a future date',
     errorNoPast: '{f} must be a date in the future',
     minLength: '{f}必须至少为{minLength}个字符',
