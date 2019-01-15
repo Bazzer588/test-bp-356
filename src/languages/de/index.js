@@ -42,6 +42,9 @@ const labels = {
     personalRef: 'Persönliche Details',
     spouseRef: 'Deteils zum Lebenspartner',
 
+    // labels
+    'Please choose a file': 'Bitte wählen Sie eine Datei',
+
     homeAddress: 'Heimatadresse',
     overseasAddress: 'Überseeadresse',
     workAddress: 'Arbeitsadresse',

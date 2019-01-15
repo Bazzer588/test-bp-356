@@ -66,6 +66,7 @@ const labels = {
     workAddress: '就业或工作地址',
 
     // labels
+    'Please choose a file': '请选择一个文件',
     address1: '第一行地址',
     address2: '第二行地址',
     city: '市',

@@ -63,7 +63,9 @@ const labels = {
     homeAddress: 'Home address',
     overseasAddress: 'Overseas address',
     workAddress: 'Employment or work address',
+
     // labels
+    'Please choose a file': 'Please choose a file',
     address1: 'First line of address, for example house number and street',
     address2: 'Second line of address',
     city: 'City',

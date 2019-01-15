@@ -1,4 +1,5 @@
 import React from "react";
+import {translate} from './AppConfig';
 
 export default function FileUpload (props) {
 
@@ -49,7 +50,7 @@ export default function FileUpload (props) {
     }
 
     // const {value, ...rest} = props;
-    const lab = getFileName(props.id) || 'Please choose a file';
+    const lab = getFileName(props.id) || translate('Please choose a file');
 
     return (
         <>
