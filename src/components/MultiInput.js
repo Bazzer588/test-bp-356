@@ -47,21 +47,26 @@ function MultiInput (props) {
 
 function validator (value, props, path, output) {
     if (!value) value = {};
-    const { inputs, name, defaultField = 0, required, nextValidator } = props;
+    const { inputs, name, defaultField = 0, required, typeName, nextValidator } = props;
     const out = {};
     let err = undefined;
-    inputs.forEach( (item,index) => {
+    inputs.find( (item,index) => {
         const fld = item.name;
         const r = item.validator( value[fld], { ...item, required }, path+'-'+name, out );
-        if (r && r.error && !err) {
-            if (index===defaultField) r.linkToPath = true;
-            r.errorFieldName = name;
-            //console.log('GOTATTA',r);
+        if (r && r.error) {
+            if (index===defaultField) {
+                r.linkToPath = true;
+            }
+            //r.errorFieldName = name;
+            r.typeName = typeName;
+            // console.log('GOTATTA',r);
             err = r;
+            return true;
         }
+        return false;
     });
     if (!err && nextValidator) {
-        // nextValidator(out,props,path); // ????
+        err = nextValidator(out,props,path); // ????
     }
     if (output) {
         output[name] = out;

@@ -39,7 +39,15 @@ class RepeaterPage extends React.Component {
                 if (Array.isArray(list)) {
                     const rows = [];
                     list.forEach( port => {
-                        rows.push(<tr key={port.Code}><td title={JSON.stringify(port,null,' ')}>{port.Code}</td><td>{port.City}</td><td>{port.Name}</td><td>{port.Country}</td></tr>);
+                        rows.push(
+                            <tr key={port.Code}>
+                                <td title={JSON.stringify(port,null,' ')}>{port.Code}</td>
+                                <td>{port.City}</td>
+                                <td>{port.Name}</td>
+                                <td>{port.Country}</td>
+                                <td>{port.T}</td>
+                            </tr>
+                        );
                     });
                     const text = <table className="genTable"><tbody>{rows}</tbody></table>;
                     popAlert({page, title: 'Aeropuertos', text });

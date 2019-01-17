@@ -61,10 +61,16 @@ export function translate (t,props) {
         // insert field name ?
         if (g.indexOf('{f}')>=0) {
             // to get {f}, combine path + name
-            const get = t.errorFieldName ? ap : [ ...ap, name ]; // is the error from a multi field?
+            // const get = t.errorFieldName ? ap : [ ...ap, name ]; // is the error from a multi field?
+            const get = t.typeName ? [t.typeName, name] : [ ...ap, name ]; // if multi field lookup [dateInput,day]
             const f = lookup(std,get,t.required);
-            //console.log('LOOKUP ERROR',t,JSON.stringify(f));
-            g = g.replace('{f}', f || t.errorFieldName || name );
+            // console.log('LOOKUP ERROR',t,ap);
+            g = g.replace('{f}', f || name );
+            // second level for multi fields
+            if (g.indexOf('{f}')>=0) {
+                const f2 = lookup(std,ap,t.required);           // lookup the path without name
+                g = g.replace('{f}', f2 || ap[ap.length-1] );   // f2 or the last tag in the path
+            }
         }
         // replace values
         if (t.values) {
@@ -96,6 +102,7 @@ export function translate (t,props) {
 
     if (props && (typeof x === 'string') && x.indexOf('{f}')>=0) {
         if (props.id) {
+            console.log('GOTOT',x,t,props.id);
             const f = translate(props.id,props);
             x = x.replace('{f}',f);
         }

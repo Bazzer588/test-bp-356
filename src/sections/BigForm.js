@@ -13,6 +13,7 @@ import RoomCount from './RoomCount';
 import walkTree from '../validation/walkTree';
 import ErrorList from "../components/ErrorList";
 import makeMultiInput from "../components/MultiInput";
+import validateDate from '../validation/validateDate';
 
 // fields
 
@@ -42,19 +43,19 @@ const DateThingX = makeMultiInput('startDate', {
     ]});
 
 const DateThing = makeMultiInput('dob', {
-    required: true, typeName: 'dateInput',
+    required: true, typeName: 'dateInput', nextValidator: validateDate, notFuture: true,
     inputs: [
-        stringTypeField('day',  { type: 'tel', maxLength: 2, placeholder: 'DD', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartDay' }),
-        stringTypeField('month',{ type: 'tel', maxLength: 2, placeholder: 'MM', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartMonth' }),
-        stringTypeField('year', { type: 'tel', minLength: 4, maxLength: 4, placeholder: 'YYYY', style: { width: '90px' }, ariaLabel: 'datePartYear' }),
+        stringTypeField('day',  { type: 'tel', maxLength: 2, placeholder: 'DD', span: { className: 'w2c pr12' }, ariaLabel: 'datePartDay' }),
+        stringTypeField('month',{ type: 'tel', maxLength: 2, placeholder: 'MM', span: { className: 'w2c pr12' }, ariaLabel: 'datePartMonth' }),
+        stringTypeField('year', { type: 'tel', maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' }, ariaLabel: 'datePartYear' }),
     ]});
 
 const DateMonthThing = makeMultiInput('expiryDate', {
-    required: true, typeName: 'dateInput',
+    required: true, typeName: 'dateInput', nextValidator: validateDate, notPast: true, notToday: true,
     inputs: [
-        stringTypeField('day',  { type: 'tel', maxLength: 2, placeholder: 'DD', style: { width: '50px', marginRight: '10px' }, ariaLabel: 'datePartDay' }),
-        selectTypeField('month',{ options: 'months', span: { style: { marginRight: '10px', display: 'inline-block' } } } ),
-        stringTypeField('year', { type: 'tel', minLength: 4, maxLength: 4, placeholder: 'YYYY', style: { width: '90px' }, ariaLabel: 'datePartYear' }),
+        stringTypeField('day',  { type: 'tel', maxLength: 2, placeholder: 'DD', span: { className: 'w2c pr12' }, ariaLabel: 'datePartDay' }),
+        selectTypeField('month',{ options: 'months', span: { className: 'pr12' } } ),
+        stringTypeField('year', { type: 'tel', minLength: 4, maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' }, ariaLabel: 'datePartYear' }),
     ]});
 
 // declare sections

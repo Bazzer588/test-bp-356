@@ -130,7 +130,7 @@ const labels = {
     errorMoreThan: '{f} must be more than {minValue}',
 
     // fix, placeholders
-    YYYY: '年（数字）',
+    YYYY: '年(数字)',
     MM: '月',
     DD: '天'
 };

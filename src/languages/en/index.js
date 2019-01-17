@@ -105,6 +105,13 @@ const labels = {
         $: 'Number of rooms required'
     },
 
+    // multi fields
+    dateInput: {
+        day: '{f} day of month',
+        month: '{f} month',
+        year: '{f} year'
+    },
+    /*
     day: {
         $: 'day',
         required: '{f} day is required'
@@ -118,6 +125,7 @@ const labels = {
         $: 'year',
         required: '{f} year is required'
     },
+    */
 
     thingList: {
         cnid: 'Country of Thing',
@@ -127,7 +135,13 @@ const labels = {
     // ------ errors ---------
     required: '{f} is required',
     minLength: '{f} must be at least {minLength} characters',
-    errorNoFuture: '{f} can not be a future date',
-    errorNoPast: '{f} must be a date in the future',
     errorMoreThan: '{f} must be more than {minValue}',
+    // date errors
+    invalidYear: '{f}, year is invalid',
+    invalidMonth: '{f}, month is invalid',
+    invalidDay: '{f}, day is invalid',
+    invalidDayOfMonth: '{f}, day of month is invalid',
+    dateNotInFuture: '{f} can not be a future date',
+    dateNotInPast: '{f} can not be a date in the past',
+    dateNotToday: '{f} can not be today\'s date',
 };
