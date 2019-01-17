@@ -124,10 +124,16 @@ const labels = {
 
     // ------ errors ---------
     required: '{f} 是必须的',
-    errorNoFuture: '{f} can not be a future date',
-    errorNoPast: '{f} must be a date in the future',
     minLength: '{f}必须至少为{minLength}个字符',
     errorMoreThan: '{f} must be more than {minValue}',
+    // date errors
+    invalidYear: '{f}, year is invalid',
+    invalidMonth: '{f}, month is invalid',
+    invalidDay: '{f}, day is invalid',
+    invalidDayOfMonth: '{f}，月份日期无效',
+    dateNotInFuture: '{f} can not be a future date',
+    dateNotInPast: '{f}不能是过去的日期',
+    dateNotToday: '{f}不能是今天的日期',
 
     // fix, placeholders
     YYYY: '年(数字)',

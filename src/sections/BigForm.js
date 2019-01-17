@@ -34,15 +34,15 @@ const Another = makeMultiInput('andMore', { defaultField: 1, typeName: 'testType
         //stringTypeField('zorb',{})
     ]});
 
-const DateThingX = makeMultiInput('startDate', {
+const StartDate = makeMultiInput('startDate', {
     required: true, typeName: 'dateInput',
     inputs: [
         stringTypeField('day',  { type: 'tel', maxLength: 2, placeholder: 'DD', span: { className: 'w2c pr12' } }),
         stringTypeField('month',{ type: 'tel', maxLength: 2, placeholder: 'MM', span: { className: 'w2c pr12' } }),
-        stringTypeField('year', { type: 'tel', minLength: 4, maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' } }),
+        stringTypeField('year', { type: 'tel', maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' } }),
     ]});
 
-const DateThing = makeMultiInput('dob', {
+const BirthDate = makeMultiInput('dob', {
     required: true, typeName: 'dateInput', nextValidator: validateDate, notFuture: true,
     inputs: [
         stringTypeField('day',  { type: 'tel', maxLength: 2, placeholder: 'DD', span: { className: 'w2c pr12' }, ariaLabel: 'datePartDay' }),
@@ -50,12 +50,12 @@ const DateThing = makeMultiInput('dob', {
         stringTypeField('year', { type: 'tel', maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' }, ariaLabel: 'datePartYear' }),
     ]});
 
-const DateMonthThing = makeMultiInput('expiryDate', {
+const ExpiryDateM = makeMultiInput('expiryDate', {
     required: true, typeName: 'dateInput', nextValidator: validateDate, notPast: true, notToday: true,
     inputs: [
         stringTypeField('day',  { type: 'tel', maxLength: 2, placeholder: 'DD', span: { className: 'w2c pr12' }, ariaLabel: 'datePartDay' }),
         selectTypeField('month',{ options: 'months', span: { className: 'pr12' } } ),
-        stringTypeField('year', { type: 'tel', minLength: 4, maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' }, ariaLabel: 'datePartYear' }),
+        stringTypeField('year', { type: 'tel', maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' }, ariaLabel: 'datePartYear' }),
     ]});
 
 // declare sections
@@ -136,9 +136,9 @@ class BigForm extends React.PureComponent {
                     {Field( Thingy )}
                     {Field( Whatever )}
                     {Field( Another )}
-                    {Field( DateThingX )}
-                    {Field( DateThing )}
-                    {Field( DateMonthThing )}
+                    {Field( StartDate )}
+                    {Field( BirthDate )}
+                    {Field( ExpiryDateM )}
                     </div>
                 </FieldSet>
                 <FieldSet name="homeAddress">
