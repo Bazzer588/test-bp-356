@@ -25,8 +25,10 @@ export default function FileUpload (props) {
 
         const data = new FormData();
         data.append('file', event.target.files[0]);
-        //data.append('name', 'some value user types');
-        //data.append('description', 'some value user types');
+
+        data.append('when', 'Uploaded ' + new Date());
+        data.append('applicationId', '394387873478388');
+        data.append('metadata', JSON.stringify({ id: 2023, code: '4435' }) ); // JSON
 
         fetch('/profile/avatar', {
             method: 'PUT',
@@ -43,7 +45,7 @@ export default function FileUpload (props) {
     const { preloadImage, ...rest } = props;
 
     let onChange;
-    if (props.preloadImage) {
+    if (preloadImage) {
         onChange = preload(props)
     } else {
         onChange = submit;
@@ -159,4 +161,6 @@ formData.append('avatar', fileField.files[0]);
 
 use to preload a file
 
+NOTE TO CAPTURE FROM CAMERA
+<input type="file" accept="image/*" capture="camera">
 */

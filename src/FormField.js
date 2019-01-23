@@ -1,5 +1,6 @@
 import React from "react";
 import {translate} from './components/AppConfig';
+import InputText from "./components/InputText";
 
 export default class FormField extends React.PureComponent {
 
@@ -22,8 +23,8 @@ export default class FormField extends React.PureComponent {
             ...others
         } = this.props;
 
-        const Compo = component || 'input';
-        const type = component ? undefined : 'text';
+        const Compo = component || InputText; // 'input';
+        // const type = component ? undefined : 'text';
         const optional = component ? undefined : (required ? undefined : 'optional');
 
         const value = this.props.value || '';
@@ -49,7 +50,7 @@ export default class FormField extends React.PureComponent {
                     onBlur={this.onBlur}
                     onChange={this.onChange}
                     required={required}
-                    type={type}
+                    // type={type}
                     {...otherProps}
                     value={value}
                 />

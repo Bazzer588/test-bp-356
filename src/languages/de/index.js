@@ -73,6 +73,9 @@ const labels = {
     preferredRetireAge: 'Bevorzugtes Rentenalter',
     parkingSpaces: 'Wie viele Parkplätze?',
 
+    'Sign me up for regular email alerts.': 'Melden Sie sich für regelmäßige E-Mail-Benachrichtigungen an.',
+    'Other consent option.': 'Andere konstante Option.',
+
     // buttons
     Continue: 'Fortsetzen',
     Cancel: 'Stornieren',

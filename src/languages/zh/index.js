@@ -125,7 +125,8 @@ const labels = {
     // ------ errors ---------
     required: '{f} 是必须的',
     minLength: '{f}必须至少为{minLength}个字符',
-    errorMoreThan: '{f} must be more than {minValue}',
+    errorMoreThan: '{f} must be more than {value}',
+    errorLessThan: '{f} must be less than {value}',
     // date errors
     invalidYear: '{f}, year is invalid',
     invalidMonth: '{f}, month is invalid',

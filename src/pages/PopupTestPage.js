@@ -6,6 +6,7 @@ import Select from "../components/Select";
 import Radios from "../components/Radios";
 import CheckBox from "../components/CheckBox";
 import {justConnect} from "../FormConnect";
+import ImageCapture from "../components/ImageCapture";
 
 class PopupTestPage extends React.Component {
 
@@ -70,6 +71,7 @@ class PopupTestPage extends React.Component {
                     <Button onClick={() => console.log(this.myRef.current)}>Debug</Button>
                     <Button onClick={() => this.popupComp(WizTestAgain)}>Component</Button>
                 </form>
+                <ImageCapture/>
             </BasePage>
         );
     }

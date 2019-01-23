@@ -53,9 +53,9 @@ const BirthDate = makeMultiInput('dob', {
 const ExpiryDateM = makeMultiInput('expiryDate', {
     required: true, typeName: 'dateInput', nextValidator: validateDate, notPast: true, notToday: true,
     inputs: [
-        stringTypeField('day',  { type: 'tel', maxLength: 2, placeholder: 'DD', span: { className: 'w2c pr12' }, ariaLabel: 'datePartDay' }),
+        stringTypeField('day',  { type: 'number', min: 1, max: 31, maxLength: 2, placeholder: 'DD', span: { className: 'w2c pr12' }, ariaLabel: 'datePartDay' }),
         selectTypeField('month',{ options: 'months', span: { className: 'pr12' } } ),
-        stringTypeField('year', { type: 'tel', maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' }, ariaLabel: 'datePartYear' }),
+        stringTypeField('year', { type: 'number', maxLength: 4, placeholder: 'YYYY', span: { className: 'w4c pr12' }, ariaLabel: 'datePartYear' }),
     ]});
 
 // declare sections

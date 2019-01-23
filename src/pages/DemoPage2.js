@@ -21,6 +21,8 @@ const Upload1 = stringTypeField('upload1',{ component: FileUpload, required: tru
 const UploadP = stringTypeField('uploadP',{ component: FileUpload, preloadImage: true });
 const Upload2 = stringTypeField('upload2',{ type: 'file', value: 'Yeah', placeholder: 'Yoyoyo', required: true });
 
+const UploadCam = stringTypeField('uploadCam',{ component: FileUpload, preloadImage: true, accept: 'image/*', capture: 'camera' });
+
 const Comments = stringTypeField('yourComments',{ component: 'textarea', rows: 9 });
 const Comments2 = stringTypeField('yourComments2',{ component: 'textarea', rows: 4 });
 
@@ -70,11 +72,17 @@ class DemoPage2 extends React.Component {
                 {Field(Upload1)}
                 {Field(UploadP)}
                 {Field(Upload2)}
+                {Field(UploadCam)}
 
                 {Field(Comments)}
                 {Field(Comments2)}
                 <p style={{ textAlign: 'right', marginTop: '12px' }}>
                     <Button cnm="primary" onClick={this.doContinue}>Continue</Button>
+                </p>
+                <p>
+                    Some examples
+                    <img src="https://zoffly.co.uk/samples/sample rotate left.jpg" alt=""/>
+                    <img src="https://zoffly.co.uk/samples/sample rotate right.jpg" alt=""/>
                 </p>
             </form>
             </>
