@@ -42,7 +42,7 @@ export default function FileUpload (props) {
             .catch( e2 => console.log('E2:', e2 ) );
     }
 
-    const { preloadImage, ...rest } = props;
+    const { preloadImage, placeholder, ...rest } = props;
 
     let onChange;
     if (preloadImage) {
@@ -52,7 +52,7 @@ export default function FileUpload (props) {
     }
 
     // const {value, ...rest} = props;
-    const lab = getFileName(props.id) || translate('Please choose a file');
+    const lab = getFileName(props.id) || translate(placeholder) || translate('Please choose a file');
 
     return (
         <>

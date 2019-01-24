@@ -38,12 +38,14 @@ App.initialize( () => render(App) );
 
 // hot loading
 
-if (module.hot) {
-    module.hot.accept('./App', () => {
-        //console.log('MOD HOT');
-        const NextApp = require('./App').default;
-        render(NextApp);
-    });
+if (process.env.NODE_ENV==='development') {
+    if (module.hot) {
+        module.hot.accept('./App', () => {
+            //console.log('MOD HOT');
+            const NextApp = require('./App').default;
+            render(NextApp);
+        });
+    }
 }
 
 // PROGRESSIVE APP
