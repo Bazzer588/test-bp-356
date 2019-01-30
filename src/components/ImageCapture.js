@@ -110,18 +110,20 @@ function attach (comp, deviceId) {
 /** devices */
 
 function getDevices (comp) {
-    navigator.mediaDevices.enumerateDevices()
-        .then( (infos) => {
-            const inputs = [];
-            for(let n=0;n<infos.length;n++) {
-                const dev = infos[n];
-                if (dev.kind==='videoinput') {
-                    console.log(n, dev);
-                    inputs.push(dev);
+    if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+        navigator.mediaDevices.enumerateDevices()
+            .then((infos) => {
+                const inputs = [];
+                for (let n = 0; n < infos.length; n++) {
+                    const dev = infos[n];
+                    if (dev.kind === 'videoinput') {
+                        console.log(n, dev);
+                        inputs.push(dev);
+                    }
                 }
-            }
-            comp.setState({ inputs });
-        });
+                comp.setState({inputs});
+            });
+    }
 }
 
 /** stop em */
