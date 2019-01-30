@@ -5,15 +5,15 @@ import validateString from "../validation/validateString";
 export default function Select (props) {
     // console.log('SELECT',props);
 
-    const {options, allowOption, rangeFrom, rangeTo, className, excludeValues, showCode, ...rest} = props;
-    const {defaultValue, value, required, id} = props;
+    const {defaultValue, value, options, allowOption, rangeFrom, rangeTo, className, excludeValues, showCode, ...rest} = props;
+    const {required, id} = props;
     const actual = value || defaultValue;
 
     const base = !!actual ? 'custom-select' : 'custom-select no-value';
     const cnm = className ? base+' '+className : base;
 
     return (
-        <select {...rest} className={cnm}>
+        <select {...rest} value={actual} className={cnm}>
             {(actual==='' || actual===undefined || required === false) &&
                 <option value="">{translate(id + '-pleaseSelect', props)}</option>
             }
