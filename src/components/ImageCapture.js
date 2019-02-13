@@ -53,7 +53,14 @@ export default class ImageCapture extends React.Component {
     render () {
         const state = this.state || {};
         if (state.wasError) {
-            return <span>{ state.wasError.toString() }{ state.wasError.constraint || '?' }</span>;
+            return (
+                <div>
+                    { state.wasError.toString() }{ state.wasError.constraint || '?' }
+                    <p>
+                        <button onClick={() => { this.setState({ wasError: null }) }}>Retry</button>
+                    </p>
+                </div>
+            );
         }
 
         if (!hasGetUserMedia())

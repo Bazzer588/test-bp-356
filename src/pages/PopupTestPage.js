@@ -6,7 +6,8 @@ import Select from "../components/Select";
 import Radios from "../components/Radios";
 import CheckBox from "../components/CheckBox";
 import {justConnect} from "../FormConnect";
-import ImageCapture from "../components/ImageCapture";
+// import ImageCapture from "../components/ImageCapture";
+import ImageCapture from "../components/FlashCapture";
 
 class PopupTestPage extends React.Component {
 
@@ -49,7 +50,15 @@ class PopupTestPage extends React.Component {
         return this.myRef.current;
     }
 
+    setWH = (w,h) => {
+        this.setState({ w, h, hide: true });
+        setTimeout( () => {
+            this.setState({ w, h, hide: false });
+        },1);
+    };
+
     render () {
+        const { w = 1280, h = 720, hide } = (this.state || {});
         return (
             <BasePage
                 ref={this.myRef}
@@ -70,8 +79,14 @@ class PopupTestPage extends React.Component {
                     <p><br/>Test</p>
                     <Button onClick={() => console.log(this.myRef.current)}>Debug</Button>
                     <Button onClick={() => this.popupComp(WizTestAgain)}>Component</Button>
+
+                    <Button onClick={() => this.setWH(1920,1080)}>Big</Button>
+                    <Button onClick={() => this.setWH(1280,720)}>Land</Button>
+                    <Button onClick={() => this.setWH(720,1280)}>Port</Button>
                 </form>
-                <ImageCapture/>
+                <p>{' '}</p>
+                <ImageCapture width={w} height={h} hide={hide}/>
+                <div style={{ paddingTop: '400px' }}>...</div>
             </BasePage>
         );
     }
