@@ -58,7 +58,7 @@ class PopupTestPage extends React.Component {
     };
 
     render () {
-        const { w = 1280, h = 720, hide } = (this.state || {});
+        const { w = 1280, h = 720, hide, invisible } = (this.state || {});
         return (
             <BasePage
                 ref={this.myRef}
@@ -73,19 +73,20 @@ class PopupTestPage extends React.Component {
                     <p><br/>This is the popup test page...</p>
                     <Button onClick={this.openWiz}>Wizard</Button>
                     <Button onClick={this.openDel}>Delete</Button>
-                    <p><br/>Errors</p>
                     <Button onClick={() => this.popup(ErrorPop)}>Error</Button>
                     <Button onClick={() => this.popup(FatalError)}>Fatal</Button>
                     <p><br/>Test</p>
                     <Button onClick={() => console.log(this.myRef.current)}>Debug</Button>
                     <Button onClick={() => this.popupComp(WizTestAgain)}>Component</Button>
-
+                    <p><br/>Camera</p>
                     <Button onClick={() => this.setWH(1920,1080)}>Big</Button>
                     <Button onClick={() => this.setWH(1280,720)}>Land</Button>
                     <Button onClick={() => this.setWH(720,1280)}>Port</Button>
+                    <Button onClick={() => this.setState({ invisible: false })}>Show</Button>
+                    <Button onClick={() => this.setState({ invisible: true })}>Hide</Button>
                 </form>
                 <p>{' '}</p>
-                <ImageCapture width={w} height={h} hide={hide}/>
+                <ImageCapture width={w} height={h} hide={hide} invisible={invisible}/>
                 <div style={{ paddingTop: '400px' }}>...</div>
             </BasePage>
         );

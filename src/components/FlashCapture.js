@@ -25,7 +25,7 @@ export default class FlashCapture extends React.Component {
 
     render () {
         const swfURL = '/tax-app/webcam.swf';
-        const { width = 1280, height = 720, hide } = this.props;
+        const { width = 1280, height = 720, hide, invisible } = this.props;
         console.log('render',width,height,hide);
         if (hide)
             return null;
@@ -39,8 +39,9 @@ export default class FlashCapture extends React.Component {
             '&fps=30' +
             '&image_format=jpeg'
         ;
+        const ts = invisible ? { position: 'absolute', width: '0px', left: '-2000px' } : {};
         return (
-            <div className={width>height ? 'videoWrapper' : 'videoWrapperPort'}>
+            <div className={width>height ? 'videoWrapper' : 'videoWrapperPort'} style={ts}>
             <object
                 classID="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
                 type="application/x-shockwave-flash"
