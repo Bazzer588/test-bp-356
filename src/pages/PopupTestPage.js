@@ -6,8 +6,8 @@ import Select from "../components/Select";
 import Radios from "../components/Radios";
 import CheckBox from "../components/CheckBox";
 import {justConnect} from "../FormConnect";
-// import ImageCapture from "../components/ImageCapture";
-import ImageCapture from "../components/FlashCapture";
+import ImageCapture from "../components/ImageCapture";
+import FlashCapture from "../components/FlashCapture";
 
 class PopupTestPage extends React.Component {
 
@@ -59,6 +59,14 @@ class PopupTestPage extends React.Component {
 
     render () {
         const { w = 1280, h = 720, hide, invisible } = (this.state || {});
+
+        //console.log('RENDER PTP',this.props);
+        const Capture = this.props.record === '716226' ?
+            <FlashCapture width={w} height={h} hide={hide} invisible={invisible}/>
+            :
+            <ImageCapture width={w} height={h} hide={hide} invisible={invisible}/>
+        ;
+
         return (
             <BasePage
                 ref={this.myRef}
@@ -86,7 +94,7 @@ class PopupTestPage extends React.Component {
                     <Button onClick={() => this.setState({ invisible: true })}>Hide</Button>
                 </form>
                 <p>{' '}</p>
-                <ImageCapture width={w} height={h} hide={hide} invisible={invisible}/>
+                {Capture}
                 <div style={{ paddingTop: '400px' }}>...</div>
             </BasePage>
         );

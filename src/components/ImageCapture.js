@@ -42,7 +42,8 @@ export default class ImageCapture extends React.Component {
         if (!inputs) return null;
         const x = [];
         inputs.forEach( (inp,index) => {
-            x.push(<button onClick={() => this.pick(index)} key={inp.label}>{inp.label}</button>);
+            const label = inp.label || 'Cam '+index;
+            x.push(<button onClick={() => this.pick(index)} key={label}>{label}</button>);
         });
         /*if (this.state.deviceId) {
             x.push(' index '+this.state.deviceIndex);
@@ -51,6 +52,7 @@ export default class ImageCapture extends React.Component {
     }
 
     render () {
+
         const state = this.state || {};
         if (state.wasError) {
             return (
@@ -68,8 +70,11 @@ export default class ImageCapture extends React.Component {
 
         setTimeout(() => attach(this,state.deviceId), 100);
 
+        const { invisible } = this.props;
+        const ts = invisible ? { position: 'absolute', width: '0px', left: '-2000px' } : {};
+
         return (
-            <div style={{ width: '100%', padding: '12px', boxSizing: 'border-box' }}>
+            <div style={{ width: '100%', padding: '12px', boxSizing: 'border-box', ...ts }}>
                 <video
                     autoPlay
                     id="theImageCapture"
