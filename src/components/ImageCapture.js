@@ -3,7 +3,7 @@ import React from "react";
 export default class ImageCapture extends React.Component {
 
     componentDidMount () {
-        getDevices(this);
+        setTimeout( () => getDevices(this), 250 );
     }
 
     componentWillUnmount () {
@@ -15,12 +15,13 @@ export default class ImageCapture extends React.Component {
         const dev = this.state.inputs[index];
         console.log('pick',dev.label);
         this.stopAll();
-        this.setState({ deviceIndex: index, deviceId: dev.deviceId })
+        this.setState({ deviceIndex: index, deviceId: dev.deviceId, wasError: null })
     }
 
     stopAll () {
         if (this.currentStream) {
             this.currentStream.getTracks().forEach( track => track.stop() );
+            this.currentStream = null;
         }
     }
 
@@ -32,7 +33,8 @@ export default class ImageCapture extends React.Component {
         canvas.height = video.videoHeight;
         canvas.getContext('2d').drawImage(video, 0, 0);
         // Other browsers will fall back to image/png
-        const data = canvas.toDataURL('image/webp');
+        // const data = canvas.toDataURL('image/webp');
+        const data = canvas.toDataURL('image/jpeg');
         image.src = data;
         console.log('SNAP',video.videoWidth,video.videoHeight,'LEN',data.length);
         this.setState({ snapInfo: 'Image '+ video.videoWidth + ' x ' + video.videoHeight + ', bytes ' + data.length });
@@ -57,7 +59,10 @@ export default class ImageCapture extends React.Component {
         if (state.wasError) {
             return (
                 <div>
-                    { state.wasError.toString() }{ state.wasError.constraint || '?' }
+                    { state.wasError.toString() }
+                    { state.wasError.constraint || '?' }
+                    { JSON.stringify(state.hdConstraints,null,' ') }
+                    <p>{this.buttons(state.inputs)}</p>
                     <p>
                         <button onClick={() => { this.setState({ wasError: null }) }}>Retry</button>
                     </p>
@@ -68,7 +73,7 @@ export default class ImageCapture extends React.Component {
         if (!hasGetUserMedia())
             return <span>No video</span>;
 
-        setTimeout(() => attach(this,state.deviceId), 100);
+        setTimeout(() => attach(this,state.deviceId), 250);
 
         const { invisible } = this.props;
         const ts = invisible ? { position: 'absolute', width: '0px', left: '-2000px' } : {};
@@ -95,15 +100,18 @@ export default class ImageCapture extends React.Component {
 function attach (comp, deviceId) {
     const video = document.getElementById('theImageCapture');
     const hdConstraints = {
-        // video: {width: {min: 640}, height: {min: 480}}
-        video: {width: {min: 1280}, height: {min: 720}}
-        // video: {width: {min: 720}, height: {min: 1280}}   // OverconstrainedError on ms webcam
+        // video: {width: {min: 1280}, height: {min: 720}}
     };
     if (deviceId) {
-        // hdConstraints.video = {width: {min: 1920}, height: {min: 1080}};
-        hdConstraints.video.deviceId = { exact: deviceId };
+        hdConstraints.video = {
+            width: {min: 1280},
+            height: {min: 720},
+            deviceId: { exact: deviceId }
+        };
     } else {
-        // hdConstraints.video.facingMode = { exact: 'environment' };
+        hdConstraints.video = {
+            facingMode: { exact: 'environment' }
+        };
     }
 
     console.log('CONSTRAINTS',hdConstraints);
@@ -115,7 +123,7 @@ function attach (comp, deviceId) {
         })
         .catch( err => {
             console.log('V ERROR',err);
-            comp.setState({ wasError: err });
+            comp.setState({ wasError: err, hdConstraints });
         } );
 }
 
