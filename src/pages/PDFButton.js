@@ -3,11 +3,16 @@ import Button from "../components/Button";
 
 export default function PDFButton({parent}) {
 
-    const {pdfReady} = (parent.state || {});
+    const {pdfReady, pdfLoading = false} = (parent.state || {});
 
     return (
         <>
-            <Button onClick={() => getPDF(parent)}>Get PDF</Button>
+            <Button
+                disabled={pdfLoading}
+                onClick={() => getPDF(parent)}
+            >
+                Get PDF
+            </Button>
             {(pdfReady || window.PDF_BLOB) &&
             <>
                 <Button onClick={() => downloadPDF()}>Download</Button>
@@ -15,12 +20,15 @@ export default function PDFButton({parent}) {
                 <a href={window.PDF_URL} target="_blank">Open PDF</a>
             </>
             }
+            {pdfLoading && ' ...getting the PDF, please wait'}
         </>
     );
 }
 
 const getPDF = (parent) => {
-    //alert('PDF');
+
+    window.PDF_BLOB = null;
+    parent.setState({pdfReady: false, pdfLoading: true});
 
     fetch('/policy.pdf')
         .then(response => {
@@ -31,8 +39,8 @@ const getPDF = (parent) => {
             console.log('BLOB', blob.size);
             window.PDF_BLOB = blob;
             window.PDF_URL = window.URL.createObjectURL(blob);
-            console.log('PDF_URL',window.PDF_URL);
-            parent.setState({pdfReady: true});
+            console.log('PDF_URL', window.PDF_URL);
+            parent.setState({pdfReady: true, pdfLoading: false});
         });
 };
 

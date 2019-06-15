@@ -9,8 +9,17 @@ export default function Button ({ children, id, onClick, cnm = 'default' }) {
 // 16.6.1
 
 const Button = React.memo(
-    function ({ children, id, onClick, cnm = 'default' }) {
-        return <button className={"btn btn-"+cnm} id={id} onClick={onClick} type="button">{children}</button>;
+    function ({ children, id, onClick, cnm = 'default', disabled }) {
+        return (
+            <button
+                disabled={disabled}
+                className={"btn btn-"+cnm}
+                id={id}
+                onClick={onClick}
+                type="button"
+            >
+                {children}
+            </button>);
     }
 );
 

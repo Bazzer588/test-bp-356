@@ -30,6 +30,15 @@ $error-red: #dc3545;
   /*height: 150px;
   padding: 20px;*/
   color: white;
+
+  @media screen and (max-width: 720px){
+    text-align: left;
+    padding-left: 12px;
+    transition: all 1s ease-in-out;
+  }
+
+  @media screen and (max-width: 600px){
+  }
 }
 
 .App-header h1 {
@@ -39,10 +48,6 @@ $error-red: #dc3545;
 
 .App-title {
   font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
 }
 
 @keyframes App-logo-spin {
@@ -334,7 +339,7 @@ select:-webkit-autofill {
   box-shadow: 0 0 0 0.2rem rgba(108,117,125,.5);
 }
 
-.btn + .btn {
+.btn + .btn {       // this applies style to the second sibling
   margin-left: 8px;
 }
 
@@ -348,6 +353,12 @@ select:-webkit-autofill {
   font-size: 14px;
   line-height: 1;
   padding: 0 12px;
+}
+
+.btn:disabled {
+  background-color: #eee;
+  color: #aaa;
+  border-color: #ddd;
 }
 
 /*      form-fieldset       */
