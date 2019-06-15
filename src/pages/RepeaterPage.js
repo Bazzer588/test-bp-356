@@ -9,6 +9,7 @@ import {stringTypeField} from "../validation/validateString";
 import {makeRepeatable} from "../FormListSection";
 import {searchTypeField} from "../components/SmartSearch";
 import {fetchAirports} from "./fetchAirports";
+import PDFButton from "./PDFButton";
 
 const Geno = makeGenericSection('testThing',[
     searchTypeField('cnid',{ required: true }),
@@ -79,6 +80,10 @@ class RepeaterPage extends React.Component {
                 <Button onClick={this.testApi}>Find</Button>
                 <h2>List of things</h2>
                 {renderField(GList)}
+                <h3>Download PDF</h3>
+                <p>
+                    <PDFButton parent={this}/>
+                </p>
             </form>
             </>
         );
