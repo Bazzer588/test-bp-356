@@ -1,7 +1,15 @@
 import React from 'react';
 import './ListGroup.scss';
+require('./ListGroup' + process.env.REACT_APP_DEFAULT_CURRENCY + '.scss');
+
+// if (process.env.REACT_APP_DEFAULT_CURRENCY==='GBP') require('./yabadoo.scss');
+// if (process.env.REACT_APP_DEFAULT_CURRENCY==='USD') require('./lgus.scss');
 
 export default function ListGroup ({ children, id, value, onClick }) {
+
+    //const theme = './ListGroup' + process.env.REACT_APP_DEFAULT_CURRENCY + '.scss';
+    //require(theme);
+
     return (
         <div className="list-group" id={id} role="tablist">
             {items(children,value,onClick)}
@@ -12,6 +20,10 @@ export default function ListGroup ({ children, id, value, onClick }) {
 function items (list, value, onClick) {
     const r = [];
     list.forEach( item => {
+        if (Array.isArray(item)) {
+            r.push(items(item,value,onClick));
+            return;
+        }
         const { id, children, disabled } = item.props;
         const selected = id===value;
         const clk = (ev) => {

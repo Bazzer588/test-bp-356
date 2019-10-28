@@ -17,7 +17,7 @@ export default function PDFButton({parent}) {
             <>
                 <Button onClick={() => downloadPDF()}>Download</Button>
                 {' '}
-                <a href={window.PDF_URL} target="_blank">Open PDF</a>
+                <a href={window.PDF_URL} target="_blank" rel="noopener noreferrer">Open PDF</a>
             </>
             }
             {pdfLoading && ' ...getting the PDF, please wait'}

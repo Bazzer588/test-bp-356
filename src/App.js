@@ -12,6 +12,7 @@ import PopupTestPage from './pages/PopupTestPage';
 import RepeaterPage from './pages/RepeaterPage';
 import LazyPage from './components/LazyPage';
 import DemoPage2 from "./pages/DemoPage2";
+import ApplicationDemo from "./pages/ApplicationDemo";
 
 /** defined app routes */
 
@@ -22,6 +23,7 @@ PageRouter.defineRoute('/tax-app/deals',SearchFieldsPage,'React hot deals page')
 PageRouter.defineRoute('/tax-app/checkout',PaymentPage,'Checkout page');
 PageRouter.defineRoute('/tax-app/repeat',RepeaterPage,'Repeater page');
 PageRouter.defineRoute('/tax-app/another',DemoPage2,'Another');
+PageRouter.defineRoute('/tax-app/application',ApplicationDemo,'Application Demo');
 
 // PageRouter.defineRoute('/tax-app/code-split',CodeSplitPage1,'Code Split Test Page 1');
 

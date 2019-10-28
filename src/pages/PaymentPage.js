@@ -63,6 +63,10 @@ class PaymentPage extends React.Component {
         this.props.updateRedux({ type: 'SET', key: name+'_T', value: {} }); // RESET touched FIELDS
     }
 
+    componentDidMount () {
+        console.log('PaymentPage did mount');
+    }
+
     /*componentWillMount () {             // unsafe, use static getDerivedStateFromProps(nextProps, prevState)
         const { name } = this.props;
         this.props.updateRedux({ type: 'SET', key: name+'_T', value: {} }); // RESET touched FIELDS

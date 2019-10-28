@@ -69,6 +69,7 @@ class NavLinks extends React.PureComponent {
                         <button className="list-item" onClick={() => this.link('/tax-app/home')}>{translate('Home Page')}</button>
                         <button className="list-item" onClick={() => this.link('/tax-app/search')}>{translate('Search')}</button>
                         <button className="list-item" onClick={() => this.link('/tax-app/checkout')}>{translate('Checkout')}</button>
+                        <button className="list-item" onClick={() => this.link('/tax-app/application')}>{translate('Application Demo')}</button>
                         <hr role="presentation"/>
                         <button className="list-item" onClick={this.pickLang}>{translate('Change Language')}</button>
                         <hr role="presentation"/>
