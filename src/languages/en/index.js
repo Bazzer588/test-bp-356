@@ -132,6 +132,14 @@ const labels = {
         price: 'Price of Thing'
     },
 
+    // app demo
+    Application: 'Application',
+    'Main Applicant': 'Main Applicant',
+    'Secondary Applicant': 'Secondary Applicant',
+    'Dependent Child': 'Dependent Child',
+    'addApplicant': '+ Add another applicant',
+    'addApplicant2': 'or a dependant or other involved party',
+
     // ------ errors ---------
     required: '{f} is required',
     minLength: '{f} must be at least {minLength} characters',

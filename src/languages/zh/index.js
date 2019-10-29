@@ -122,6 +122,15 @@ const labels = {
         price: 'Price of Thing'
     },
 
+    // app demo
+    'Application Demo': '应用示范',
+    Application: '应用',
+    'Main Applicant': '主申请人',
+    'Secondary Applicant': '二次申请人',
+    'Dependent Child': '受抚养子女',
+    'addApplicant': '+ 添加其他申请人',
+    'addApplicant2': '或受抚养人或其他相关方',
+
     // ------ errors ---------
     required: '{f} 是必须的',
     minLength: '{f}必须至少为{minLength}个字符',

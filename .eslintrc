@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "strict": [ 2, "never" ],
+    "space-before-function-paren": 2,
+    "quotes": ["warn","single"],
+    "key-spacing": 1,
+    "keyword-spacing": 2,
+    "object-curly-spacing": [1 , "always"]
+  }
+}

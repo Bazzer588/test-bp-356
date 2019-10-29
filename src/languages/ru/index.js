@@ -60,6 +60,15 @@ const labels = {
     'Change Language': 'изменение языка',
     'Select your language': 'Выберите ваш язык',
 
+    // app demo
+    'Application Demo': 'Приложение Демонстрация',
+    Application: 'заявка',
+    'Main Applicant': 'Основной заявитель',
+    'Secondary Applicant': 'Вторичный заявитель',
+    'Dependent Child': 'Зависимый ребенок',
+    'addApplicant': '+ Добавить еще одного заявителя',
+    'addApplicant2': 'или зависимая или другая вовлеченная сторона',
+
     // ------ errors ---------
     required: '{f} требуется',
     errorNoFuture: '{f} can not be a future date',
