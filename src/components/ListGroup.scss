@@ -8,6 +8,7 @@ $list-group-border-color: #c0c0c0;
 $list-group-active-color: #c0c0c0;
 $list-group-active-bg: #c0c0c0;
 $list-group-active-border-color: #ccc;
+$unused: #ccc;
 
 // Base class
 //
@@ -32,6 +33,11 @@ $list-group-active-border-color: #ccc;
   margin: 0 0 -1px 0; // -$list-group-border-width;
   background-color: #fff; // $list-group-bg;
   border: 1px solid $list-group-border-color;
+
+  small {
+    color: #444;
+    font-size: 14px;
+  }
 
   &:first-child {
     border-top-left-radius: 4px;
@@ -68,6 +74,8 @@ $list-group-active-border-color: #ccc;
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
+
+    small { color: #dfe7ef; }
   }
 
   &.active:focus {  // BP additions

@@ -4,6 +4,7 @@ import FormConnect from "../FormConnect";
 import FormSection from "../FormSection";
 import NavLinks from "../sections/NavLinks";
 import ListGroup from "../components/ListGroup";
+import {mockName, mockNumber, mockStreet} from "./mockData";
 
 export class ApplicationDemo extends React.Component {
 
@@ -18,7 +19,8 @@ export class ApplicationDemo extends React.Component {
             const id = 'INV' + index;
             return (
                 <div id={id} key={id}>
-                    {row.type}{': '}{row.fullName}
+                    <small>{row.type}{': '}</small>
+                    <br/>{row.fullName}
                 </div>
             );
         })
@@ -28,6 +30,8 @@ export class ApplicationDemo extends React.Component {
     render() {
         const state = this.state || {};
         const parts = this.parties();
+        const {applicationNumber = '616629873'} = this.props;
+
 
         return (
             <>
@@ -40,15 +44,23 @@ export class ApplicationDemo extends React.Component {
 
                 <div style={{maxWidth: '400px', margin: '12px'}}>
                     <ListGroup value={state.hack} onClick={(v) => this.setState({hack: v})}>
-                        <div id="111">Application 8785566546</div>
+                        <div id="111">
+                            <small>Application {applicationNumber}</small>
+                            <br/>
+                            {dataSet.application.address}
+                        </div>
                         {parts}
-                        <div id="666">+ Add another applicant</div>
+                        <div id="666">
+                            + Add another applicant
+                            <br/>
+                            <small>or a dependant or other involved party</small>
+                        </div>
                     </ListGroup>
                 </div>
 
-                <pre style={{textAlign: 'left', margin: '12px'}}>
-                    {JSON.stringify(dataSet, null, ' ')}
-                </pre>
+                {/*<pre style={{textAlign: 'left', margin: '12px'}}>*/}
+                {/*    {JSON.stringify(dataSet, null, ' ')}*/}
+                {/*</pre>*/}
             </>
         );
     }
@@ -57,27 +69,31 @@ export class ApplicationDemo extends React.Component {
 
 export default useBasePage(FormConnect(FormSection(ApplicationDemo)));
 
-const dataSet = {
-    application: {},
-    involvedParties: [
-        {
-            type: 'Main Applicant',
-            fullName: 'Vincent Vega',
-            dob: '1982-08-17'
-        },
-        {
-            type: 'Secondary Applicant',
-            fullName: 'Carlina Corleone',
-            dob: '1986-02-21'
-        },
-        {
+const dataSet = (() => {
+    const cc = mockNumber(4);
+    const children = [];
+    for (let n = 0; n < cc; n++) {
+        children.push({
             type: 'Dependent Child',
-            fullName: 'Mickey Vega'
+            fullName: mockName(), // 'Mickey Vega'
+        });
+    }
+    return {
+        application: {
+            address: (1 + mockNumber(82)) + ' ' + mockStreet() + ', Sheffield, S1 2DR'
         },
-        {
-            type: 'Dependent Child',
-            fullName: 'Luca Corleone'
-        },
-
-    ]
-};
+        involvedParties: [
+            {
+                type: 'Main Applicant',
+                fullName: mockName(), // 'Vincent Vega',
+                dob: '1982-08-17'
+            },
+            {
+                type: 'Secondary Applicant',
+                fullName: mockName(), // 'Carlina Corleone',
+                dob: '1986-02-21'
+            },
+            ...children
+        ]
+    };
+})();

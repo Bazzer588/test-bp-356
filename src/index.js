@@ -28,7 +28,17 @@ const render = Root => {
     );
 };
 
-App.initialize( () => render(App) );
+function onLoaded () {
+    App.initialize( () => render(App) );
+    const redirect = window.sessionStorage.getItem('redirect');
+    if (redirect) {
+        window.sessionStorage.removeItem('redirect');
+        // window.location.replace(redirect);
+        window.history.replaceState(null, '', redirect); // data, title, url
+    }
+}
+
+onLoaded();
 
 // set an initial language - could be from cookie, session state etc
 // changeLang('en',null,() => render(App) );

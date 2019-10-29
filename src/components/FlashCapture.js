@@ -5,6 +5,11 @@ import './FlashCapture.scss';
 window.Webcam = {
     flashNotify: (a,b,c,d) => {
         console.log('flashNotify',a,b,c,d);
+        if (a==='error') {
+            const t = window.Webcam.compo;
+            if (t)
+                t.setState({ error: b });
+        }
         // cameraLive true
     }
 };
@@ -23,7 +28,17 @@ export default class FlashCapture extends React.Component {
         return movie;
     }
 
+    retry = () => {
+        this.setState({ error: '' });
+    };
+
     render () {
+        window.Webcam.compo = this;
+        const { error } = (this.state || {});
+        if (error) {
+            return <div onClick={this.retry}>Flash error: {error}</div>;
+        }
+
         const swfURL = '/tax-app/webcam.swf';
         const { width = 1280, height = 720, hide, invisible } = this.props;
         console.log('render',width,height,hide);

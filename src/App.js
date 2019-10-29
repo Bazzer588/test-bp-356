@@ -58,6 +58,21 @@ function routePayment (pa) { // tax-app/payment/8437763
     }
 }
 
+PageRouter.defineRoute((pa) => {
+    if (pa[1]==='application') {
+        const applicationNumber = pa[2];
+        return {
+            Compo: ApplicationDemo,
+            title: 'Application '+applicationNumber,
+            values: {
+                applicationNumber
+            }
+        };
+    }
+
+});
+
+
 /** the app */
 
 export default class App extends React.Component {
