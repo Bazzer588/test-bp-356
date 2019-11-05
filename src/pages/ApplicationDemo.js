@@ -20,7 +20,8 @@ export class ApplicationDemo extends React.Component {
     constructor (props) {
         super(props);
         const { applicationNumber } = this.props;
-        this.dataSet = getDataSet(applicationNumber === '666' ? Date.now() : applicationNumber);
+        this.appNumber = applicationNumber === '666' ? Date.now() * Math.random() & 0xFFFFF : applicationNumber;
+        this.dataSet = getDataSet(this.appNumber);
     }
 
     parties () {
@@ -39,7 +40,7 @@ export class ApplicationDemo extends React.Component {
     render () {
         const state = this.state || {};
         const parts = this.parties();
-        const { applicationNumber = '616629873' } = this.props;
+        // const { applicationNumber = '616629873' } = this.props;
 
         // state.selectedTopLevel - APP, INV0 ... INV4, ADD
         const { selectedTopLevel = 'APP' } = state;
@@ -58,7 +59,7 @@ export class ApplicationDemo extends React.Component {
                     <div className={'appDemoLeftPanel'}>
                         <ListGroup value={selectedTopLevel} onClick={(v) => this.setState({ selectedTopLevel: v })}>
                             <div id="APP">
-                                <small>{translate('Application')} {applicationNumber}</small>
+                                <small>{translate('Application')} {this.appNumber}</small>
                                 <br/>
                                 {this.dataSet.application.address}
                             </div>

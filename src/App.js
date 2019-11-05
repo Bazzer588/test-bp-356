@@ -16,6 +16,8 @@ import ApplicationDemo from "./pages/ApplicationDemo";
 
 /** defined app routes */
 
+PageRouter.reset();
+
 PageRouter.defineRoute('/',HomePage,'React tax application');
 PageRouter.defineRoute('/tax-app',HomePage,'React tax application');
 PageRouter.defineRoute('/tax-app/search',SearchPage,'React search page');
@@ -47,6 +49,7 @@ PageRouter.defineRoute('/tax-app/code-split2',
 PageRouter.defineRoute(routePayment);
 
 function routePayment (pa) { // tax-app/payment/8437763
+    console.log('YAYAY',pa);
     if (pa[1]==='payment') {
         return {
             Compo: PopupTestPage,
