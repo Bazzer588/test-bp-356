@@ -10,6 +10,8 @@ import {makeRepeatable} from "../FormListSection";
 import {searchTypeField} from "../components/SmartSearch";
 import {fetchAirports} from "./fetchAirports";
 import PDFButton from "./PDFButton";
+import Announcer from '../components/Announcer';
+import AnnouncerCountdown from '../components/AnnounceCountdown';
 
 const Geno = makeGenericSection('testThing',[
     searchTypeField('cnid',{ required: true }),
@@ -84,6 +86,11 @@ class RepeaterPage extends React.Component {
                 <p>
                     <PDFButton parent={this}/>
                 </p>
+                <h3>Countdown</h3>
+                <Announcer>
+                    Look Here
+                    <AnnouncerCountdown/>
+                </Announcer>
             </form>
             </>
         );
